@@ -43,13 +43,13 @@
           alert("some error occurred: " + err);
         });
 
-//        var overlayMaps = {
-  //        "Serious Crashes": crashes
-    //    };
+        var overlayMaps = {
+	    "Serious Crashes": crashes
+        };
 //        var baseMaps = {
   //        "Basemap": stamen
     //    };
-    //    L.control.layers(baseMaps).addTo(map);
+        L.control.layers(overlayMaps).addTo(map);
       }
 
       // you could use $(window).load(main);

@@ -37,7 +37,7 @@
       cartodb.createLayer(map, cdb_url)
         .addTo(map)
         .on('done', function(layer) {
-          //do stuff
+        	var crashes = layer;
         })
         .on('error', function(err) {
           alert("some error occurred: " + err);

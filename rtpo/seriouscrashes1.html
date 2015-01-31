@@ -27,12 +27,19 @@
           zoom: 9
         });
 
-        L.tileLayer('http://tile.stamen.com/toner/{z}/{x}/{y}.png', {
+        var stamen = L.tileLayer('http://tile.stamen.com/toner/{z}/{x}/{y}.png', {
           attribution: 'Stamen'
         }).addTo(map);
 
-        cartodb.createLayer(map, 'http://ovrdc.cartodb.com/api/v2/viz/52a89830-a8c1-11e4-b072-0e0c41326911/viz.json')
+        var crashes = cartodb.createLayer(map, 'http://ovrdc.cartodb.com/api/v2/viz/52a89830-a8c1-11e4-b072-0e0c41326911/viz.json')
             .addTo(map);
+        var overlayMaps = {
+          "Serious Crashes": crahes
+        }
+        var baseMaps = {
+          "Basemap": stamen
+        }
+        L.control.layers(baseMaps, overlayMaps, {collapsed:false}).addTo(map);
       }
 
       // you could use $(window).load(main);

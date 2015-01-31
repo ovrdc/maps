@@ -31,7 +31,7 @@ crash.addTo(map);
 
 $.ajax({
 dataType: "json",
-url: "dcrashes.geojson",
+url: "crashes.geojson",
 success: function(data) {
     $(data.features).each(function(key, data) {
         crash.addData(data);

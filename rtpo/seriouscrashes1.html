@@ -33,6 +33,9 @@
 
         var crashes = cartodb.createLayer(map, 'http://ovrdc.cartodb.com/api/v2/viz/52a89830-a8c1-11e4-b072-0e0c41326911/viz.json')
             .addTo(map);
+            .on('done', function(layer) {
+                // add individual layers
+            }
         var overlayMaps = {
           "Serious Crashes": crashes
         }

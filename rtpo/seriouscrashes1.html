@@ -31,19 +31,18 @@
           attribution: 'Stamen'
         }).addTo(map);
 
-        var crashes = cartodb.createLayer(map, 'http://ovrdc.cartodb.com/api/v2/viz/52a89830-a8c1-11e4-b072-0e0c41326911/viz.json')
-          .addTo(map)
-          .on('done', function(layer) {
-          }).on('error', function() {
-            //log the error
-          });
-        var overlayMaps = {
-          "Serious Crashes": crashes
-        };
+        var cdb_url = 'http://ovrdc.cartodb.com/api/v2/viz/52a89830-a8c1-11e4-b072-0e0c41326911/viz.json';
+        cartodb.createLayer(map, cdb_url, function(layer) {
+            map.addLayer(layer);
+            });
+
+//        var overlayMaps = {
+  //        "Serious Crashes": crashes
+    //    };
         var baseMaps = {
           "Basemap": stamen
         };
-        L.control.layers(baseMaps, overlayMaps, {collapsed:false}).addTo(map);
+        L.control.layers(baseMaps).addTo(map);
       }
 
       // you could use $(window).load(main);

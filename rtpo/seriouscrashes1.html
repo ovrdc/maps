@@ -30,9 +30,11 @@
         });
 
         var stamen = L.tileLayer('http://tile.stamen.com/toner/{z}/{x}/{y}.png', {
-          opactiy: '0.4',
           attribution: 'Stamen'
-        }).addTo(map);
+        });
+
+	stamen.setOpacity(.3);
+	stamen.addTo(map);
 
       var cdb_url = 'http://ovrdc.cartodb.com/api/v2/viz/52a89830-a8c1-11e4-b072-0e0c41326911/viz.json';
       cartodb.createLayer(map, cdb_url)

@@ -29,17 +29,19 @@
           zoom: 9
         });
 
+        var esri-topo = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
+	    attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
+    	});
+        
         var stamen = L.tileLayer('http://tile.stamen.com/toner/{z}/{x}/{y}.png', {
           attribution: 'Stamen'
         });
-
-	stamen.setOpacity(1);
 	stamen.addTo(map);
 
         var baseMaps = {
-          "Basemap": stamen
+          "Basemap": stamen,
+          "Topo Map": esri-topo
         };
-//        L.control.layers(baseMaps).addTo(map);
 
       var cdb_url = 'http://ovrdc.cartodb.com/api/v2/viz/52a89830-a8c1-11e4-b072-0e0c41326911/viz.json';
       cartodb.createLayer(map, cdb_url)

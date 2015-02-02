@@ -34,14 +34,14 @@
     	});
         esri_topo.setOpacity(0.8);
         
-	var esri_gray = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
-		attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
-		maxZoom: 16
-	}).addTo(map);
-	esri_gray.setOpacity(0.8);
+	var acetate = L.tileLayer('http://a{s}.acetate.geoiq.com/tiles/acetate-hillshading/{z}/{x}/{y}.png', {
+	attribution: '&copy;2012 Esri & Stamen, Data from OSM and Natural Earth',
+	subdomains: '0123'
+	});
+	acetate.setOpacity(0.8);
 
         var baseMaps = {
-          "OpenStreetMap": esri_gray,
+          "Basemap": acetate,
           "Topo Map": esri_topo
         };
 

@@ -37,7 +37,7 @@
 	var acetate = L.tileLayer('http://a{s}.acetate.geoiq.com/tiles/acetate-hillshading/{z}/{x}/{y}.png', {
 	attribution: '&copy;2012 Esri & Stamen, Data from OSM and Natural Earth',
 	subdomains: '0123'
-	});
+	}).addTo(map);
 	acetate.setOpacity(0.8);
 
         var baseMaps = {

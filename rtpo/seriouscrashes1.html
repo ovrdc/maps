@@ -50,7 +50,7 @@
        	  var overlayMaps = {
        	  	"Vehicle Crashes": crashes
        	  };
-       	  L.control.layers(baseMaps, overlayMaps).addTo(map);
+       	  L.control.layers(baseMaps, overlayMaps, {collapsed: false}).addTo(map);
         })
         .on('error', function(err) {
           alert("some error occurred: " + err);

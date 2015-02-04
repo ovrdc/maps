@@ -478,10 +478,6 @@
 				trail.setStyle(blueStyle);
 			}).addTo(map);
 
-
-
-
-
 //		var test = L.tileLayer('tiles/{z}/{x}/{y}.png', {
 //			zIndex: 1,
 //		}).addTo(map);
@@ -497,7 +493,7 @@
 			 "Buckeye Trail": trail
 		};
 
-		L.control.layers(baseMaps, overlayMaps, {collapsed:false}).addTo(map);
+		L.control.layers(baseMaps, overlayMaps).addTo(map);
 		L.control.defaultExtent().addTo(map);
 		L.control.locate().addTo(map);
 		L.control.social({default_text: "Map from OVRDC via GitHub"}).addTo(map);

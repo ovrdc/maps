@@ -454,13 +454,11 @@
 		
 		var greenStyle = {
 			"color": "#339900",
-			"weight": 1,
-			"opactiy": 0.7
+			"weight": 3,
+			"opactiy": 0.8
 		};
 		
-		var trail = omnivore.geojson('../data/btrail.geojson', {
-			style: greenStyle
-		})
+		var trail = omnivore.geojson('../data/btrail.geojson')
 			.on('ready', function() {
 				map.fitBounds(trail.getBounds());
 				trail.eachLayer(function(layer){

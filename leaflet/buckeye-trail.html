@@ -450,16 +450,10 @@
 		var trail = omnivore.geojson('../data/btrail.geojson')
 			.on('ready', function() {
 				map.fitBounds(trail.getBounds());
-			trail.eachlayer(function(layer){
-				layer.on('mouseover', function(e) {
-    			e.layer.openPopup();
-			});
-			});
-			trail.eachlayer(function(layer){
-				layer.on('mouseout', function(e) {
-			    e.layer.closePopup();
-			});
-			});
+				trail.eachLayer(function(layer){
+				layer.bindPopup('<a target="_blank" class="popup" href="' + 'http://www.buckeyetrail.org' + '">' +
+	                            '<img src="' + 'http://www.buckeyetrail.org/links/common/overviewmap.gif' + '" />' + '</a>')
+				});
 			}).addTo(map);
 
 

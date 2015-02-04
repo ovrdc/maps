@@ -447,7 +447,13 @@
 			attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 		});
 
-		var trail = omnivore.geojson('../data/btrail.geojson')
+		function popup(feature, layer) {
+			layer.bindPopup( '<b>' +'This is the Buckeye Trail' + '</b>');
+		};
+		
+		var trail = omnivore.geojson('../data/btrail.geojson', {
+			onEachFeature: popup
+		})
 			.on('ready', function() {
 				map.fitBounds(trail.getBounds());
 			}).addTo(map);

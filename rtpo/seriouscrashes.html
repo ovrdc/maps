@@ -1,30 +1,83 @@
-<!DOCTYPE html>
 <html>
   <head>
   <title>Leaflet example | CartoDB.js</title>
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<meta charset="utf-8" />
+  
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	
+	<!--Font Awesome CDN and Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+	
+	<!--Leaflet Core via CartoDB -->
+	<link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.css" />
+	<script src="http://libs.cartocdn.com/cartodb.js/v3/cartodb.js"></script>
+	<!--[if lte IE 8]>
+		<link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v2/themes/css/cartodb.ie.css" />
+	<![endif]-->
+	
+	<!--Home Button ie Default Extent -->
+	<link rel="stylesheet" href="../plugins/leaflet.defaultextent.css" />
+	<script src="../plugins/leaflet.defaultextent.js"></script>
+	
+	<!--Easy Print Plugin Does not work well -->
+	<script src="../plugins/leaflet.easyPrint.js"></script>
+	<link rel="stylesheet" href="../plugins/easyPrint.css" />
+	<script src="../plugins/jQuery.print.js"></script>
+	
+	<!--Locate Control Plugin Mapbox CDN Version -->
+	<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.24.0/L.Control.Locate.js'></script>
+	<link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.24.0/L.Control.Locate.css' rel='stylesheet' />
+	<!--[if lt IE 9]>
+	<link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.21.0/L.Control.Locate.ie.css' rel='stylesheet' />
+	<![endif]-->
+
+	<!--Awesome Marker Plugin -->
+	<link rel="stylesheet" href="../plugins/leaflet.awesome-markers.css">
+	<script src="../plugins/leaflet.awesome-markers.js"></script>
+	
+	<!--Leaflet Hash via Mapbox CDN-->
+	<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-hash/v0.2.1/leaflet-hash.js'></script>
+	
+	<!-- Leafle Social -->	
+	<link rel="stylesheet" href="../plugins/leaflet.social.css" />
+	<script src="../plugins/leaflet.social.js"></script>
+	
+	<!--Google Custom Map with locked ovrdc API -->
+	<script type="text/javascript"
+	src="https://maps.googleapis.com/maps/api/js?libraries=placeskey=AIzaSyCpIjH_d3jfNPSwPuyrzy2G9H_Ylb1bEd8">
+	</script>
+	<script src="../plugins/google.js"></script>
+	
+	<!-- Esri Leaflet Core -->
+	<script src="http://cdn-geoweb.s3.amazonaws.com/esri-leaflet/0.0.1-beta.5/esri-leaflet-core.js"></script>
+	
+	<!-- Esri Leaflet Geocoder -->
+	<script src="http://cdn-geoweb.s3.amazonaws.com/esri-leaflet-geocoder/0.0.1-beta.3/esri-leaflet-geocoder.js"></script>
+	<link rel="stylesheet" type="text/css" href="http://cdn-geoweb.s3.amazonaws.com/esri-leaflet-geocoder/0.0.1-beta.3/esri-leaflet-geocoder.css">
+	
+	<!-- Full Screen via Mapbox-->
+	<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v0.0.4/Leaflet.fullscreen.min.js'></script>
+	<link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v0.0.4/leaflet.fullscreen.css' rel='stylesheet' />
+	
+	<!-- Leaflet Omnivore Plugin GeoJson KML Etc -->
+	<script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>
+  
+	<!-- leaflet measure -->
+	<link rel="stylesheet" href="../plugins/leaflet.measure.css" />
+	<script src="../plugins/leaflet.measure.js"></script>
+  
 	<style>
-		body {
-			padding: 0;
-			margin: 0;
-		}
-		html, body, #map {
-			height: 100%;
-		}
+		#map { position:absolute; top:0; bottom:0; width:100%; }
 	</style>
-  <link rel="shortcut icon" href="http://cartodb.com/assets/favicon.ico" />
-  <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/3.11/themes/css/cartodb.css" />
+
   </head>
   <body>
     <div id="map"></div>
-    
-    <!-- include cartodb.js library -->
-    <script src="http://libs.cartocdn.com/cartodb.js/v3/3.11/cartodb.js"></script>
-    <!-- leaflet measure -->
-	<link rel="stylesheet" href="//ovrdc.github.io/maps/plugins/leaflet.measure.css" />
-	<script src="//ovrdc.github.io/maps/plugins/leaflet.measure.js"></script>
-
 
     <script>
       function main() {

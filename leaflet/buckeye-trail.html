@@ -449,7 +449,7 @@
 
 		var trail = omnivore.geojson('../data/btrail.geojson', {
 			onEachFeature: function (feature, layer) {
-				layer.bindPopup('This is the Buckeye Trail');
+				layer.bindPopup("<p>This is the Buckeye Trail</p>");
 			}
 		})
 			.on('ready', function() {

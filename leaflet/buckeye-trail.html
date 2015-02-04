@@ -106,6 +106,13 @@
 		
 		var hash = L.hash(map);
 		
+		var hillshade = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Terrain_Base/MapServer/tile/{z}/{y}/{x}', {
+		attribution: 'Tiles &copy; Esri &mdash; Source: USGS, Esri, TANA, DeLorme, and NPS',
+			maxZoom: 20,
+			maxNativeZoom: 13,
+			opacity: 0.3
+		}).addTo(map);
+		
 		var style = [
 			    {
 			        "featureType": "all",
@@ -443,7 +450,8 @@
 					styles: style
 				},
 				maxZoom: 20,
-				maxNativeZoom: 18
+				maxNativeZoom: 18,
+				opacity: 0.8
 			});
 			
 			map.addLayer(greymap);

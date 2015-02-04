@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>Add geocoding</title>
+<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.css' rel='stylesheet' />
+<!--Google Custom Map with locked personal API -->
+<script type="text/javascript"
+src="https://maps.googleapis.com/maps/api/js?libraries=placeskey=AIzaSyCpIjH_d3jfNPSwPuyrzy2G9H_Ylb1bEd8">
+</script>
+<script src="//ovrdc.github.io/leaflet/src/google.js"></script>
+<style>
+  body { margin:0; padding:0; }
+  #map { position:absolute; top:0; bottom:0; width:100%; }
+</style>
+</head>
+<body>
+<div id='map'></div>
+<script>
+L.mapbox.accessToken = 'pk.eyJ1Ijoib3ZyZGMiLCJhIjoiRUtXeFFzZyJ9.ufnW36oCZo96m_L9QsAkYg';
+
+    window.onload = function () {
+  
+    	var map = L.map('map', {
+    		center: [39.11, -82.55],
+    		zoom: 15
+    	});
+
+	var style = [
+	    {
+	        "featureType": "all",
+	        "elementType": "all",
+	        "stylers": [
+	            {
+	                "lightness": "5"
+	            }
+	        ]
+	    },
+	    {
+	        "featureType": "all",
+	        "elementType": "labels.text.fill",
+	        "stylers": [
+	            {
+	                "color": "#727272"
+	            }
+	        ]
+	    },
+	    {
+	        "featureType": "all",
+	        "elementType": "labels.text.stroke",
+	        "stylers": [
+	            {
+	                "weight": "-5"
+	            }
+	        ]
+	    },
+	    {
+	        "featureType": "administrative",
+	        "elementType": "labels.text.fill",
+	        "stylers": [
+	            {
+	                "color": "#9f9f9f"
+	            }
+	        ]
+	    },
+	    {
+	        "featureType": "administrative.land_parcel",
+	        "elementType": "labels.text.stroke",
+	        "stylers": [
+	            {
+	                "weight": "1.5"
+	            },
+	            {
+	                "lightness": "15"
+	            }
+	        ]
+	    },
+	    {
+	        "featureType": "landscape",
+	        "elementType": "all",
+	        "stylers": [
+	            {
+	                "color": "#f2f2f2"
+	            }
+	        ]
+	    },
+	    {
+	        "featureType": "landscape",
+	        "elementType": "geometry.fill",
+	        "stylers": [
+	            {
+	                "lightness": "50"
+	            }
+	        ]
+	    },
+	    {
+	        "featureType": "poi",
+	        "elementType": "all",
+	        "stylers": [
+	            {
+	                "visibility": "off"
+	            },
+	            {
+	                "saturation": "-30"
+	            }
+	        ]
+	    },
+	    {
+	        "featureType": "poi",
+	        "elementType": "geometry",
+	        "stylers": [
+	            {
+	                "visibility": "on"
+	            },
+	            {
+	                "saturation": "-20"
+	            },
+	            {
+	                "lightness": "40"
+	            }
+	        ]
+	    },
+	    {
+	        "featureType": "poi",
+	        "elementType": "labels",
+	        "stylers": [
+	            {
+	                "visibility": "on"
+	            }
+	        ]
+	    },
+	    {
+	        "featureType": "poi",
+	        "elementType": "labels.text",
+	        "stylers": [
+	            {
+	                "visibility": "off"
+	            }
+	        ]
+	    },
+	    {
+	        "featureType": "poi",
+	        "elementType": "labels.icon",
+	        "stylers": [
+	            {
+	                "lightness": "10"
+	            },
+	            {
+	                "saturation": "-100"
+	            }
+	        ]
+	    },
+	    {
+	        "featureType": "road",
+	        "elementType": "all",
+	        "stylers": [
+	            {
+	                "saturation": -100
+	            },
+	            {
+	                "lightness": 45
+	            }
+	        ]
+	    },
+	    {
+	        "featureType": "road.highway",
+	        "elementType": "all",
+	        "stylers": [
+	            {
+	                "visibility": "simplified"
+	            }
+	        ]
+	    },
+	    {
+	        "featureType": "road.arterial",
+	        "elementType": "geometry.fill",
+	        "stylers": [
+	            {
+	                "lightness": "-24"
+	            },
+	            {
+	                "gamma": "2.5"
+	            },
+	            {
+	                "saturation": "0"
+	            }
+	        ]
+	    },
+	    {
+	        "featureType": "road.arterial",
+	        "elementType": "geometry.stroke",
+	        "stylers": [
+	            {
+	                "visibility": "on"
+	            },
+	            {
+	                "lightness": "100"
+	            }
+	        ]
+	    },
+	    {
+	        "featureType": "road.arterial",
+	        "elementType": "labels.text.fill",
+	        "stylers": [
+	            {
+	                "lightness": "-22"
+	            }
+	        ]
+	    },
+	    {
+	        "featureType": "road.arterial",
+	        "elementType": "labels.icon",
+	        "stylers": [
+	            {
+	                "visibility": "on"
+	            }
+	        ]
+	    },
+	    {
+	        "featureType": "road.local",
+	        "elementType": "geometry",
+	        "stylers": [
+	            {
+	                "weight": "1.5"
+	            },
+	            {
+	                "lightness": "100"
+	            }
+	        ]
+	    },
+	    {
+	        "featureType": "road.local",
+	        "elementType": "geometry.fill",
+	        "stylers": [
+	            {
+	                "weight": "3"
+	            }
+	        ]
+	    },
+	    {
+	        "featureType": "road.local",
+	        "elementType": "geometry.stroke",
+	        "stylers": [
+	            {
+	                "visibility": "off"
+	            },
+	            {
+	                "weight": "1.5"
+	            }
+	        ]
+	    },
+	    {
+	        "featureType": "road.local",
+	        "elementType": "labels.icon",
+	        "stylers": [
+	            {
+	                "visibility": "off"
+	            }
+	        ]
+	    },
+	    {
+	        "featureType": "transit",
+	        "elementType": "all",
+	        "stylers": [
+	            {
+	                "visibility": "off"
+	            }
+	        ]
+	    },
+	    {
+	        "featureType": "transit.line",
+	        "elementType": "geometry",
+	        "stylers": [
+	            {
+	                "visibility": "on"
+	            },
+	            {
+	                "lightness": "30"
+	            },
+	            {
+	                "saturation": "0"
+	            }
+	        ]
+	    },
+	    {
+	        "featureType": "transit.line",
+	        "elementType": "geometry.stroke",
+	        "stylers": [
+	            {
+	                "weight": "1.5"
+	            }
+	        ]
+	    },
+	    {
+	        "featureType": "water",
+	        "elementType": "all",
+	        "stylers": [
+	            {
+	                "color": "#b1d9e9"
+	            },
+	            {
+	                "visibility": "on"
+	            }
+	        ]
+	    },
+	    {
+	        "featureType": "water",
+	        "elementType": "geometry",
+	        "stylers": [
+	            {
+	                "saturation": "-50"
+	            },
+	            {
+	                "lightness": "10"
+	            }
+	        ]
+	    },
+	    {
+	        "featureType": "water",
+	        "elementType": "labels.text",
+	        "stylers": [
+	            {
+	                "lightness": "-20"
+	            },
+	            {
+	                "visibility": "on"
+	            },
+	            {
+	                "saturation": "0"
+	            }
+	        ]
+	    },
+	       {
+	        "featureType": "poi.park",
+	        "elementType": "labels.text",
+	        "stylers": [
+	            {
+	                "visibility": "on"
+	            },
+	            {
+	            	"lightness": 25
+	            }
+	        ]
+	    },
+	    {
+	        "featureType": "water",
+	        "elementType": "labels.text.stroke",
+	        "stylers": [
+	            {
+	                "color": "#f0f0f0"
+	            },
+	            {
+	                "weight": "2"
+	            },
+	            {
+	                "visibility": "on"
+	            }
+	        ]
+	    }
+	];
+	var greymap = new L.Google('ROADMAP', {
+		mapOptions: {
+			styles: style
+		},
+		maxZoom: 20,
+		maxNativeZoom: 18
+	});
+	
+	map.addLayer(greymap);
+    
+    var attribution = '<a href="http://www.doi.gov">U.S. Department of the Interior</a> | <a href="http://www.usgs.gov">U.S. Geological Survey</a> | <a href="http://www.usgs.gov/laws/policies_notices.html">Policies</a>';
+    var tnmBasemapViewer = L.tileLayer('http://basemap.nationalmap.gov/ArcGIS/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}', {
+            maxZoom: 14,
+            attribution: attribution
+            });
+            
+    var geocoder = L.mapbox.geocoderControl('mapbox.places').addTo(map);
+    
+//    var tnmBasemapNavigator = L.tileLayer('http://navigator.er.usgs.gov/tiles/tcr.cgi/{z}/{x}/{y}.png', {
+  //          maxZoom: 20,
+    //        attribution: attribution
+      //      });
+        //    
+    }       
+</script>
+</body>
+</html>

@@ -447,13 +447,12 @@
 			attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 		});
 
-		var trail = omnivore.geojson('../data/btrail.geojson', {
-			onEachFeature: function (feature, layer) {
-				layer.bindPopup("<p>This is the Buckeye Trail</p>");
-			}
-		})
+		var trail = omnivore.geojson('../data/btrail.geojson')
 			.on('ready', function() {
 				map.fitBounds(trail.getBounds());
+				trail.eachLayer(function(layer){
+					layer.bindPopup("<p>This is the Buckeye Trail</p>");
+				});
 			}).addTo(map);
 
 //		var test = L.tileLayer('tiles/{z}/{x}/{y}.png', {

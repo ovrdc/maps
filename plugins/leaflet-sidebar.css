@@ -7,8 +7,8 @@
   overflow: hidden;
   z-index: 2000; }
   .sidebar.collapsed {
-    width: 28px;
-    height: 28px;}
+    width: 26px;
+    height: 26px;}
   @media (min-width: 768px) {
     .sidebar {
       left: 10px;
@@ -29,10 +29,10 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 26px;
+  width: 24px;
   height: 100%;
   margin: 0;
-  padding: 10;
+  padding: 0;
   background-color: #fff; }
   .sidebar-tabs > li {
     width: 100%;

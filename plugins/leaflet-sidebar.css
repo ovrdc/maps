@@ -2,6 +2,7 @@
   position: absolute;
   left: 0;
   top: 0;
+  bottom: 0;
   width: 100%;
   height: auto;
   overflow: auto;
@@ -14,24 +15,17 @@
     .sidebar {
       left: 46px;
       top: 10px;
-      height: auto;
-      overflow: auto;
+      bottom: 10px;
       transition: width 500ms; } }
   @media (min-width: 768px) and (max-width: 991px) {
     .sidebar {
-      width: 305px;
-            height: auto;
-      overflow: auto;} }
+      width: 305px; } }
   @media (min-width: 992px) and (max-width: 1199px) {
     .sidebar {
-      width: 390px;
-            height: auto;
-      overflow: auto;} }
+      width: 390px; } }
   @media (min-width: 1200px) {
     .sidebar {
-      width: 460px;
-            height: auto;
-      overflow: auto;} }
+      width: 460px; } }
 
 .sidebar-tabs {
   position: absolute;

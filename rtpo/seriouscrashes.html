@@ -151,6 +151,7 @@
 	L.control.defaultExtent().addTo(map);
 	L.control.locate().addTo(map);
 	L.control.social({default_text: "Map from OVRDC via GitHub"}).addTo(map);
+	var sidebar = L.control.sidebar('sidebar').addTo(map);
 
 // conflicts with measure control
 //	map.on('click', function(e) { alert("Lat, Lon : " + e.latlng.lat + ", " + e.latlng.lng) });

@@ -104,7 +104,7 @@ only screen and (min-device-pixel-ratio: 2) {
 }
 
 .geocoder-control-suggestions .geocoder-control-suggestion:first-child {
-  border: none;
+  border: 1px;
 }
 
 .geocoder-control-suggestions .geocoder-control-suggestion.geocoder-control-selected,

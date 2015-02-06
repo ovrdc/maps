@@ -1,16 +1,14 @@
 .sidebar {
   position: absolute;
   left: 0;
-  top: 200;
+  top: 0;
   bottom: 0;
   width: 100%;
   overflow: hidden;
   z-index: 2000; }
   .sidebar.collapsed {
-    position: absolute;
-    top:200;
-    width: 26px;
-    height: 26px;}
+    width: 25px;
+    height: 25px;}
   @media (min-width: 768px) {
     .sidebar {
       left: 10px;
@@ -60,7 +58,7 @@
 
 .sidebar-content {
   position: absolute;
-  left: 2px;
+  left: 24px;
   right: 0;
   top: 0;
   bottom: 0;
@@ -86,7 +84,7 @@
       width: 420px; } }
 
 .sidebar-map {
-  margin-left: 24px; }
+  margin-left: 25px; }
   @media (min-width: 768px) {
     .sidebar-map {
       margin-left: 0; } }

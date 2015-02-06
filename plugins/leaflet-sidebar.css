@@ -1,7 +1,7 @@
 .sidebar {
   position: absolute;
   left: 0;
-  top: 0;
+  top: 200;
   bottom: 0;
   width: 100%;
   overflow: hidden;
@@ -58,7 +58,7 @@
 
 .sidebar-content {
   position: absolute;
-  left: 26px;
+  left: 2px;
   right: 0;
   top: 0;
   bottom: 0;
@@ -70,7 +70,7 @@
   display: none;
   right: 0;
   box-sizing: border-box;
-  padding: 3px 3px; }
+  padding: 4px 4px; }
   .sidebar-pane.active {
     display: block; }
   @media (min-width: 768px) and (max-width: 991px) {
@@ -84,7 +84,7 @@
       width: 420px; } }
 
 .sidebar-map {
-  margin-left: 26px; }
+  margin-left: 24px; }
   @media (min-width: 768px) {
     .sidebar-map {
       margin-left: 0; } }

@@ -12,7 +12,7 @@
     height: 25px;}
   @media (min-width: 768px) {
     .sidebar {
-      left: 10px;
+      left: 56px;
       top: 10px;
       bottom: 10px;
       transition: width 500ms; } }

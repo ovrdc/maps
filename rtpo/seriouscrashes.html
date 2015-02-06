@@ -93,15 +93,14 @@
             	<div class="sidebar-pane" id="home">
                 	<h1>Serious Injury Crash Cluster Map for the OVRDC RTPO Region</h1>
 
-	               <p>The data for this map was downloaded from the ODOT GCAT website on 02/15/2015.</p>
-	               <p>The data inlcudes all the serious injury and fatal crashes for the OVRDC RTPO region from 2009 - 2013. The 
-	               	clusters were created using the intergrate and collect event tools in ArcMap, with a distance 0.1 miles.
+	               <p>This map inlcudes all the serious injury and fatal crashes for the OVRDC RTPO region from 2009 - 2013. The 
+	               	clusters were created using the intergrate and collect event tools in ArcMap, with a distance of 0.1 miles.
 	               	This counts all the crashes that occur within a 528 foot radius. The clusters are for exploratory purposes 
 	               	only and should not be considered statistically significant.</p>
 	               	<p>The point shapefiles were uploaded to <a href="//www.cartodb.com">CartoDB</a> and symbolized using the
 	               	bubble feature. The map was produced using the <a href="//leafletjs.com">Leaflet Javascript Library</a>.
 	               	</p>
-	          
+	          	<p><i></i>The data for this map was downloaded from the ODOT GCAT website on 01/15/2015.</i></p>
 		</div>
         </div>
     </div>
@@ -112,6 +111,7 @@
         var map = new L.Map('map', {
           center: [39.1333, -83.3368],
           zoom: 9,
+          maxZoom: 17,
           measureControl: true
         });
         

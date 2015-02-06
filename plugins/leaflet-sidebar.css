@@ -108,10 +108,10 @@
     transition: left 500ms; } }
 @media (min-width: 768px) and (max-width: 991px) {
   .sidebar-map .leaflet-left {
-    left: 315px; } }
+    left: 0px; } }
 @media (min-width: 992px) and (max-width: 1199px) {
   .sidebar-map .leaflet-left {
-    left: 400px; } }
+    left: 0px; } }
 @media (min-width: 1200px) {
   .sidebar-map .leaflet-left {
-    left: 470px; } }
+    left: 0px; } }

@@ -41,7 +41,7 @@
     height: 24px;
     color: #333;
     font-size: 12pt;
-    overflow: hidden;
+    overflow: auto;
     transition: all 80ms; }
     .sidebar-tabs > li:hover {
       color: #000;

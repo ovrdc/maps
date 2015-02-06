@@ -60,7 +60,9 @@
 	
 	<!-- Esri Leaflet Geocoder -->
 	<script src="http://cdn-geoweb.s3.amazonaws.com/esri-leaflet-geocoder/0.0.1-beta.3/esri-leaflet-geocoder.js"></script>
-	<link rel="stylesheet" type="text/css" href="http://cdn-geoweb.s3.amazonaws.com/esri-leaflet-geocoder/0.0.1-beta.3/esri-leaflet-geocoder.css">
+	<!--link rel="stylesheet" type="text/css" href="http://cdn-geoweb.s3.amazonaws.com/esri-leaflet-geocoder/0.0.1-beta.3/esri-leaflet-geocoder.css"-->
+	
+	<link rel="stylesheet" type="text/css" href="../plugins/esri-geo/esri-leaflet-geocoder.css" />
 	
 	<!-- Full Screen via Mapbox-->
 	<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v0.0.4/Leaflet.fullscreen.min.js'></script>
@@ -109,7 +111,7 @@
     
     <div id="map" class="sidebar-map"></div>
     <script>
-    L.mapbox.accessToken = 'pk.eyJ1Ijoib3ZyZGMiLCJhIjoiRUtXeFFzZyJ9.ufnW36oCZo96m_L9QsAkYg';
+
       function main() {
         var map = new L.Map('map', {
           center: [39.1333, -83.3368],

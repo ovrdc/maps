@@ -7,7 +7,6 @@ L.Control.Social = L.Control.extend({
       ['facebook', "Facebook", "https://www.facebook.com/sharer.php?u=_url_&t=_text_"],
       ['twitter', "Twitter", "http://twitter.com/intent/tweet?text=_text_&url=_url_"],
       ['google-plus', "Google Plus", "https://plus.google.com/share?url=_url_"],
-      ['envelope-o', "Email", "'<a href=' + '"mailto:?&subject=Check out this map"'+'>'+"Send Email"+'</a>'"]
     ]
   },
 

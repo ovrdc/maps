@@ -145,7 +145,7 @@
        	  var overlayMaps = {
        	  	"Serious Injury Crash Clusters (0.1 mi)": crashes,
        	  };
-       	  L.control.layers(baseMaps, overlayMaps, {collapsed: false}).addTo(map);
+       	  L.control.layers(baseMaps, overlayMaps).addTo(map);
         })
         .on('error', function(err) {
           alert("some error occurred: " + err);

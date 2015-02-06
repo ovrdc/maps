@@ -85,7 +85,7 @@
       width: 420px; } }
 
 .sidebar-map {
-  margin-left: 10px; }
+  margin-left: 0px; }
   @media (min-width: 768px) {
     .sidebar-map {
       margin-left: 0; } }

@@ -7,12 +7,12 @@
   overflow: hidden;
   z-index: 2000; }
   .sidebar.collapsed {
-    left: 56px;
+    left: 46px;
     width: 25px;
     height: 25px;}
   @media (min-width: 768px) {
     .sidebar {
-      left: 56px;
+      left: 46px;
       top: 10px;
       bottom: 10px;
       transition: width 500ms; } }

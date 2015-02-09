@@ -134,10 +134,6 @@
 	}).addTo(map);
 	acetate.setOpacity(0.8);
 
-        var baseMaps = {
-          "Basemap": acetate,
-          "Topo Map": esri_topo
-        };
 
       var cdb_layers = {};
       var cdb_url = 'http://ovrdc.cartodb.com/api/v2/viz/8733715a-ae12-11e4-a03d-0e018d66dc29/viz.json';
@@ -153,11 +149,19 @@
           alert("some error occurred: " + err);
         });
         
-        var overlays = {
-       	  	"Serious Injury Crash Clusters (0.1 mi)": crashes,
-       	};
+        function addLayerControl() {
+	        var overlays = {
+	       	  	"Serious Injury Crash Clusters (0.1 mi)": crashes,
+	       	};
+	       
+	        var baseMaps = {
+	          "Basemap": acetate,
+	          "Topo Map": esri_topo
+	        };
+               	L.control.layers(baseMaps, overlays, {autoZIndex: true}).addTo(map);
+        };
        	
-       	L.control.layers(baseMaps, overlays, {autoZIndex: true}).addTo(map);
+
         
 	L.control.defaultExtent().addTo(map);
 	L.control.locate().addTo(map);

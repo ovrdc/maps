@@ -115,8 +115,6 @@
         
         var hash = L.hash(map);
 
-
-
 	var acetate = L.tileLayer('http://a{s}.acetate.geoiq.com/tiles/acetate-hillshading/{z}/{x}/{y}.png', {
 	attribution: '&copy;2012 Esri & Stamen, Data from OSM and Natural Earth',
 	subdomains: '0123'
@@ -126,26 +124,31 @@
 	attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community',
     	});
 
-
-
+	var cartolyrs = {};
 	var zoning = 'http://ovrdc.cartodb.com/api/v2/viz/8633844c-b061-11e4-b0bc-0e0c41326911/viz.json';
 	cartodb.createLayer(map, zoning)
 	.addTo(map)
 	.on('done', function(layer) {
-	 layer.setZIndex(2);
-	 layer.fitBounds(layer.getBounds());
+	cartolyrs['Wellston Zoning'] = layer;
+	addLayerControl();
+	layer.fitBounds(layer.getBounds());
 	})
 	.on('error', function(err) {
 	alert("some error occurred: " + err);
 	});
      	
-     	var baseMaps = {
-          "Basemap": acetate,
-          "Topo Map": esri_topo
+        function addLayerControl() {
+	     	var baseMaps = {
+	          "Basemap": acetate,
+	          "Topo Map": esri_topo
+	        };
+        
+		var overlays = cartolyrs;
+	       
+		var lyrs = L.control.layers(baseMaps, overlays, {autoZIndex: true}).addTo(map);
+               	lyrs.bringToFront();
         };
      
-     
-       	L.control.layers(baseMaps, null, {autoZIndex:true}).addTo(map);
 	L.control.defaultExtent().addTo(map);
 	L.control.locate().addTo(map);
 	L.control.social({default_text: "Map from OVRDC via GitHub"}).addTo(map);

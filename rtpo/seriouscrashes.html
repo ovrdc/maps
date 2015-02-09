@@ -139,19 +139,25 @@
           "Topo Map": esri_topo
         };
 
+      var cdb_layers = {};
       var cdb_url = 'http://ovrdc.cartodb.com/api/v2/viz/8733715a-ae12-11e4-a03d-0e018d66dc29/viz.json';
       cartodb.createLayer(map, cdb_url, {legends:false})
         .addTo(map)
-        .on('done', function(crashes) {
-       	  crashes.setZIndex(2);
-       	  var overlayMaps = {
-       	  	"Serious Injury Crash Clusters (0.1 mi)": crashes,
-       	  };
-       	  L.control.layers(baseMaps, overlayMaps).addTo(map);
+        .on('done', function(layer) {
+       	  layer.setZIndex(2);
+       	  cdb_layers['crashes'] = layer;
+       	  addLayerControl;
+
         })
         .on('error', function(err) {
           alert("some error occurred: " + err);
         });
+        
+        var overlays = {
+       	  	"Serious Injury Crash Clusters (0.1 mi)": crashes,
+       	};
+       	
+       	L.control.layers(baseMaps, overlays).addTo(map);
         
 	L.control.defaultExtent().addTo(map);
 	L.control.locate().addTo(map);

@@ -125,6 +125,10 @@
 	var esri_topo = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
 	attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community',
     	});
+    	
+    	var ortho = new esri.layers.ArcGISImageServiceLayer("http://raster.nationalmap.gov/arcgis/rest/services/Orthoimagery/USGS_EROS_Ortho_1Foot/ImageServer", {
+    		attribution: '&copy;2015 USGS',
+    	});
 
 	var cartolyrs = {};
 	var zoning = 'http://ovrdc.cartodb.com/api/v2/viz/8633844c-b061-11e4-b0bc-0e0c41326911/viz.json';
@@ -143,6 +147,7 @@
 	     	var baseMaps = {
 	          "Basemap": acetate,
 	          "Topo Map": esri_topo
+	          "Satellite": ortho
 	        };
         
 		var overlays = cartolyrs;

@@ -112,8 +112,6 @@
         var map = new L.Map('map', {
           center: [39.1180, -82.5401],
           zoom: 14,
-          minZoom: 13,
-          maxZoom: 15,
           measureControl: true
         });
         
@@ -172,7 +170,7 @@
      
 	L.control.defaultExtent().addTo(map);
 	L.control.locate().addTo(map);
-	L.control.scale().addTo(map);
+//	L.control.scale().addTo(map);
 	L.control.social({default_text: "Map from OVRDC via GitHub"}).addTo(map);
 	var sidebar = L.control.sidebar('sidebar').addTo(map);
 

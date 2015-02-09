@@ -144,9 +144,9 @@
       cartodb.createLayer(map, cdb_url, {legends:false})
         .addTo(map)
         .on('done', function(layer) {
-       	  layer.setZIndex(2);
+
        	  cdb_layers['crashes'] = layer;
-       	  addLayerControl;
+       	  addLayerControl();
 
         })
         .on('error', function(err) {
@@ -157,7 +157,7 @@
        	  	"Serious Injury Crash Clusters (0.1 mi)": crashes,
        	};
        	
-       	L.control.layers(baseMaps, overlays).addTo(map);
+       	L.control.layers(baseMaps, overlays, {autoZIndex: true}).addTo(map);
         
 	L.control.defaultExtent().addTo(map);
 	L.control.locate().addTo(map);

@@ -106,10 +106,8 @@
 
       function main() {
         var map = new L.Map('map', {
-          center: [39.14, -82.46],
-          zoom: 9,
-          minZoom: 8,
-          maxZoom: 13,
+          minZoom: 13,
+          maxZoom: 15,
           measureControl: true
         });
         
@@ -134,6 +132,7 @@
 	.addTo(map)
 	.on('done', function(layer) {
 	 layer.setZIndex(2);
+	 layer.fitBounds(bounds, { padding: [10, 10] });
 	})
 	.on('error', function(err) {
 	alert("some error occurred: " + err);

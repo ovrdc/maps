@@ -13,8 +13,9 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 	
-	<!--Leaflet Core via mapbox -->
+	<!--Leaflet Core via mapbox and cartodb -->
 	<script src="http://libs.cartocdn.com/cartodb.js/v3/cartodb.js"></script>
+	<link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.css" />
 	<link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.css' rel='stylesheet' />
 	
 	<!--Home Button ie Default Extent -->
@@ -105,10 +106,10 @@
 
       function main() {
         var map = new L.Map('map', {
-          center: [39.1333, -83.3368],
+          center: [39.14, -82.46],
           zoom: 9,
           minZoom: 8,
-          maxZoom: 14,
+          maxZoom: 13,
           measureControl: true
         });
         
@@ -128,15 +129,15 @@
           "Topo Map": esri_topo
         };
 
-      var zoning = 'http://ovrdc.cartodb.com/api/v2/viz/8633844c-b061-11e4-b0bc-0e0c41326911/viz.json';
-      cartodb.createLayer(map, zoning)
-        .addTo(map)
-        .on('done', function(layer) {
-       	  layer.setZIndex(2);
-        })
-        .on('error', function(err) {
-          alert("some error occurred: " + err);
-        });
+	var zoning = 'http://ovrdc.cartodb.com/api/v2/viz/8633844c-b061-11e4-b0bc-0e0c41326911/viz.json';
+	cartodb.createLayer(map, zoning)
+	.addTo(map)
+	.on('done', function(layer) {
+	 layer.setZIndex(2);
+	})
+	.on('error', function(err) {
+	alert("some error occurred: " + err);
+	});
      
        	L.control.layers(baseMaps, null).addTo(map);
 	L.control.defaultExtent().addTo(map);

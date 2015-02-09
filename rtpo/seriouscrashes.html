@@ -126,13 +126,11 @@
         var esri_topo = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
 	    attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
     	});
-        esri_topo.setOpacity(0.8);
-        
+
 	var acetate = L.tileLayer('http://a{s}.acetate.geoiq.com/tiles/acetate-hillshading/{z}/{x}/{y}.png', {
 	attribution: '&copy;2012 Esri & Stamen, Data from OSM and Natural Earth',
 	subdomains: '0123'
 	}).addTo(map);
-	acetate.setOpacity(0.8);
 
 
       var cdb_layers = {};
@@ -140,7 +138,7 @@
       cartodb.createLayer(map, cdb_url, {legends:false})
         .addTo(map)
         .on('done', function(layer) {
-        	layer.setZIndex(2);
+
         	cdb_layers['crashes'] = layer;
         	addLayerControl();
 
@@ -150,14 +148,16 @@
         });
         
         function addLayerControl() {
-	        var overlays = {
-	       	  	"Serious Injury Crash Clusters (0.1 mi)": crashes,
-	       	};
-	       
+
 	        var baseMaps = {
 	          "Basemap": acetate,
 	          "Topo Map": esri_topo
 	        };
+	        
+	       var overlays = {
+	       	"Serious Injury Crash Clusters (0.1 mi)": crashes,
+	       	};
+	       
                	var lyrs = L.control.layers(baseMaps, overlays, {autoZIndex: true}).addTo(map);
                	lyrs.bringToFront();
         };

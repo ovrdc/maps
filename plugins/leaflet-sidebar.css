@@ -32,7 +32,7 @@
 
 .sidebar-tabs {
   position: absolute;
-  top: 11;
+  top: 0;
   bottom: 0;
   width: 24px;
   height: auto;

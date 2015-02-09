@@ -139,13 +139,14 @@
         .addTo(map)
         .on('done', function(layer) {
 
-        	cdb_layers['crashes'] = layer;
+        	cdb_layers['Serious Injury Crash Clusters (0.1 mi)'] = layer;
         	addLayerControl();
 
         })
         .on('error', function(err) {
           alert("some error occurred: " + err);
         });
+      
         
         function addLayerControl() {
 
@@ -154,11 +155,9 @@
 	          "Topo Map": esri_topo
 	        };
 	        
-	       var overlays = {
-	       	"Serious Injury Crash Clusters (0.1 mi)": crashes,
-	       	};
+		var overlays = cdb_layers;
 	       
-               	var lyrs = L.control.layers(baseMaps, overlays, {autoZIndex: true}).addTo(map);
+		var lyrs = L.control.layers(baseMaps, overlays, {autoZIndex: true}).addTo(map);
                	lyrs.bringToFront();
         };
        	

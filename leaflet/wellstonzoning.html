@@ -132,7 +132,7 @@
 	.addTo(map)
 	.on('done', function(layer) {
 	 layer.setZIndex(2);
-	 layer.fitBounds(layer.getBounds(), { padding: [10, 10] });
+	 layer.fitBounds(layer.getBounds());
 	})
 	.on('error', function(err) {
 	alert("some error occurred: " + err);

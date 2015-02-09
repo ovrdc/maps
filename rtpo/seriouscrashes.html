@@ -158,11 +158,10 @@
 	          "Basemap": acetate,
 	          "Topo Map": esri_topo
 	        };
-               	L.control.layers(baseMaps, overlays, {autoZIndex: true}).addTo(map);
+               	var lyrs = L.control.layers(baseMaps, overlays, {autoZIndex: true}).addTo(map);
+               	lyrs.bringToFront();
         };
        	
-
-        
 	L.control.defaultExtent().addTo(map);
 	L.control.locate().addTo(map);
 	L.control.social({default_text: "Map from OVRDC via GitHub"}).addTo(map);

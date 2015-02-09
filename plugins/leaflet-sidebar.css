@@ -14,17 +14,20 @@
   @media (min-width: 768px) {
     .sidebar {
       left: 46px;
-      top: 0px;
+      top: 10px;
       bottom: 10px;
       transition: width 500ms; } }
   @media (min-width: 768px) and (max-width: 991px) {
     .sidebar {
+      top: 10px;
       width: 305px; } }
   @media (min-width: 992px) and (max-width: 1199px) {
     .sidebar {
+      top: 10px;
       width: 390px; } }
   @media (min-width: 1200px) {
     .sidebar {
+      top: 10px;
       width: 460px; } }
 
 .sidebar-tabs {

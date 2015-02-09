@@ -126,7 +126,7 @@
 	attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community',
     	});
     	
-    	var ortho = new esri.layers.ArcGISImageServiceLayer("http://raster.nationalmap.gov/arcgis/rest/services/Orthoimagery/USGS_EROS_Ortho_1Foot/ImageServer", {
+    	var ortho = esri.layers.ArcGISImageServiceLayer("http://raster.nationalmap.gov/arcgis/rest/services/Orthoimagery/USGS_EROS_Ortho_1Foot/ImageServer", {
     		attribution: '&copy;2015 USGS',
     	});
 

@@ -144,10 +144,9 @@
       cartodb.createLayer(map, cdb_url, {legends:false})
         .addTo(map)
         .on('done', function(layer) {
-        	setZIndex: (2);
-
-       	  cdb_layers['crashes'] = layer;
-       	  addLayerControl();
+        	layer.setZIndex(2);
+        	cdb_layers['crashes'] = layer;
+        	addLayerControl();
 
         })
         .on('error', function(err) {

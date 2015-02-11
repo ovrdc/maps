@@ -112,7 +112,7 @@
 	var address = omnivore.geojson('../data/fair_address.geojson')
 	.on('ready', function() {
 		map.fitBounds(address.getBounds());
-		onEachFeature: function(feature, marker) {
+			address.eachLayer(function(marker){
 			marker.bindPopup(feature.properties.LSN);
 		}	
 		});

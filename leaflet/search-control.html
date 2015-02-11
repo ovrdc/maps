@@ -114,8 +114,7 @@
 		map.fitBounds(address.getBounds());
 			address.eachLayer(function(marker){
 			marker.bindPopup(feature.properties.LSN);
-		}	
-		});
+		});	
 	}).addTo(map);
 	
 //	var featuresLayer = new L.GeoJSON(data, {

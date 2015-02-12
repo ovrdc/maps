@@ -104,7 +104,7 @@
 	$.getJSON('../data/fair_address.geojson', function(data) {
 		var address = L.geoJson(data, {
 			style: function(feature) {
-				return {color: #900000};
+				return {color: "#900000"};
 			},
 			pointToLayer: function(feature, latlng) {
 				return new L.CircleMarker(latlng, {redius: 10, fillOpactiy: 0.8});

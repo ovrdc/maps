@@ -204,7 +204,7 @@
       	$.getJSON('../data/points.geojson', function(data) {
 		var waterFeatures = L.geoJson(data, {
 			style: function(feature) {
-				return {feature.properties.color};
+				return {color: feature.properties.color};
 			},
 			pointToLayer: function(feature, latlng) {
 				return new L.CircleMarker(latlng, {redius: 8, fillOpactiy: 0.8});

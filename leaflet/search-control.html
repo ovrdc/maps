@@ -132,7 +132,7 @@
 	for(i in address) {
 		var lsn = address[i].LSN,	//value searched
 			loc = address[i].coordinates,		//position found
-			marker = new L.Marker(new L.latLng(loc), {title: LSN} );//se property searched
+			marker = new L.Marker(new L.latLng(loc), {title: lsn} );//se property searched
 		marker.bindPopup('Address: '+ lsn );
 		markersLayer.addLayer(marker);
 	}

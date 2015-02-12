@@ -195,6 +195,21 @@
           results.addLayer(L.marker(data.results[i].latlng));
         };
       });
+      
+      	$.getJSON('../data/points.geojson', function(data) {
+		var waterFeatures = L.geoJson(data, {
+			style: function(feature) {
+				return {color: "#900000"};
+			},
+			pointToLayer: function(feature, latlng) {
+				return new L.CircleMarker(latlng, {redius: 10, fillOpactiy: 0.8});
+			},
+			onEachFeature: function(feature, layer) {
+				layer.bindPopup(feature.properties.LSN);
+			}
+		})
+		points.addTo(map);
+	});
 
       }
 

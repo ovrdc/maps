@@ -120,6 +120,16 @@
         
         var hash = L.hash(map);
 
+	var ggle = new L.Google('ROADMAP', {
+		mapOptions: {
+			styles: style
+		},
+		maxZoom: 20,
+		maxNativeZoom: 18
+	});
+	
+	ggle.addTo(map);
+
 	var acetate = L.tileLayer('http://a{s}.acetate.geoiq.com/tiles/acetate-hillshading/{z}/{x}/{y}.png', {
 	attribution: '&copy;2012 Esri & Stamen, Data from OSM and Natural Earth',
 	subdomains: '0123'
@@ -135,15 +145,6 @@
 		maxNativeZoom: 18
 	});
 	
-	var ggle = new L.Google('ROADMAP', {
-		mapOptions: {
-			styles: style
-		},
-		maxZoom: 20,
-		maxNativeZoom: 18
-	}).addTo(map);
-
-
 	var cartolyrs = {};
 	var zoning = 'http://ovrdc.cartodb.com/api/v2/viz/8633844c-b061-11e4-b0bc-0e0c41326911/viz.json';
 	cartodb.createLayer(map, zoning, {

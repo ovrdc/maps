@@ -123,7 +123,7 @@
 	var acetate = L.tileLayer('http://a{s}.acetate.geoiq.com/tiles/acetate-hillshading/{z}/{x}/{y}.png', {
 	attribution: '&copy;2012 Esri & Stamen, Data from OSM and Natural Earth',
 	subdomains: '0123'
-	}).addTo(map);
+	});
 	
         var usgs_topo = L.tileLayer.wms("http://basemap.nationalmap.gov/arcgis/services/USGSTopo/MapServer/WMSServer", {
             layers: 0
@@ -139,7 +139,7 @@
 		},
 		maxZoom: 20,
 		maxNativeZoom: 18
-	});
+	}).addTo(map);
 
 
 	var cartolyrs = {};
@@ -158,8 +158,8 @@
      	
         function addLayerControl() {
 	     	var baseMaps = {
+       	          "Basemap w/Parcels (Google)": ggle,
 	          "Basemap (Stamen)": acetate,
-	          "Basemap (Google)": ggle,
 	          "Topo Map (USGS)": usgs_topo,
 	          "Satellite (ESRI)": ortho
 	          };

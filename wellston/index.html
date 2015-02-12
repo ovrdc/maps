@@ -83,6 +83,11 @@
 
   </head>
   <body>
+  <style>
+	.leaflet-popup-content img {
+  	max-width:100%;
+  	}
+</style>
 
     <div id="sidebar" class="sidebar collapsed">
         <!-- Nav tabs -->
@@ -199,13 +204,14 @@
       	$.getJSON('../data/points.geojson', function(data) {
 		var waterFeatures = L.geoJson(data, {
 			style: function(feature) {
-				return {color: "#900000"};
+				return {feature.properties.color};
 			},
 			pointToLayer: function(feature, latlng) {
-				return new L.CircleMarker(latlng, {redius: 10, fillOpactiy: 0.8});
+				return new L.CircleMarker(latlng, {redius: 8, fillOpactiy: 0.8});
 			},
 			onEachFeature: function(feature, layer) {
-				layer.bindPopup(feature.properties.LSN);
+			layer.bindPopup('<img src="' + 'www.googledrive.com/host/0BxoaXnkdoCcydnFvUUhQZDk3TDQ/01_PICTURE_0308.jpg' + '"'
+			+ 'height="100"'+ 'width="100"' + ' />' + '</a>' + '<br>' + feature.properties.type)
 			}
 		})
 		waterFeatures.addTo(map);

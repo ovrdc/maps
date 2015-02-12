@@ -84,7 +84,7 @@
   </head>
   <body>
   <style>
-    .leaflet-popup-content-wrapper { width: 340px}
+
 </style>
 
     <div id="sidebar" class="sidebar collapsed">
@@ -208,8 +208,7 @@
 			},
 			onEachFeature: function(feature, layer) {
 			layer.bindPopup(('<img src="' + '//www.googledrive.com/host/0BxoaXnkdoCcydnFvUUhQZDk3TDQ/01_PICTURE_0308.jpg' + '"'
-			+ '/>' + '</a>' + '<br>' + feature.properties.type), {
-				minWidth: 250
+			+ 'width="250px"' + '/>' + '</a>' + '<br>' + feature.properties.type), {
 			})
 			}
 		})

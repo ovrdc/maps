@@ -1,7 +1,7 @@
 <!DOCTYPE html> 
 <html>
 <head>
-	<title>Search Features Example</title>
+	<title>Title</title>
 	
 	<meta charset="utf-8" />
   
@@ -83,10 +83,6 @@
 			  overflow:auto;
 			  opacity:0.8;
 			  }
-			 
-			 #copy {
-				display:none
-			}
 	</style>
 </head>
 <body>

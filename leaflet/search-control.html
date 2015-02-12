@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"> 
 <html>
 <head>
-	<title>The Buckeye Trail</title>
+	<title>Search Features Example</title>
 	
 	<meta charset="utf-8" />
   
@@ -130,20 +130,21 @@
 
 	var searchControl = new L.Control.Search({layer: address, propertyName: 'LSN', circleLocation:false});
 
-	searchControl.on('search_locationfound', function(e) {
-		
-		e.layer.setStyle({fillColor: '#3f0', color: '#0f0'});
-		if(e.layer._popup)
-			e.layer.openPopup();
-
-	}).on('search_collapsed', function(e) {
-
-		address.eachLayer(function(layer) {	//restore feature color
-			address.resetStyle(layer);
-		});	
-	});
+	map.addControl(new L.Control.Search({
+	    markerLocation: true,
+	    callData: function(text, callResponse) {
 	
-	map.addControl( searchControl );  //inizialize search control
+	        //here can use custom criteria or merge data from multiple layers
+	
+	        callResponse(address);
+	
+	        return {    //called to stop previous requests on map move
+	            abort: function() {
+	                console.log('aborted request:'+ text);
+	            }
+	        };
+	    }
+	}) );
 
 </script>
 

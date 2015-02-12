@@ -149,7 +149,6 @@
 	cartodb.createLayer(map, zoning, {
 		cartodb_logo: false, legends: false
 	})
-	.addTo(map)
 	.on('done', function(layer) {
 	cartolyrs['Wellston Zoning'] = layer;
 	addLayerControl();

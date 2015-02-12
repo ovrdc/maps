@@ -83,9 +83,6 @@
 
   </head>
   <body>
-  <style>
-
-</style>
 
     <div id="sidebar" class="sidebar collapsed">
         <!-- Nav tabs -->
@@ -128,12 +125,12 @@
 		maxNativeZoom: 18
 	});
 	
-	ggle.addTo(map);
+//	ggle.addTo(map);
 
 	var acetate = L.tileLayer('http://a{s}.acetate.geoiq.com/tiles/acetate-hillshading/{z}/{x}/{y}.png', {
 	attribution: '&copy;2012 Esri & Stamen, Data from OSM and Natural Earth',
 	subdomains: '0123'
-	});
+	}).addTo(map);
 	
         var usgs_topo = L.tileLayer.wms("http://basemap.nationalmap.gov/arcgis/services/USGSTopo/MapServer/WMSServer", {
             layers: 0

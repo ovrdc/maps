@@ -179,6 +179,22 @@
 			})
 			}
 		});
+		
+      	var valves = new L.GeoJSON.AJAX('../data/points.geojson', {
+     			filter: function(feature, layer) {
+     				return feature.properties.type =="valve";
+     			},
+     			style: function(feature) {
+				return {color: feature.properties.color};
+			},
+			pointToLayer: function(feature, latlng) {
+				return new L.CircleMarker(latlng, {radius: 4, fillOpactiy: 0.8});
+			},
+			onEachFeature: function(feature, layer) {
+			layer.bindPopup(feature.properties.type), {
+			}
+			}
+		});
      	
      	hydrants.addTo(map);
      	
@@ -207,6 +223,11 @@
 	     				name: "Hydrants",
 	     				icon: '<i class="fa fa-circle" style="color: red; padding=2px;"></i>',
 	     				layer: hydrants
+	     			},
+	     			{
+	     				name: "Valves",
+	     				icon: '<i class="fa fa-circle" style="color: blue; padding=2px;"></i>',
+	     				layer: valves
 	     			},
 	     			{
 	     				name: "Wellston Zoning",

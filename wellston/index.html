@@ -76,6 +76,9 @@
   	<!-- leaflet sidebar v 2 -->
   	<link rel="stylesheet" href="../plugins/leaflet-sidebar.css" />
   	<script src="../plugins/leaflet-sidebar.js"></script>
+  	
+  	<!-- leaflet ajax geojson loader -->
+  	<script src="../plugins/leaflet.ajax.min.js"></script>
 
 	<style>
 		#map { position:absolute; top:0; bottom:0; width:100%; }
@@ -156,15 +159,7 @@
 	alert("some error occurred: " + err);
 	});
      	
-     	var waterFeatures = new L.GeoJSON();
-     	
-     	function createGeoJSON(data) {
-     		waterFeatures.addGeoJSON(data)
-     	};
-     	
-     	$.getJSON({
-     		'..data/points.geojson&callback=createGeoJSON'
-     	})
+     	var waterFeatures = new L.GeoJSON.AJAX('../data/points.geojson');
      	
      	waterFeatures.addTo(map);
      	

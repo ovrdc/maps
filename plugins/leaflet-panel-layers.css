@@ -73,7 +73,7 @@
 }
 .leaflet-panel-layers-overlays .leaflet-panel-layers-item {
 	margin-bottom: 4px;
-	padding: 2px;
+	padding: 0px;
 	background: #fff;
 	border: 1px solid rgba(0,0,0,0.3);
 	border-radius: 4px;

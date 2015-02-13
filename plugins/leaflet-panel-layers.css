@@ -62,7 +62,7 @@
 	clear: both;
 	float: none;
 	line-height: 20px;
-	height: 22px;
+	height: auto;
 	white-space: nowrap;
     -webkit-touch-callout: none;
     -webkit-user-select: none;

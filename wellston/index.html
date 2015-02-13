@@ -163,7 +163,10 @@
 	alert("some error occurred: " + err);
 	});
      	
-     	var waterFeatures = new L.GeoJSON.AJAX('../data/points.geojson', {
+      	var hydrants = new L.GeoJSON.AJAX('../data/points.geojson', {
+     			filter: function(feature, layer) {
+     				return feature.properties.type =="hydrant";
+     			},
      			style: function(feature) {
 				return {color: feature.properties.color};
 			},
@@ -177,7 +180,7 @@
 			}
 		});
      	
-     	waterFeatures.addTo(map);
+     	hydrants.addTo(map);
      	
         function addLayerControl() {
 	     	var baseLayers = [
@@ -201,9 +204,9 @@
 	     		
 	     		var overLayers = [
 	     			{
-	     				name: "Water Features",
+	     				name: "Hydrants",
 	     				icon: '<i class="fa fa-circle" style="color: red; padding=2px;"></i>',
-	     				layer: waterFeatures
+	     				layer: hydrants
 	     			},
 	     			{
 	     				name: "Wellston Zoning",

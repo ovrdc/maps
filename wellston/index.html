@@ -196,7 +196,7 @@
 			layer.bindPopup(feature.properties.type), {
 			}
 			}
-		});
+		}).addTo(map);
      	
 	var meters = new L.GeoJSON.AJAX('../data/points.geojson', {
 			filter: function(feature, layer) {
@@ -212,7 +212,7 @@
 			layer.bindPopup(feature.properties.type), {
 			}
 			}
-		});
+		}).addTo(map);
      	
      	hydrants.addTo(map);
      	

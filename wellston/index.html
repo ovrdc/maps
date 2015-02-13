@@ -148,7 +148,7 @@
 		cartodb_logo: false, legends: false
 	})
 	.on('done', function(layer) {
-	cartolyrs['Wellston Zoning'] = layer;
+	cartolyrs = layer;
 	addLayerControl();
 	layer.fitBounds(layer.getBounds());
 	})
@@ -183,7 +183,7 @@
 	          };
         
 		var overlays = {
-			cartolyrs,
+			"Wellston Zoning": cartolyrs,
 			"Water Features": waterFeatures
 		};
 	       

@@ -156,23 +156,17 @@
 	alert("some error occurred: " + err);
 	});
      	
-        $.getJSON('../data/points.geojson', function(data) {
-		var waterFeatures = L.geoJson(data, {
-			style: function(feature) {
-				return {color: feature.properties.color};
-			},
-			pointToLayer: function(feature, latlng) {
-				return new L.CircleMarker(latlng, {radius: 4, fillOpactiy: 0.8});
-			},
-			onEachFeature: function(feature, layer) {
-			layer.bindPopup(('<img src="' + '//www.googledrive.com/host/0BxoaXnkdoCcydnFvUUhQZDk3TDQ/01_PICTURE_0308.jpg' + '"'
-			+ 'width="250px"' + '/>' + '</a>' + '<br>' + feature.properties.type), {
-			})
-			}
-		})
-		waterFeatures.addTo(map);
-	});     	
+     	var waterFeatures = new L.GeoJSON();
      	
+     	function createGeoJSON(data) {
+     		waterFeatures.addGeoJSON(data)
+     	};
+     	
+     	$.getJSON({
+     		'..data/points.geojson&callback=createGeoJSON'
+     	});
+     	
+     	waterFeatures.addTo(map);
      	
         function addLayerControl() {
 	     	var baseMaps = {
@@ -190,10 +184,7 @@
 		var lyrs = L.control.layers(baseMaps, overlays, {autoZIndex: true}).addTo(map);
                	lyrs.bringToFront();
         };
-     
-
-     
-     
+   
 	L.control.defaultExtent().addTo(map);
 	L.control.locate().addTo(map);
 //	L.control.scale().addTo(map);

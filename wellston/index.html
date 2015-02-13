@@ -179,29 +179,48 @@
      	
      	waterFeatures.addTo(map);
      	
+//     	var redicon = ('../icons/redcircle.png');
+     	
         function addLayerControl() {
-	     	var baseMaps = {
-       	          "Basemap w/Parcels (Google)": ggle,
-	          "Basemap (Stamen)": acetate,
-	          "Topo Map (USGS)": usgs_topo,
-	          "Satellite (ESRI)": ortho
-	          };
-        
-		var overlays = {
-			"Wellston Zoning": cartolyrs,
-			"Water Features": waterFeatures
-		};
-	       
-		var lyrs = L.control.layers(baseMaps, overlays, {autoZIndex: true}).addTo(map);
-               	lyrs.bringToFront();
+	     	var baseLayer = [
+	     		{
+       	          	name: "Basemap w/Parcels (Google)",
+       	          	layer: ggle
+	     		},
+	     		{
+	     			name: "Basemap (Stamen)",
+	     			layer: acetate
+	     		},
+	     		{
+	     			name: "Topo Map (USGS)",
+	     			layer: usgs_topo
+	     		},
+	     		{
+	     			name: "Satellite (ESRI)",
+	     			layer: ortho
+	     		}
+	     		];
+	     		
+	     		var overLayers = [
+	     			{
+	     				name: "Water Features",
+	     				layer: waterFeatures
+	     			},
+	     			{
+	     				name: "Wellston Zoning",
+	     				layer: cartolyrs
+	     			}
+	     			];
+
+		var panel1 = new L.Control.PanelLayers(baseLayers, overLayers, {autoZIndex: true, collapsed: true}).addTo(map);
+               	panel1.bringToFront();
         };
    
 	L.control.defaultExtent().addTo(map);
 	L.control.locate().addTo(map);
-//	L.control.scale().addTo(map);
+//	L.control.scale().addTo(map); gets in the way of the carto db/google logos
 	L.control.fullscreen().addTo(map);
-
-//	L.control.social({default_text: "Map from OVRDC via GitHub"}).addTo(map);
+//	L.control.social({default_text: "Map from OVRDC via GitHub"}).addTo(map); Wellston doesnt need social sharing
 	var sidebar = L.control.sidebar('sidebar').addTo(map);
 
 // conflicts with measure control
@@ -224,8 +243,6 @@
         };
       });
       
-
-
       }
 
       // you could use $(window).load(main);

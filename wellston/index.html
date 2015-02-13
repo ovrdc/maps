@@ -159,7 +159,19 @@
 	alert("some error occurred: " + err);
 	});
      	
-     	var waterFeatures = new L.GeoJSON.AJAX('../data/points.geojson');
+     	var waterFeatures = new L.GeoJSON.AJAX('../data/points.geojson', {
+     			style: function(feature) {
+				return {color: feature.properties.color};
+			},
+			pointToLayer: function(feature, latlng) {
+				return new L.CircleMarker(latlng, {radius: 4, fillOpactiy: 0.8});
+			},
+			onEachFeature: function(feature, layer) {
+			layer.bindPopup(('<img src="' + '//www.googledrive.com/host/0BxoaXnkdoCcydnFvUUhQZDk3TDQ/01_PICTURE_0308.jpg' + '"'
+			+ 'width="250px"' + '/>' + '</a>' + '<br>' + feature.properties.type), {
+			})
+			}
+		});
      	
      	waterFeatures.addTo(map);
      	

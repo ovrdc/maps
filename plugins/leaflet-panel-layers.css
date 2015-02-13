@@ -8,6 +8,7 @@
 	background-color: #ccc;
 }
 
+/* PANEL LAYERS */
 .leaflet-panel-layers .leaflet-panel-layers-list,
 .leaflet-panel-layers-expanded .leaflet-panel-layers-toggle {
 	display: block;

@@ -197,15 +197,15 @@
 			}
 		});
      	
-     	      	var meters = new L.GeoJSON.AJAX('../data/points.geojson', {
-     			filter: function(feature, layer) {
-     				return feature.properties.type =="meter";
-     			},
-     			style: function(feature) {
-				return {color: feature.properties.color};
+	var meters = new L.GeoJSON.AJAX('../data/points.geojson', {
+			filter: function(feature, layer) {
+			     return feature.properties.type =="meter";
+			},
+			style: function(feature) {
+			return {color: feature.properties.color};
 			},
 			pointToLayer: function(feature, latlng) {
-				return new L.CircleMarker(latlng, {radius: 4, fillOpactiy: 0.8});
+			return new L.CircleMarker(latlng, {radius: 4, fillOpactiy: 0.8});
 			},
 			onEachFeature: function(feature, layer) {
 			layer.bindPopup(feature.properties.type), {

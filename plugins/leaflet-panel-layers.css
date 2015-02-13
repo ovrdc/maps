@@ -1,5 +1,13 @@
 
 /* PANEL LAYERS */
+.icon {
+	display: inline-block;
+	margin: 2px;
+	height: 16px;
+	width: 16px;
+	background-color: #ccc;
+}
+
 .leaflet-panel-layers .leaflet-panel-layers-list,
 .leaflet-panel-layers-expanded .leaflet-panel-layers-toggle {
 	display: block;

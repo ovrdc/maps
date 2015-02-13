@@ -137,11 +137,15 @@
 
 	var acetate = L.tileLayer('http://a{s}.acetate.geoiq.com/tiles/acetate-hillshading/{z}/{x}/{y}.png', {
 	attribution: '&copy;2012 Esri & Stamen, Data from OSM and Natural Earth',
-	subdomains: '0123'
+	subdomains: '0123',
+		maxZoom: 20,
+		maxNativeZoom: 17
 	}).addTo(map);
 	
         var usgs_topo = L.tileLayer.wms("http://basemap.nationalmap.gov/arcgis/services/USGSTopo/MapServer/WMSServer", {
-            layers: 0
+            layers: 0,
+            maxZoom: 20,
+	    maxNativeZoom: 18
         });
 
 	var ortho = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
@@ -173,7 +177,7 @@
 				return {color: feature.properties.color};
 			},
 			pointToLayer: function(feature, latlng) {
-				return new L.CircleMarker(latlng, {radius: 6, fillOpactiy: 0.9});
+				return new L.CircleMarker(latlng, {radius: 5, fillOpactiy: 0.9});
 			},
 			onEachFeature: function(feature, layer) {
 			layer.bindPopup(('<img src="' + '//www.googledrive.com/host/0BxoaXnkdoCcydnFvUUhQZDk3TDQ/01_PICTURE_0308.jpg' + '"'
@@ -190,7 +194,7 @@
 				return {color: feature.properties.color};
 			},
 			pointToLayer: function(feature, latlng) {
-				return new L.CircleMarker(latlng, {radius: 6, fillOpactiy: 0.9});
+				return new L.CircleMarker(latlng, {radius: 5, fillOpactiy: 0.9});
 			},
 			onEachFeature: function(feature, layer) {
 			layer.bindPopup(feature.properties.type), {
@@ -206,7 +210,7 @@
 			return {color: feature.properties.color};
 			},
 			pointToLayer: function(feature, latlng) {
-			return new L.CircleMarker(latlng, {radius: 6, fillOpactiy: 0.9});
+			return new L.CircleMarker(latlng, {radius: 5, fillOpactiy: 0.9});
 			},
 			onEachFeature: function(feature, layer) {
 			layer.bindPopup(feature.properties.type), {

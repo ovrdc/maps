@@ -62,7 +62,7 @@
 	clear: both;
 	float: none;
 	line-height: 20px;
-	height: auto;
+	height: 22px;
 	white-space: nowrap;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -92,7 +92,7 @@
 }
 .leaflet-panel-layers-icon {
 	text-align: center;
-	line-height: 15px;
+	line-height: 22px;
 	height: 22px;
 	width: 22px;
 	background: #fff;
@@ -100,7 +100,7 @@
 	margin-right: 4px;
 }
 .leaflet-panel-layers-overlays span {
-	display: inline-block;
+	display: inline;
 	width: auto;
 	overflow: hidden;
 }

@@ -169,6 +169,10 @@
 	alert("some error occurred: " + err);
 	});
      	
+      	var hydicon = new L.Icon({
+      		iconURL: '../icons/hydrant-red.png'
+      	});
+
       	var hydrants = new L.GeoJSON.AJAX('../data/points.geojson', {
      			filter: function(feature, layer) {
      				return feature.properties.type =="hydrant";
@@ -177,7 +181,7 @@
 				return {color: feature.properties.color};
 			},
 			pointToLayer: function(feature, latlng) {
-				return new L.CircleMarker(latlng, {radius: 5, fillOpactiy: 0.9});
+				return new L.marker(latlng, {icon: hydicon});
 			},
 			onEachFeature: function(feature, layer) {
 			layer.bindPopup(('<img src="' + '//www.googledrive.com/host/0BxoaXnkdoCcydnFvUUhQZDk3TDQ/01_PICTURE_0308.jpg' + '"'

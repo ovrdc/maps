@@ -169,22 +169,15 @@
 	alert("some error occurred: " + err);
 	});
      	
-      	var hydIcon = new L.Icon({
-      		iconURL: '../icons/hydrant-red.png',
-      		
-      		iconSize:     [38, 38],
-      		iconAnchor:   [22, 94],
-      		popupAnchor:  [-3, -76]
-      	});
-      	
-      	var test = new L.marker([39.1177, -82.5402], {icon: testIcon({iconURL: '../icons/hydrant-red.png'}) }).addTo(map);
-
       	var hydrants = new L.GeoJSON.AJAX('../data/points.geojson', {
      			filter: function(feature, layer) {
      				return feature.properties.type =="hydrant";
      			},
+			style: function(feature) {
+			return {color: feature.properties.color};
+			},
 			pointToLayer: function(feature, latlng) {
-				return L.marker(latlng, {icon: testIcon({iconURL: '../icons/hydrant-red.png'}) });
+			return new L.CircleMarker(latlng, {radius: 5, fillOpactiy: 0.9});
 			},
 			onEachFeature: function(feature, layer) {
 			layer.bindPopup(('<img src="' + '//www.googledrive.com/host/0BxoaXnkdoCcydnFvUUhQZDk3TDQ/01_PICTURE_0308.jpg' + '"'

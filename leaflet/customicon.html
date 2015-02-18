@@ -157,7 +157,7 @@
   var customIcon = new L.Icon({
     iconUrl: '../icons/hydrant-red.png',
     iconSize:     [20], // size of the icon
-    iconAnchor:   [0, 0], // point of the icon which will correspond to marker's location
+    iconAnchor:   [20, 0], // point of the icon which will correspond to marker's location
     popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
   });
   
@@ -186,11 +186,6 @@ L.marker([39.12, -82.53], {icon: customIcon}).addTo(map);
 			},
 			pointToLayer: function(feature, latlng) {
 			return new L.CircleMarker(latlng, {radius: 5, fillOpactiy: 0.9});
-			},
-			onEachFeature: function(feature, layer) {
-			layer.bindPopup(('<img src="' + '//www.googledrive.com/host/0BxoaXnkdoCcydnFvUUhQZDk3TDQ/01_PICTURE_0308.jpg' + '"'
-			+ 'width="250px"' + '/>' + '</a>' + '<br>' + feature.properties.type), {
-			})
 			}
 		});
 		

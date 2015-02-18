@@ -175,7 +175,7 @@ L.marker([39.12, -82.53], {icon: customIcon}).addTo(map);
 			+ 'width="250px"' + '/>' + '</a>' + '<br>' + feature.properties.type), {
 			})
 			}
-		});
+		}).addTo(map);
       	
       	var hydrants = new L.GeoJSON.AJAX('../data/points.geojson', {
      			filter: function(feature, layer) {

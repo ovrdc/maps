@@ -158,7 +158,7 @@
     iconUrl: '../icons/hydrant-red.png'
   });
   
-  var test = L.marker([39, -80], {icon: customIcon}).addTo(map);
+  var test = L.marker([39.12, -82.53], {icon: customIcon}).addTo(map);
      	
       	var hydrants = new L.GeoJSON.AJAX('../data/points.geojson', {
      			filter: function(feature, layer) {

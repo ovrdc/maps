@@ -154,20 +154,6 @@
 		opacity: 0.7
 	});
 	
-	var cartolyrs = {};
-	var zoning = 'http://ovrdc.cartodb.com/api/v2/viz/8633844c-b061-11e4-b0bc-0e0c41326911/viz.json';
-	cartodb.createLayer(map, zoning, {
-		cartodb_logo: false, legends: false
-	})
-	.on('done', function(layer) {
-	cartolyrs = layer;
-	addLayerControl();
-	layer.fitBounds(layer.getBounds());
-	})
-	.on('error', function(err) {
-	alert("some error occurred: " + err);
-	});
-  
   var customIcon = L.Icon({
     iconUrl: '../icons/hydrant-red.png'
   })
@@ -260,10 +246,6 @@
 	     				name: "Meters",
 	     				icon: '<i class="fa fa-circle" style="color: blue; padding=2px;"></i>',
 	     				layer: meters
-	     			},
-	     			{
-	     				name: "Wellston Zoning",
-	     				layer: cartolyrs
 	     			}
 	     			];
 

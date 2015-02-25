@@ -14,11 +14,10 @@
 	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 	
 	<!--Leaflet Core via mapbox and cartodb -->
-	<script src="http://libs.cartocdn.com/cartodb.js/v3/cartodb.js"></script>
+ <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
 
-	<link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.css" />
+ <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 
-	
 	<!--Home Button ie Default Extent -->
 	<link rel="stylesheet" href="../plugins/leaflet.defaultextent.css" />
 	<script src="../plugins/leaflet.defaultextent.js"></script>
@@ -103,7 +102,8 @@
             	<div class="sidebar-pane" id="home">
                 	<h1>Wellston Test Map</h1>
 			<p>The points and lines here are random.</p>
-	               <p>This map was produced using the <a href="//leafletjs.com">Leaflet Javascript Library</a>.
+	               <p>This map was produced using the <a href="//leafletjs.com">Leaflet Javascript Library</a> and symbolized
+	               	through <a href="//cartodb.com">CatoDB</a>.
 	              </p>
 	          	<p><i>This map is for reference only. Any questions in regards to legal zoning boundaries should
 	          		be forwarded to the City of Wellston.
@@ -154,25 +154,29 @@
 		opacity: 0.7
 	});
 	
-	var cartolyrs = {};
-	var zoning = 'http://ovrdc.cartodb.com/api/v2/viz/8633844c-b061-11e4-b0bc-0e0c41326911/viz.json';
-	cartodb.createLayer(map, zoning, {
-		cartodb_logo: false, legends: false
-	})
-	.on('done', function(layer) {
-	cartolyrs = layer;
-	addLayerControl();
-	layer.fitBounds(layer.getBounds());
-	})
-	.on('error', function(err) {
-	alert("some error occurred: " + err);
-	});
+  var customIcon = new L.Icon({
+    iconUrl: '../icons/hydrant-red.png',
+    iconSize:     [20], // size of the icon
+    iconAnchor:   [10, 21], // point of the icon which will correspond to marker's location
+    popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+  });
+  
+L.marker([39.12, -82.53], {icon: customIcon}).addTo(map);
      	
-<<<<<<< HEAD
-	
-
-=======
->>>>>>> origin/gh-pages
+      	     	var hydrants2 = new L.GeoJSON.AJAX('../data/points.geojson', {
+     			filter: function(feature, layer) {
+     				return feature.properties.type =="hydrant";
+     			},
+			pointToLayer: function(feature, latlng) {
+			return L.marker(latlng, {icon: customIcon});
+			},
+			onEachFeature: function(feature, layer) {
+			layer.bindPopup(('<img src="' + '//www.googledrive.com/host/0BxoaXnkdoCcydnFvUUhQZDk3TDQ/01_PICTURE_0308.jpg' + '"'
+			+ 'width="250px"' + '/>' + '</a>' + '<br>' + feature.properties.type), {
+			})
+			}
+		}).addTo(map);
+      	
       	var hydrants = new L.GeoJSON.AJAX('../data/points.geojson', {
      			filter: function(feature, layer) {
      				return feature.properties.type =="hydrant";
@@ -182,11 +186,6 @@
 			},
 			pointToLayer: function(feature, latlng) {
 			return new L.CircleMarker(latlng, {radius: 5, fillOpactiy: 0.9});
-			},
-			onEachFeature: function(feature, layer) {
-			layer.bindPopup(('<img src="' + '//www.googledrive.com/host/0BxoaXnkdoCcydnFvUUhQZDk3TDQ/01_PICTURE_0308.jpg' + '"'
-			+ 'width="250px"' + '/>' + '</a>' + '<br>' + feature.properties.type), {
-			})
 			}
 		});
 		
@@ -223,21 +222,7 @@
 		}).addTo(map);
      	
      	hydrants.addTo(map);
-		
-		var wellstonzoning = new L.GeoJSON.AJAX('../data/wellston_zoning.geojson', {
-		style: function(feature) {
-			return {fillColor: feature.properties.color,
-				color: '#000',
-				weight: 1,
-				fillOpacity: 0.7};
-		},
-		onEachFeature: function(feature, layer) {
-		layer.bindPopup('<b>' + feature.properties.Z_Descrip + '</b>' + '<br>' + 'Zoning Code: ' + feature.properties.Zone_Code);
-			
-		}
-		}).addTo(map);
-
-    	
+     	
         function addLayerControl() {
 	     	var baseLayers = [
 	     		{
@@ -273,10 +258,6 @@
 	     				name: "Meters",
 	     				icon: '<i class="fa fa-circle" style="color: blue; padding=2px;"></i>',
 	     				layer: meters
-	     			},
-	     			{
-	     				name: "Wellston Zoning",
-	     				layer: wellstonzoning
 	     			}
 	     			];
 

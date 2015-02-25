@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mapsheet Test Feb 2015</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, user-scalable=no" name="viewport">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    <!--Leaflet Core via mapbox and cartodb -->
+    <script src="http://libs.cartocdn.com/cartodb.js/v3/cartodb.js"></script>
+    <link href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.css" rel="stylesheet">
+
+    <script type="text/javascript" src="../plugins/tabletop1.3.4.js"></script>
+    <script src="../plugins/handlebars.js" type="text/javascript"></script>
+
+    <style>
+      #map { position:fixed; top:0px; bottom:0; left:0; right:0;}
+    </style>
+</head>
+
+<body>
+    <div id="map"></div>    
+
+    <script id="popup-template" type="text/x-handlebars-template">
+            <p>{{name}}</p>
+    </script>
+    <script type="text/javascript">
+    $(document).ready( function() { 
+      
+      var map = new L.Map('map', {
+          center: [39.1203, -82.5353],
+          zoom: 10
+      });
+      
+      var acetate = L.tileLayer('http://a{s}.acetate.geoiq.com/tiles/acetate-hillshading/{z}/{x}/{y}.png', {
+	      attribution: '&copy;2012 Esri & Stamen, Data from OSM and Natural Earth',
+	      subdomains: '0123',
+		    maxZoom: 20,
+	      maxNativeZoom: 17
+        }).addTo(map);
+      
+      var public_spreadsheet_url = 'https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=1ABXPlDkLQuAY8GvYZA67qyLgsXbUPsVU_bH4N3H8OHQ&output=html';
+      
+      var test = L.geoJson().addTo(map);
+      
+      Tabletop.init( { key: public_spreadsheet_url,
+                     callback: showInfo,
+                     simpleSheet: true } )
+          
+      function showInfo(data) {
+        test.addData(data);
+      };
+ 
+      });
+    </script>
+<!--https://docs.google.com/spreadsheets/d/1ABXPlDkLQuAY8GvYZA67qyLgsXbUPsVU_bH4N3H8OHQ/pubhtml?gid=1920207472&single=true -->
+</body>
+</html>

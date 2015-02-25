@@ -1,0 +1,303 @@
+
+<html>
+  <head>
+  <title>Wellston Test Map</title>
+
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  
+  <!--Font Awesome CDN and Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  
+  <!--Leaflet Core via mapbox and cartodb -->
+	<script src="http://libs.cartocdn.com/cartodb.js/v3/cartodb.js"></script>
+
+  <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.css" />
+
+  
+  <!--Home Button ie Default Extent -->
+  <link rel="stylesheet" href="../plugins/leaflet.defaultextent.css" />
+  <script src="../plugins/leaflet.defaultextent.js"></script>
+  
+  <!--Easy Print Plugin Does not work well -->
+  <script src="../plugins/leaflet.easyPrint.js"></script>
+  <link rel="stylesheet" href="../plugins/easyPrint.css" />
+  <script src="../plugins/jQuery.print.js"></script>
+  
+  <!--Locate Control Plugin Mapbox CDN Version -->
+  <script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.24.0/L.Control.Locate.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.24.0/L.Control.Locate.css' rel='stylesheet' />
+  <!--[if lt IE 9]>
+  <link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.21.0/L.Control.Locate.ie.css' rel='stylesheet' />
+  <![endif]-->
+
+  <!--Awesome Marker Plugin -->
+  <link rel="stylesheet" href="../plugins/leaflet.awesome-markers.css">
+  <script src="../plugins/leaflet.awesome-markers.js"></script>
+  
+  <!--Leaflet Hash via Mapbox CDN-->
+  <script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-hash/v0.2.1/leaflet-hash.js'></script>
+  
+  <!-- Leafle Social -->  
+  <link rel="stylesheet" href="../plugins/leaflet.social.css" />
+  <script src="../plugins/leaflet.social.js"></script>
+  
+  <!--Google Custom Map with locked ovrdc API -->
+  <script type="text/javascript"
+  src="https://maps.googleapis.com/maps/api/js?libraries=placeskey=AIzaSyCpIjH_d3jfNPSwPuyrzy2G9H_Ylb1bEd8">
+  </script>
+  <script src="../plugins/google.js"></script>
+  <script src="../plugins/mapstyles/ggle_grey.js"</script>
+  
+  <!-- Esri Leaflet Core -->
+  <script src="http://cdn-geoweb.s3.amazonaws.com/esri-leaflet/0.0.1-beta.5/esri-leaflet-core.js"></script>
+  <script src="http://cdn-geoweb.s3.amazonaws.com/esri-leaflet/0.0.1-beta.5/esri-leaflet.js"></script>
+
+  <!-- Esri Leaflet Geocoder -->
+  <script src="http://cdn-geoweb.s3.amazonaws.com/esri-leaflet-geocoder/0.0.1-beta.3/esri-leaflet-geocoder.js"></script>
+  <!--link rel="stylesheet" type="text/css" href="http://cdn-geoweb.s3.amazonaws.com/esri-leaflet-geocoder/0.0.1-beta.3/esri-leaflet-geocoder.css"-->
+  
+  <link rel="stylesheet" type="text/css" href="../plugins/esri-geo/esri-leaflet-geocoder.css" />
+  
+  <!-- Full Screen via Mapbox-->
+  <script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v0.0.4/Leaflet.fullscreen.min.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v0.0.4/leaflet.fullscreen.css' rel='stylesheet' />
+  
+  <!-- Leaflet Omnivore Plugin GeoJson KML Etc -->
+  <script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>
+  
+  <!-- leaflet measure -->
+  <link rel="stylesheet" href="../plugins/leaflet.measure.css" />
+  <script src="../plugins/leaflet.measure.js"></script>
+  
+    <!-- leaflet sidebar v 2 -->
+    <link rel="stylesheet" href="../plugins/leaflet-sidebar.css" />
+    <script src="../plugins/leaflet-sidebar.js"></script>
+    
+    <!-- leaflet ajax geojson loader -->
+    <script src="../plugins/leaflet.ajax.min.js"></script>
+    
+    <!-- leaflet panel layers right side panel -->
+    <link rel="stylesheet" href="../plugins/leaflet-panel-layers.css" />
+    <script src="../plugins/leaflet-panel-layers.js"></script>
+
+  <style>
+    #map { position:absolute; top:0; bottom:0; width:100%; }
+  </style>
+
+  </head>
+  <body>
+
+    <div id="sidebar" class="sidebar collapsed">
+        <!-- Nav tabs -->
+        <ul class="sidebar-tabs" role="tablist">
+            <li><a href="#home" role="tab"><i class="fa fa-bars"></i></a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="sidebar-content active">
+              <div class="sidebar-pane" id="home">
+                  <h1>Wellston Test Map</h1>
+      <p>The points and lines here are random.</p>
+                 <p>This map was produced using the <a href="//leafletjs.com">Leaflet Javascript Library</a>.
+                </p>
+              <p><i>This map is for reference only. Any questions in regards to legal zoning boundaries should
+                be forwarded to the City of Wellston.
+              </i></p>
+    </div>
+        </div>
+    </div>
+    
+    <div id="map" class="sidebar-map"></div>
+    <script>
+
+      function main() {
+        var map = new L.Map('map', {
+          center: [39.1203, -82.5353],
+          zoom: 14,
+          measureControl: true
+        });
+        
+        var hash = L.hash(map);
+
+  var ggle = new L.Google('ROADMAP', {
+    mapOptions: {
+      styles: style
+    },
+    maxZoom: 20,
+    maxNativeZoom: 18
+  });
+  
+//  ggle.addTo(map);
+
+  var acetate = L.tileLayer('http://a{s}.acetate.geoiq.com/tiles/acetate-hillshading/{z}/{x}/{y}.png', {
+  attribution: '&copy;2012 Esri & Stamen, Data from OSM and Natural Earth',
+  subdomains: '0123',
+    maxZoom: 20,
+    maxNativeZoom: 17
+  }).addTo(map);
+  
+        var usgs_topo = L.tileLayer.wms("http://basemap.nationalmap.gov/arcgis/services/USGSTopo/MapServer/WMSServer", {
+            layers: 0,
+            maxZoom: 20,
+      maxNativeZoom: 18
+        });
+
+  var ortho = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
+    maxZoom: 20,
+    maxNativeZoom: 18,
+    opacity: 0.7
+  });
+
+        var hydrants = new L.GeoJSON.AJAX('../data/points.geojson', {
+          filter: function(feature, layer) {
+            return feature.properties.type =="hydrant";
+          },
+          style: function(feature) {
+        return {color: feature.properties.color};
+      },
+      pointToLayer: function(feature, latlng) {
+        return new L.marker(latlng, {icon: hydicon});
+      },
+      onEachFeature: function(feature, layer) {
+      layer.bindPopup(('<img src="' + '//www.googledrive.com/host/0BxoaXnkdoCcydnFvUUhQZDk3TDQ/01_PICTURE_0308.jpg' + '"'
+      + 'width="250px"' + '/>' + '</a>' + '<br>' + feature.properties.type), {
+      })
+      }
+    });
+    
+        var valves = new L.GeoJSON.AJAX('../data/points.geojson', {
+          filter: function(feature, layer) {
+            return feature.properties.type =="valve";
+          },
+          style: function(feature) {
+        return {color: feature.properties.color};
+      },
+      pointToLayer: function(feature, latlng) {
+        return new L.CircleMarker(latlng, {radius: 5, fillOpactiy: 0.9});
+      },
+      onEachFeature: function(feature, layer) {
+      layer.bindPopup(feature.properties.type), {
+      }
+      }
+    }).addTo(map);
+      
+  var meters = new L.GeoJSON.AJAX('../data/points.geojson', {
+      filter: function(feature, layer) {
+           return feature.properties.type =="meter";
+      },
+      style: function(feature) {
+      return {color: feature.properties.color};
+      },
+      pointToLayer: function(feature, latlng) {
+      return new L.CircleMarker(latlng, {radius: 5, fillOpactiy: 0.9});
+      },
+      onEachFeature: function(feature, layer) {
+      layer.bindPopup(feature.properties.type), {
+      }
+      }
+    }).addTo(map);
+      
+      hydrants.addTo(map);
+    
+    var wellstonzoning = new L.GeoJSON.AJAX('../data/wellston_zoning.geojson', {
+    style: function(feature) {
+      return {fillColor: feature.properties.color,
+        color: '#000',
+        weight: 1,
+        fillOpacity: 0.7};
+    },
+    onEachFeature: function(feature, layer) {
+    layer.bindPopup('<b>' + feature.properties.Z_Descrip + '</b>' + '<br>' + 'Zoning Code: ' + feature.properties.Zone_Code);
+      
+    }
+    }).addTo(map);
+
+	
+      
+        function addLayerControl() {
+        var baseLayers = [
+          {
+                    name: "Basemap w/Parcels (Google)",
+                    layer: ggle
+          },
+          {
+            name: "Basemap (Stamen)",
+            layer: acetate
+          },
+          {
+            name: "Topo Map (USGS)",
+            layer: usgs_topo
+          },
+          {
+            name: "Satellite (ESRI)",
+            layer: ortho
+          }
+          ];
+          
+          var overLayers = [
+            {
+              name: "Hydrants",
+              icon: '<i class="fa fa-circle" style="color: red; padding=2px;"></i>',
+              layer: hydrants
+            },
+            {
+              name: "Valves",
+              icon: '<i class="fa fa-circle" style="color: green; padding=2px;"></i>',
+              layer: valves
+            },
+            {
+              name: "Meters",
+              icon: '<i class="fa fa-circle" style="color: blue; padding=2px;"></i>',
+              layer: meters
+            },
+            {
+              name: "Wellston Zoning",
+              layer: wellstonzoning
+            }
+            ];
+
+    var panel1 = new L.Control.PanelLayers(baseLayers, overLayers, {autoZIndex: true, collapsed: false}).addTo(map);
+	panel1.bringToFront(map);
+        };
+   
+  L.control.defaultExtent().addTo(map);
+  L.control.locate().addTo(map);
+//  L.control.scale().addTo(map); gets in the way of the carto db/google logos
+  L.control.fullscreen().addTo(map);
+//  L.control.social({default_text: "Map from OVRDC via GitHub"}).addTo(map); Wellston doesnt need social sharing
+  var sidebar = L.control.sidebar('sidebar').addTo(map);
+
+// conflicts with measure control
+//  map.on('click', function(e) { alert("Lat, Lon : " + e.latlng.lat + ", " + e.latlng.lng) });
+  
+  
+      // create the geocoding control and add it to the map
+      var searchControl = new L.esri.Controls.Geosearch({
+        position: 'topleft'
+      }).addTo(map);
+
+      // create an empty layer group to store the results and add it to the map
+      var results = new L.LayerGroup().addTo(map);
+
+      // listen for the results event and add every result to the map
+      searchControl.on("results", function(data){
+        results.clearLayers();
+        for (var i = data.results.length - 1; i >= 0; i--) {
+          results.addLayer(L.marker(data.results[i].latlng));
+        };
+      });
+      
+      }
+
+      // you could use $(window).load(main);
+      window.onload = main;
+    </script>
+  </body>
+</html>

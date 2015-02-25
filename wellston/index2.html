@@ -14,7 +14,8 @@
 	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 	
 	<!--Leaflet Core via mapbox and cartodb -->
-	<script src="http://libs.cartocdn.com/cartodb.js/v3/cartodb.js"></script>
+    <script type="text/javascript" src="http://jlord.us/sheetsee.js/js/tabletop1.3.4.js"></script>
+    <script type="text/javascript" src="http://jlord.us/sheetsee.js/js/sheetsee.js"></script>
 
 	<link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.css" />
 
@@ -51,7 +52,7 @@
 	src="https://maps.googleapis.com/maps/api/js?libraries=placeskey=AIzaSyCpIjH_d3jfNPSwPuyrzy2G9H_Ylb1bEd8">
 	</script>
 	<script src="../plugins/google.js"></script>
-	<script src="../plugins/mapstyles/ggle_grey.js"</script>
+	<script src="../plugins/mapstyles/gglegrey.js"</script>
 	
 	<!-- Esri Leaflet Core -->
 	<script src="http://cdn-geoweb.s3.amazonaws.com/esri-leaflet/0.0.1-beta.5/esri-leaflet-core.js"></script>
@@ -154,21 +155,6 @@
 		opacity: 0.7
 	});
 	
-	var cartolyrs = {};
-	var zoning = 'http://ovrdc.cartodb.com/api/v2/viz/8633844c-b061-11e4-b0bc-0e0c41326911/viz.json';
-	cartodb.createLayer(map, zoning, {
-		cartodb_logo: false, legends: false
-	})
-	.on('done', function(layer) {
-	cartolyrs = layer;
-	addLayerControl();
-	layer.fitBounds(layer.getBounds());
-	})
-	.on('error', function(err) {
-	alert("some error occurred: " + err);
-	});
-     	
-	
 
       	var hydrants = new L.GeoJSON.AJAX('../data/points.geojson', {
      			filter: function(feature, layer) {
@@ -235,8 +221,7 @@
 		}).addTo(map);
 
     	
-        function addLayerControl() {
-	     	var baseLayers = [
+ 	     	var baseLayers = [
 	     		{
        	          	name: "Basemap w/Parcels (Google)",
        	          	layer: ggle
@@ -277,9 +262,8 @@
 	     			}
 	     			];
 
-		var panel1 = new L.Control.PanelLayers(baseLayers, overLayers, {autoZIndex: true, collapsed: false}).addTo(map);
-               	panel1.bringToFront();
-        };
+		map.addControl( new L.Control.PanelLayers(baseLayers, overLayers, {autoZIndex: true, collapsed: false}));
+
    
 	L.control.defaultExtent().addTo(map);
 	L.control.locate().addTo(map);

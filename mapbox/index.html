@@ -1,6 +1,6 @@
 <html>
   <head>
-  <title>Wellston Test Map</title>
+  <title>Mapbox Basemaps</title>
 
 	<meta charset="utf-8" />
   
@@ -13,10 +13,10 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 	
-	<!--Leaflet Core via mapbox and cartodb -->
-	<script src="http://libs.cartocdn.com/cartodb.js/v3/cartodb.js"></script>
 
-	<link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.css" />
+	<!-- Mapbox JS -->
+	<script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.js'></script>
+	<link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.css' rel='stylesheet' />
 
 	
 	<!--Home Button ie Default Extent -->
@@ -101,186 +101,175 @@
         <!-- Tab panes -->
         <div class="sidebar-content active">
             	<div class="sidebar-pane" id="home">
-                	<h1>Wellston Test Map</h1>
-			<p>The points and lines here are random.</p>
-	               <p>This map was produced using the <a href="//leafletjs.com">Leaflet Javascript Library</a>.
-	              </p>
-	          	<p><i>This map is for reference only. Any questions in regards to legal zoning boundaries should
-	          		be forwarded to the City of Wellston.
-	          	</i></p>
-		</div>
+                	<h1>Mapbox Basemaps</h1>
+				</div>
         </div>
     </div>
     
     <div id="map" class="sidebar-map"></div>
     <script>
 
+    L.mapbox.accessToken = 'pk.eyJ1Ijoib3ZyZGMiLCJhIjoiRUtXeFFzZyJ9.ufnW36oCZo96m_L9QsAkYg'
+
       function main() {
         var map = new L.Map('map', {
-          center: [39.1203, -82.5353],
-          zoom: 14,
+          center: [39.592, -82.595],
+          zoom: 15,
           measureControl: true
         });
         
         var hash = L.hash(map);
 
-	var ggle = new L.Google('ROADMAP', {
-		mapOptions: {
-			styles: style
-		},
-		maxZoom: 20,
-		maxNativeZoom: 18
-	});
-	
-//	ggle.addTo(map);
+        var streets = L.mapbox.tileLayer('mapbox.streets').addTo(map);
 
-	var acetate = L.tileLayer('http://a{s}.acetate.geoiq.com/tiles/acetate-hillshading/{z}/{x}/{y}.png', {
-	attribution: '&copy;2012 Esri & Stamen, Data from OSM and Natural Earth',
-	subdomains: '0123',
-		maxZoom: 20,
-		maxNativeZoom: 17
-	}).addTo(map);
-	
-        var usgs_topo = L.tileLayer.wms("http://basemap.nationalmap.gov/arcgis/services/USGSTopo/MapServer/WMSServer", {
-            layers: 0,
-            maxZoom: 20,
-	    maxNativeZoom: 18
-        });
+		var light = L.mapbox.tileLayer('mapbox.light', {
+   		 attribution: '<a href="http://www.mapbox.com/about/maps/" target="_blank">Terms &amp; Feedback</a>'
+		});
 
-	var ortho = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-		attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
-		maxZoom: 20,
-		maxNativeZoom: 18,
-		opacity: 0.7
-	});
-	
-	var cartolyrs = {};
-	var zoning = 'http://ovrdc.cartodb.com/api/v2/viz/8633844c-b061-11e4-b0bc-0e0c41326911/viz.json';
-	cartodb.createLayer(map, zoning, {
-		cartodb_logo: false, legends: false
-	})
-	.on('done', function(layer) {
-	cartolyrs = layer;
-	addLayerControl();
-	layer.fitBounds(layer.getBounds());
-	})
-	.on('error', function(err) {
-	alert("some error occurred: " + err);
-	});
-     	
-	
+		var dark = L.mapbox.tileLayer('mapbox.dark', {
+   		 attribution: '<a href="http://www.mapbox.com/about/maps/" target="_blank">Terms &amp; Feedback</a>'
+		});
 
-      	var hydrants = new L.GeoJSON.AJAX('../data/points.geojson', {
-     			filter: function(feature, layer) {
-     				return feature.properties.type =="hydrant";
-     			},
-     			style: function(feature) {
-				return {color: feature.properties.color};
-			},
-			pointToLayer: function(feature, latlng) {
-				return new L.marker(latlng, {icon: hydicon});
-			},
-			onEachFeature: function(feature, layer) {
-			layer.bindPopup(('<img src="' + '//www.googledrive.com/host/0BxoaXnkdoCcydnFvUUhQZDk3TDQ/01_PICTURE_0308.jpg' + '"'
-			+ 'width="250px"' + '/>' + '</a>' + '<br>' + feature.properties.type), {
-			})
-			}
+		var satellite = L.mapbox.tileLayer('mapbox.satellite', {
+   		 attribution: '<a href="http://www.mapbox.com/about/maps/" target="_blank">Terms &amp; Feedback</a>'
+		});
+
+		var satellite2 = L.mapbox.tileLayer('mapbox.streets-satellite', {
+   		 attribution: '<a href="http://www.mapbox.com/about/maps/" target="_blank">Terms &amp; Feedback</a>'
+		});
+
+		 var wheat = L.mapbox.tileLayer('mapbox.wheatpaste', {
+   		 attribution: '<a href="http://www.mapbox.com/about/maps/" target="_blank">Terms &amp; Feedback</a>'
+		});
+
+		var basic = L.mapbox.tileLayer('mapbox.streets-basic', {
+   		 attribution: '<a href="http://www.mapbox.com/about/maps/" target="_blank">Terms &amp; Feedback</a>'
+		});
+
+		var comic = L.mapbox.tileLayer('mapbox.comic', {
+   		 attribution: '<a href="http://www.mapbox.com/about/maps/" target="_blank">Terms &amp; Feedback</a>'
+		});
+
+		var outdoors = L.mapbox.tileLayer('mapbox.outdoors', {
+   		 attribution: '<a href="http://www.mapbox.com/about/maps/" target="_blank">Terms &amp; Feedback</a>'
+		});
+
+		var hike = L.mapbox.tileLayer('mapbox.run-bike-hike', {
+   		 attribution: '<a href="http://www.mapbox.com/about/maps/" target="_blank">Terms &amp; Feedback</a>'
 		});
 		
-      	var valves = new L.GeoJSON.AJAX('../data/points.geojson', {
-     			filter: function(feature, layer) {
-     				return feature.properties.type =="valve";
-     			},
-     			style: function(feature) {
-				return {color: feature.properties.color};
-			},
-			pointToLayer: function(feature, latlng) {
-				return new L.CircleMarker(latlng, {radius: 5, fillOpactiy: 0.9});
-			},
-			onEachFeature: function(feature, layer) {
-			layer.bindPopup(feature.properties.type), {
-			}
-			}
-		}).addTo(map);
-     	
-	var meters = new L.GeoJSON.AJAX('../data/points.geojson', {
-			filter: function(feature, layer) {
-			     return feature.properties.type =="meter";
-			},
-			style: function(feature) {
-			return {color: feature.properties.color};
-			},
-			pointToLayer: function(feature, latlng) {
-			return new L.CircleMarker(latlng, {radius: 5, fillOpactiy: 0.9});
-			},
-			onEachFeature: function(feature, layer) {
-			layer.bindPopup(feature.properties.type), {
-			}
-			}
-		}).addTo(map);
-     	
-     	hydrants.addTo(map);
-		
-		var wellstonzoning = new L.GeoJSON.AJAX('../data/wellston_zoning.geojson', {
-		style: function(feature) {
-			return {fillColor: feature.properties.color,
-				color: '#000',
-				weight: 1,
-				fillOpacity: 0.7};
-		},
-		onEachFeature: function(feature, layer) {
-		layer.bindPopup('<b>' + feature.properties.Z_Descrip + '</b>' + '<br>' + 'Zoning Code: ' + feature.properties.Zone_Code);
-			
-		}
-		}).addTo(map);
+		var pencil = L.mapbox.tileLayer('mapbox.pencil', {
+   		 attribution: '<a href="http://www.mapbox.com/about/maps/" target="_blank">Terms &amp; Feedback</a>'
+		});
 
-    	
+		var pirates = L.mapbox.tileLayer('mapbox.pirates', {
+   		 attribution: '<a href="http://www.mapbox.com/about/maps/" target="_blank">Terms &amp; Feedback</a>'
+		});
+
+		var emerald = L.mapbox.tileLayer('mapbox.emerald', {
+   		 attribution: '<a href="http://www.mapbox.com/about/maps/" target="_blank">Terms &amp; Feedback</a>'
+		});
+
+		var contrast = L.mapbox.tileLayer('mapbox.high-contrast', {
+   		 attribution: '<a href="http://www.mapbox.com/about/maps/" target="_blank">Terms &amp; Feedback</a>'
+		});
+
+        var trails = omnivore.geojson('../data/cc-trails.geojson').addTo(map);
+     	
         function addLayerControl() {
 	     	var baseLayers = [
 	     		{
-       	          	name: "Basemap w/Parcels (Google)",
-       	          	layer: ggle
+       	          	name: "Streets",
+       	          	layer: streets
 	     		},
 	     		{
-	     			name: "Basemap (Stamen)",
-	     			layer: acetate
+	     			name: "light",
+	     			layer: light
 	     		},
 	     		{
-	     			name: "Topo Map (USGS)",
-	     			layer: usgs_topo
+	     			name: "dark",
+	     			layer: dark
 	     		},
 	     		{
-	     			name: "Satellite (ESRI)",
-	     			layer: ortho
+	     			name: "Satellite",
+	     			layer: satellite
+	     		},
+	     			     		{
+	     			name: "Satellite Streets",
+	     			layer: satellite2
+	     		},
+	     		{
+	     			name: "wheat",
+	     			layer: wheat
+	     		},
+	     			     		{
+	     			name: "basic",
+	     			layer: basic
+	     		},
+	     			     		{
+	     			name: "comic",
+	     			layer: comic
+	     		},
+	     			     		{
+	     			name: "outdoors",
+	     			layer: outdoors
+	     		},
+	     			     		{
+	     			name: "Run Bike Hike",
+	     			layer: hike
+	     		},
+	     			     		{
+	     			name: "pencil",
+	     			layer: pencil
+	     		},
+	     			     		{
+	     			name: "pirates",
+	     			layer: pirates
+	     		},
+	     			     		{
+	     			name: "emerald",
+	     			layer: emerald
+	     		},
+	     			     		{
+	     			name: "contrast",
+	     			layer: contrast
 	     		}
 	     		];
 	     		
 	     		var overLayers = [
 	     			{
-	     				name: "Hydrants",
-	     				icon: '<i class="fa fa-circle" style="color: red; padding=2px;"></i>',
-	     				layer: hydrants
-	     			},
-	     			{
-	     				name: "Valves",
-	     				icon: '<i class="fa fa-circle" style="color: green; padding=2px;"></i>',
-	     				layer: valves
-	     			},
-	     			{
-	     				name: "Meters",
-	     				icon: '<i class="fa fa-circle" style="color: blue; padding=2px;"></i>',
-	     				layer: meters
-	     			},
-	     			{
-	     				name: "Wellston Zoning",
-	     				layer: wellstonzoning
+	     				name: "Trails",
+	     				icon: '<i class="fa fa-minus" style="color: blue; padding=2px;"></i>',
+	     				layer: trails
 	     			}
 	     			];
 
 		var panel1 = new L.Control.PanelLayers(baseLayers, overLayers, {autoZIndex: true, collapsed: false}).addTo(map);
                	panel1.bringToFront();
         };
-   
+
+        L.control.layers({
+			    'Streets': streets,
+			    'Light': light,
+			    'Dark': dark,
+			    'Satellite': satellite,
+			    'Satellite2': satellite2,
+			    'Wheat': wheat,
+			    'Basic': basic,
+			    'Comic': comic,
+			    'outdoors': outdoors,
+			    'run-bike-hike': hike,
+			    'Pencil': pencil,
+			    'Pirates': pirates,
+			    'Emerald': emerald,
+			    'contrast': contrast
+			}, {
+			    'Trails': trails
+			}, {collapsed: false}).addTo(map);
+
+
+//Everything Below here is various controls and other stuff
+
 	L.control.defaultExtent().addTo(map);
 	L.control.locate().addTo(map);
 //	L.control.scale().addTo(map); gets in the way of the carto db/google logos

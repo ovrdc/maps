@@ -164,35 +164,34 @@
 	}
 	}).addTo(map);
      	
-        function addLayerControl() {
-	     	var baseLayers = [
-	     		{
-       	          	name: "Basemap w/Parcels (Google)",
-       	          	layer: ggle
-	     		},
-	     		{
-	     			name: "Basemap (Stamen)",
-	     			layer: acetate
-	     		},
-	     		{
-	     			name: "Topo Map (USGS)",
-	     			layer: usgs_topo
-	     		},
-	     		{
-	     			name: "Satellite (ESRI)",
-	     			layer: ortho
-	     		}
-	     		];
-	     		
-	     		var overLayers = [
-	     			{
-	     				name: "Wellston Zoning",
-	     				layer: zoning
-	     			}
-	     			];
-					
-		var panel1 = new L.Control.PanelLayers(baseLayers, overLayers, {autoZIndex: true, collapsed: false}).addTo(map);
-		};
+ 	var baseLayers = [
+ 		{
+	          	name: "Basemap w/Parcels (Google)",
+	          	layer: ggle
+ 		},
+ 		{
+ 			name: "Basemap (Stamen)",
+ 			layer: acetate
+ 		},
+ 		{
+ 			name: "Topo Map (USGS)",
+ 			layer: usgs_topo
+ 		},
+ 		{
+ 			name: "Satellite (ESRI)",
+ 			layer: ortho
+ 		}
+ 		];
+ 		
+ 		var overLayers = [
+ 			{
+ 				name: "Wellston Zoning",
+ 				layer: zoning
+ 			}
+ 			];
+			
+	var panel1 = new L.Control.PanelLayers(baseLayers, overLayers, {autoZIndex: true, collapsed: false}).addTo(map);
+
 		
 	L.control.defaultExtent().addTo(map);
 	L.control.locate().addTo(map);

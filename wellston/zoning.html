@@ -183,16 +183,17 @@
  		}
  		];
  		
- 		var overLayers = [
- 			{
- 				name: "Wellston Zoning",
- 				layer: zoning
- 			}
- 			];
+	var overLayers = [
+		{
+			name: "Wellston Zoning",
+			layer: zoning
+		}
+		];
 			
 	var panel1 = new L.Control.PanelLayers(baseLayers, overLayers, {autoZIndex: true, collapsed: false}).addTo(map);
 
 		
+	L.easyPrint().addTo(map);
 	L.control.defaultExtent().addTo(map);
 	L.control.locate().addTo(map);
 //	L.control.scale().addTo(map); gets in the way of the carto db/google logos

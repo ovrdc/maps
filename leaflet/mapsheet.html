@@ -43,14 +43,12 @@
       
       var test = L.geoJson();
       
-      function init() {
       Tabletop.init( { key: public_spreadsheet_url,
                      callback: showInfo,
                      simpleSheet: true } )
-      };
           
       function showInfo(data) {
-      	var test2 = L.geoJson(data, layer).addTo(map);
+      	L.geoJson(data,).addTo(map);
       };
  
       });

@@ -57,7 +57,14 @@
         //Sheetsee.MarkerLayer(geoJSON, map, template)
       }
       test.addTo(map);
-      L.control.layers().addTo(map);
+        var baseMaps = {
+          "Grayscale": acetate
+      };
+      
+      var overlayMaps = {
+          "Google Spreadsheet": test
+      };
+      L.control.layers(baseMaps, overlayMaps).addTo(map);
     </script>
   </body>
 </html>

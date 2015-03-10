@@ -39,17 +39,21 @@
 	      maxNativeZoom: 17
         }).addTo(map);
       
-      var public_spreadsheet_url = 'https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=1ABXPlDkLQuAY8GvYZA67qyLgsXbUPsVU_bH4N3H8OHQ&output=html';
+      var public_spreadsheet_url = '1ABXPlDkLQuAY8GvYZA67qyLgsXbUPsVU_bH4N3H8OHQ';
       
-      var test = L.geoJson().addTo(map);
+      var test = L.geoJson();
       
+      function init() {
       Tabletop.init( { key: public_spreadsheet_url,
                      callback: showInfo,
                      simpleSheet: true } )
+      };
           
       function showInfo(data) {
+      	console.log(data);
         test.addData(data);
       };
+      test.addTo(map);
  
       });
     </script>

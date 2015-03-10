@@ -40,7 +40,7 @@
     maxNativeZoom: 17
   }).addTo(map);
   
-      function showInfo(data) {
+  function showInfo(data) {
         var optionsJSON = ["notes"]
         var template = "<h4>{{notes}}</h4>"
         var geoJSON = Sheetsee.createGeoJSON(data, optionsJSON)
@@ -51,8 +51,9 @@
         // examples.map-i86nkdio
         // examples.h186knp8
         //Sheetsee.addTileLayer(map, 'examples.map-i86nkdio')
-        Sheetsee.addMarkerLayer(geoJSON, map, template)
+        //Sheetsee.MarkerLayer(geoJSON, map, template)
       }
+      geoJson.addTo(map);
     </script>
   </body>
 </html>

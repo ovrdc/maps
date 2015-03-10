@@ -50,10 +50,8 @@
       };
           
       function showInfo(data) {
-      	console.log(data);
-        test.addData(data);
+      	var test2 = L.geoJson(data, layer).addTo(map);
       };
-      test.addTo(map);
  
       });
     </script>

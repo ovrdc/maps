@@ -27,18 +27,30 @@
         var URL = "1l6SEoId_2qrNjkfFuwePYiZNFP5EkvC_i683S3WRLlo"
         Tabletop.init( { key: URL, callback: showInfo, simpleSheet: true } )
       })
-
+  
+  var map = new L.Map('map', {
+          center: [39.1203, -82.5353],
+          zoom: 10,
+        });
+  
+  var acetate = L.tileLayer('http://a{s}.acetate.geoiq.com/tiles/acetate-hillshading/{z}/{x}/{y}.png', {
+  attribution: '&copy;2012 Esri & Stamen, Data from OSM and Natural Earth',
+  subdomains: '0123',
+    maxZoom: 20,
+    maxNativeZoom: 17
+  }).addTo(map);
+  
       function showInfo(data) {
         var optionsJSON = ["notes"]
         var template = "<h4>{{notes}}</h4>"
         var geoJSON = Sheetsee.createGeoJSON(data, optionsJSON)
-        var map = Sheetsee.loadMap("map")
+        //var map = Sheetsee.loadMap("map")
         // Try different map tiles? examples.map-20v6611k
         // examples.map-y7l23tes
         // examples.map-h67hf2ic
         // examples.map-i86nkdio
         // examples.h186knp8
-        Sheetsee.addTileLayer(map, 'examples.map-i86nkdio')
+        //Sheetsee.addTileLayer(map, 'examples.map-i86nkdio')
         Sheetsee.addMarkerLayer(geoJSON, map, template)
       }
     </script>

@@ -40,10 +40,13 @@
     maxNativeZoom: 17
   }).addTo(map);
   
+  var test = L.geoJson()
+  
   function showInfo(data) {
         var optionsJSON = ["notes"]
         var template = "<h4>{{notes}}</h4>"
-        var geoJSON = Sheetsee.createGeoJSON(data, optionsJSON)
+        var test1 = Sheetsee.createGeoJSON(data, optionsJSON)
+        test.addData(test1)
         //var map = Sheetsee.loadMap("map")
         // Try different map tiles? examples.map-20v6611k
         // examples.map-y7l23tes
@@ -53,7 +56,7 @@
         //Sheetsee.addTileLayer(map, 'examples.map-i86nkdio')
         //Sheetsee.MarkerLayer(geoJSON, map, template)
       }
-      geoJson.addTo(map);
+      test.addTo(map);
     </script>
   </body>
 </html>

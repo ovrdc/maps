@@ -116,7 +116,6 @@
     </div>
     
     <div id="map" class="sidebar-map"></div>
-//    <input id='search' class='search-ui' placeholder='Enter state code' />
     <script>
 window.onload = function() {
         var map = new L.Map('map', {
@@ -284,7 +283,7 @@ window.onload = function() {
         };
    	var planes = omnivore.csv('../data/airports.csv').addTo(map);
    	
-	var controlSearch = new L.Control.Search({layer: markersLayer, initial: false});
+	var controlSearch = new L.Control.Search({layer: planes, initial: false});
 
 	map.addControl( controlSearch );
 

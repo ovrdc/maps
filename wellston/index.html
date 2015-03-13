@@ -91,6 +91,14 @@
 
   </head>
   <body>
+<style>
+.search-ui {
+  position:absolute;
+  top:10px;
+  right:10px;
+  z-index:1000;
+  }
+</style>
 
     <div id="sidebar" class="sidebar collapsed">
         <!-- Nav tabs -->
@@ -113,6 +121,7 @@
     </div>
     
     <div id="map" class="sidebar-map"></div>
+    <input id='search' class='search-ui' placeholder='Enter state code' />
     <script>
 window.onload = function() {
         var map = new L.Map('map', {
@@ -152,6 +161,8 @@ window.onload = function() {
 		maxNativeZoom: 18,
 		opacity: 0.7
 	});
+	
+	$('#search').keyup(search);
 	
 	var cartolyrs = {};
 	var zoning = 'http://ovrdc.cartodb.com/api/v2/viz/8633844c-b061-11e4-b0bc-0e0c41326911/viz.json';
@@ -276,6 +287,22 @@ window.onload = function() {
 
 		var panel1 = new L.Control.PanelLayers(baseLayers, overLayers, {autoZIndex: true, collapsed: false}).addTo(map);
         };
+   
+	   function search() {
+	    // get the value of the search input field
+	    var searchString = $('#search').val().toLowerCase();
+	
+	    wellstonzoning.setFilter(showState);
+	
+	    // here we're simply comparing the 'state' property of each marker
+	    // to the search string, seeing whether the former contains the latter.
+	    function showState(feature) {
+	        return feature.properties.Z_Descrip
+	            .toLowerCase()
+	            .indexOf(searchString) !== -1;
+	    }
+	}
+   
    
 	L.control.defaultExtent().addTo(map);
 	L.control.locate().addTo(map);

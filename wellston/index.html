@@ -281,6 +281,10 @@ window.onload = function() {
 
 		var panel1 = new L.Control.PanelLayers(baseLayers, overLayers, {autoZIndex: true, collapsed: false}).addTo(map);
         };
+	
+	var markersLayer = new L.LayerGroup();	//layer contain searched elements
+	map.addLayer(markersLayer);
+   	
    	var planes = omnivore.csv('../data/airports.csv').addTo(map);
    	
 	var controlSearch = new L.Control.Search({layer: planes, initial: false});

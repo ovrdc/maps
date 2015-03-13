@@ -779,8 +779,9 @@ var SearchMarker = L.Marker.extend({
 	options: {
 		radius: 10,
 		weight: 3,
-		color: '#e03',
+		color: '#CC33FF',
 		stroke: true,
+		opacity: 0.7,
 		fill: false,
 		title: '',
 		icon: new L.Icon.Default(),
@@ -855,7 +856,7 @@ var SearchMarker = L.Marker.extend({
 		if(this._circleLoc)
 		{
 			var circle = this._circleLoc,
-				tInt = 200,	//time interval
+				tInt = 1000,	//time interval
 				ss = 10,	//frames
 				mr = parseInt(circle._radius/ss),
 				oldrad = this.options.radius,

@@ -856,8 +856,8 @@ var SearchMarker = L.Marker.extend({
 		if(this._circleLoc)
 		{
 			var circle = this._circleLoc,
-				tInt = 50,	//time interval
-				ss = 10,	//frames
+				tInt = 100,	//time interval
+				ss = 20,	//frames
 				mr = parseInt(circle._radius/ss),
 				oldrad = this.options.radius,
 				newrad = circle._radius * 2.5,

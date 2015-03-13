@@ -14,7 +14,7 @@
 	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 	
 	<!--Leaflet Core via mapbox and cartodb -->
-	<script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.js'></script>
+	<script src="http://libs.cartocdn.com/cartodb.js/v3/3.12/cartodb.js"></script>
 
 	<link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.css" />
 
@@ -114,8 +114,7 @@
     
     <div id="map" class="sidebar-map"></div>
     <script>
-L.mapbox.accessToken = 'pk.eyJ1Ijoib3ZyZGMiLCJhIjoiRUtXeFFzZyJ9.ufnW36oCZo96m_L9QsAkYg';
-      function main() {
+window.onload = function() {
         var map = new L.Map('map', {
           center: [39.1203, -82.5353],
           zoom: 14,

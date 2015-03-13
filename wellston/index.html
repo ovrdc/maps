@@ -289,8 +289,8 @@ window.onload = function() {
 
 	////////////populate map with markers from sample data
 	for(i in planes) {
-		var title = data[i].title,	//value searched
-			loc = (data[i].latitude + ',' + data[i].longitude)		//position found
+		var title = planes[i].title,	//value searched
+			loc = (planes[i].latitude + ',' + planes[i].longitude)		//position found
 			marker = new L.Marker(new L.latLng(loc), {title: title} );//se property searched
 		marker.bindPopup('title: '+ title );
 		markersLayer.addLayer(marker);

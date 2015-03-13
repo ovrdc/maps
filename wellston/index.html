@@ -298,7 +298,7 @@ window.onload = function() {
 			marker = new L.Marker(new L.latLng(loc), {title: title} );//se property searched
 		marker.bindPopup('title: '+ title );
 		markersLayer.addLayer(marker);
-	}
+	};
    
 	L.control.defaultExtent().addTo(map);
 	L.control.locate().addTo(map);

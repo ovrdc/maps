@@ -303,7 +303,7 @@ window.onload = function() {
       	
       	for(i in planes) {
 		var title = planes[i].title,	//value searched
-			loc = (planes[i].latitude + ',' + planes[i].longitude)		//position found
+			loc = (planes[i].latitude, planes[i].longitude)		//position found
 			marker = new L.Marker(new L.latLng(loc), {title: title} );//se property searched
 		marker.bindPopup('title: '+ title );
 		markersLayer.addLayer(marker);

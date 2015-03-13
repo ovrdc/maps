@@ -274,11 +274,6 @@ window.onload = function() {
    	
 	var controlSearch = new L.Control.Search({layer: planes, initial: false});
 
-//	map.addControl( controlSearch );
-
-	////////////populate map with markers from sample data
-
-   
 	L.control.defaultExtent().addTo(map);
 	L.control.locate().addTo(map);
 //	L.control.scale().addTo(map); gets in the way of the carto db/google logos
@@ -286,7 +281,7 @@ window.onload = function() {
 //	L.control.social({default_text: "Map from OVRDC via GitHub"}).addTo(map); Wellston doesnt need social sharing
 	var sidebar = L.control.sidebar('sidebar').addTo(map);
 
-// conflicts with measure control
+// 	conflicts with measure control
 //	map.on('click', function(e) { alert("Lat, Lon : " + e.latlng.lat + ", " + e.latlng.lng) });
 	
 	
@@ -306,7 +301,15 @@ window.onload = function() {
         };
       });
       
-      }
-    </script>
+      function addControl( controlSearch ) {
+      	for(i in planes) {
+		var title = planes[i].title,	//value searched
+			loc = (planes[i].latitude + ',' + planes[i].longitude)		//position found
+			marker = new L.Marker(new L.latLng(loc), {title: title} );//se property searched
+		marker.bindPopup('title: '+ title );
+		markersLayer.addLayer(marker);
+	}
+      }.addTo(map);
+      </script>
   </body>
 </html>

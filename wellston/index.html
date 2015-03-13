@@ -282,7 +282,7 @@ window.onload = function() {
 
 		var panel1 = new L.Control.PanelLayers(baseLayers, overLayers, {autoZIndex: true, collapsed: false}).addTo(map);
         };
-   	var planes = omnivore.csv('/mapbox.js/assets/data/airports.csv').addTo(map);
+   	var planes = omnivore.csv('../data/airports.csv').addTo(map);
    	
 	var controlSearch = new L.Control.Search({layer: markersLayer, initial: false});
 

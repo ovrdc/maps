@@ -36,7 +36,7 @@ var featureLayer = L.mapbox.featureLayer().addTo(map);
 
 $('#search').keyup(search);
 
-var csvLayer = omnivore.csv('https://www.mapbox.com/mapbox.js/assets/data/airports.csv', null, L.mapbox.featureLayer())
+var csvLayer = omnivore.csv('../data/airports.csv', null, L.mapbox.featureLayer())
     .addTo(map);
 
 function search() {

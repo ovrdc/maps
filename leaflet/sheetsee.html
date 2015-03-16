@@ -29,8 +29,6 @@
       })
   
   var map = new L.Map('map', {
-          center: [39.1203, -82.5353],
-          zoom: 10,
         });
   
   var acetate = L.tileLayer('http://a{s}.acetate.geoiq.com/tiles/acetate-hillshading/{z}/{x}/{y}.png', {
@@ -57,6 +55,11 @@
         //Sheetsee.MarkerLayer(geoJSON, map, template)
       }
       test.addTo(map);
+      test.on('ready', function() {
+      // featureLayer.getBounds() returns the corners of the furthest-out markers,
+      // and map.fitBounds() makes sure that the map contains these.
+      map.fitBounds(test.getBounds());
+      });
         var baseMaps = {
           "Grayscale": acetate
       };

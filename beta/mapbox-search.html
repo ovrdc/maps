@@ -38,6 +38,8 @@ $('#search').keyup(search);
 
 var csvLayer = omnivore.csv('../data/airports.csv', null, L.mapbox.featureLayer())
     .addTo(map);
+    
+var test = omnivore.geoJson('https://www.copy.com/s/DSi33oZTlVPJwD3w/public-test-geojson/cc-trails.geojson').addTo(map);
 
 function search() {
     // get the value of the search input field

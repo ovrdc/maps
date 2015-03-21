@@ -221,50 +221,48 @@ window.onload = function() {
 	}
 	}).addTo(map);
 
-        function addLayerControl() {
-	     	var baseLayers = [
-	     		{
-       	          	name: "Basemap w/Parcels (Google)",
-       	          	layer: ggle
-	     		},
-	     		{
-	     			name: "Basemap (Stamen)",
-	     			layer: acetate
-	     		},
-	     		{
-	     			name: "Topo Map (USGS)",
-	     			layer: usgs_topo
-	     		},
-	     		{
-	     			name: "Satellite (ESRI)",
-	     			layer: ortho
-	     		}
-	     		];
-	     		
-	     		var overLayers = [
-	     			{
-	     				name: "Hydrants",
-	     				icon: '<i class="fa fa-circle" style="color: red; padding=2px;"></i>',
-	     				layer: hydrants
-	     			},
-	     			{
-	     				name: "Valves",
-	     				icon: '<i class="fa fa-circle" style="color: green; padding=2px;"></i>',
-	     				layer: valves
-	     			},
-	     			{
-	     				name: "Meters",
-	     				icon: '<i class="fa fa-circle" style="color: blue; padding=2px;"></i>',
-	     				layer: meters
-	     			},
-	     			{
-	     				name: "Wellston Zoning",
-	     				layer: wellstonzoning
-	     			}
-	     			];
+     	var baseLayers = [
+     		{
+                 	name: "Basemap w/Parcels (Google)",
+                 	layer: ggle
+     		},
+     		{
+     			name: "Basemap (Stamen)",
+     			layer: acetate
+     		},
+     		{
+     			name: "Topo Map (USGS)",
+     			layer: usgs_topo
+     		},
+     		{
+     			name: "Satellite (ESRI)",
+     			layer: ortho
+     		}
+     		];
+     		
+     	var overLayers = [
+     		{
+     			name: "Hydrants",
+     			icon: '<i class="fa fa-circle" style="color: red; padding=2px;"></i>',
+     			layer: hydrants
+     		},
+     		{
+     			name: "Valves",
+     			icon: '<i class="fa fa-circle" style="color: green; padding=2px;"></i>',
+     			layer: valves
+     		},
+     		{
+     			name: "Meters",
+     			icon: '<i class="fa fa-circle" style="color: blue; padding=2px;"></i>',
+     			layer: meters
+     		},
+     		{
+     			name: "Wellston Zoning",
+     			layer: wellstonzoning
+     		}
+     		];
 
-		var panel1 = new L.Control.PanelLayers(baseLayers, overLayers, {autoZIndex: true, collapsed: false}).addTo(map);
-        };
+	var panel1 = new L.Control.PanelLayers(baseLayers, overLayers, {autoZIndex: true, collapsed: false}).addTo(map);
 	
 	L.control.defaultExtent().addTo(map);
 	L.control.locate().addTo(map);

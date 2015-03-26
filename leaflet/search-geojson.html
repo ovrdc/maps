@@ -1,11 +1,8 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
-<html xmlns="http://www.w3.org/1999/xhtml"> 
+<!DOCTYPE html>
 <html>
 <head>
 <title>Search GeoJson Example | Stripped Down</title>
-
 <meta charset="utf-8" />
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -18,8 +15,10 @@
 <!--Leaflet -->
 <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
 <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+
 <!-- Leaflet Omnivore Plugin GeoJson KML Etc -->
 <script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>
+
 <!-- leaflet ajax geojson loader -->
 <script src="../plugins/leaflet.ajax.min.js"></script>
 
@@ -42,6 +41,7 @@
 		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 	}).addTo(map);
 	
+	//GeoJson Features
      	var addresses = new L.GeoJSON.AJAX('../data/fair_address.geojson', {
      		style: function(feature) {
 			return {color: "#900000"};
@@ -56,17 +56,13 @@
 	var searchControl = new L.Control.Search({layer: addresses, propertyName: 'LSN', circleLocation:true});
 	map.addControl( searchControl ); 
 	
+	//CSV Features
 	var markersLayer = new L.LayerGroup();	//layer contain searched elements
 	map.addLayer(markersLayer);
-	
 	var planes = omnivore.csv('../data/airports.csv').addTo(map);
-	
 	var searchControlcsv = new L.Control.Search({layer: planes, initial: false});
       	map.addControl(searchControlcsv);
 
 </script>
-
-<div id="copy"><a href="http://labs.easyblog.it/">Labs</a> &bull; <a rel="author" href="http://labs.easyblog.it/stefano-cudini/">Stefano Cudini</a></div>
-	
 </body>
 </html>

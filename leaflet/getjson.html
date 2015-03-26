@@ -115,6 +115,8 @@
 		})
 		address.addTo(map);
 	});
+	var searchControl = new L.Control.Search({layer: address, propertyName: 'lsn', circleLocation:false});
+	map.addControl( searchControl ); 
 
 </script>
 

@@ -104,43 +104,20 @@
 		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 	}).addTo(map);
 	
-	     	var valves = new L.GeoJSON.AJAX('../data/points.geojson', {
-     			filter: function(feature, layer) {
-     				return feature.properties.type =="valve";
-     			},
-     			style: function(feature) {
-				return {color: feature.properties.color};
-			},
-			pointToLayer: function(feature, latlng) {
-				return new L.CircleMarker(latlng, {radius: 5, fillOpactiy: 0.9});
-			},
-			onEachFeature: function(feature, layer) {
-			layer.bindPopup(feature.properties.type), {
-			}
-			}
-		}).addTo(map);
-	
-	function popup(feature, layer) {
-	    // does this feature have a property named popupContent?
-	    if (feature.properties && feature.properties.LSN) {
-	        layer.bindPopup(feature.properties.LSN);
-	    }
-	}
-	
-	var style = {
-		radius: 10,
-		color: "#900000",
-		fillOpacity: 0.8
-	};
-	
-	var address = new L.GeoJson.AJAX('../data/fair_address.geojson', {
-		pointToLayer: function(feature, latlng) {
-			return new L.CircleMarker(latlng, {redius: 10, fillOpactiy: 0.8});
+     	var addresses = new L.GeoJSON.AJAX('../data/fair_address.geojson', {
+     		style: function(feature) {
+			return {color: "#900000"};
 		},
-		onEachFeature: popup
+		pointToLayer: function(feature, latlng) {
+			return new L.CircleMarker(latlng, {radius: 8, fillOpactiy: 0.8});
+		},
+		onEachFeature: function(feature, layer) {
+		layer.bindPopup(feature.properties.LSN), {
+		}
+		}
 	}).addTo(map);
-
-	var searchControl = new L.Control.Search({layer: address, propertyName: 'LSN', circleLocation:false});
+	
+	var searchControl = new L.Control.Search({layer: addresses, propertyName: 'LSN', circleLocation:false});
 	map.addControl( searchControl ); 
 
 </script>

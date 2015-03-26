@@ -69,6 +69,9 @@
 	<!-- Leaflet Omnivore Plugin GeoJson KML Etc -->
 	<script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>
 	
+	<!-- leaflet ajax geojson loader -->
+  	<script src="../plugins/leaflet.ajax.min.js"></script>
+	
 	<!--Search Control Features -->
 	<link rel="stylesheet" href="../plugins/leaflet-search.css" />
 	<script src="../plugins/leaflet-search.js"></script>
@@ -101,20 +104,20 @@
 		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 	}).addTo(map);
 	
-	$.getJSON('../data/fair_address.geojson', function(data) {
-		var address = L.geoJson(data, {
-			style: function(feature) {
-				return {color: "#900000"};
-			},
-			pointToLayer: function(feature, latlng) {
-				return new L.CircleMarker(latlng, {redius: 10, fillOpactiy: 0.8});
-			},
-			onEachFeature: function(feature, layer) {
-				layer.bindPopup(feature.properties.LSN);
-			}
-		})
-		address.addTo(map);
-	});
+	var address = new L.GeoJson.AJAX('../data/fair_address.geojson', {
+		style: function(feature) {
+			return {color: "#900000"};
+		},
+		pointToLayer: function(feature, latlng) {
+			return new L.CircleMarker(latlng, {redius: 10, fillOpactiy: 0.8});
+		},
+		onEachFeature: function(feature, layer) {
+			layer.bindPopup(feature.properties.LSN);
+		}		
+	}).addTo(map);
+
+	var searchControl = new L.Control.Search({layer: address, propertyName: 'LSN', circleLocation:false});
+	map.addControl( searchControl ); 
 
 </script>
 

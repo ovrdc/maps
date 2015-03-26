@@ -209,7 +209,7 @@ L.Control.Measure = L.Control.extend({
 		var totalRound = this._round(total),
 			differenceRound = this._round(difference);
 
-		var text = '<div class="leaflet-measure-tooltip-total">' + totalRound + ' ft</div>';
+		var text = '<div class="leaflet-measure-tooltip-total">' + totalRound + ' mi</div>';
 		if(differenceRound > 0 && totalRound != differenceRound) {
 			text += '<div class="leaflet-measure-tooltip-difference">(+' + differenceRound + ' ft)</div>';
 		}
@@ -218,7 +218,7 @@ L.Control.Measure = L.Control.extend({
 	},
 
 	_round: function(val) {
-		return Math.round((val / 0.3048));
+		return Math.round((val / 1.3048));
 	},
 
 	_onKeyDown: function (e) {

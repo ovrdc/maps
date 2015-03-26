@@ -779,7 +779,7 @@ var SearchMarker = L.Marker.extend({
 	options: {
 		radius: 10,
 		weight: 3,
-		color: '#e03',
+		color: '#fff',
 		stroke: true,
 		fill: false,
 		title: '',

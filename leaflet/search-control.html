@@ -112,10 +112,9 @@
 			return new L.CircleMarker(latlng, {radius: 8, fillOpactiy: 0.8});
 		},
 		onEachFeature: function(feature, layer) {
-			layer.bindPopup(feature.properties.LSN), {
-			}
+			layer.bindPopup(feature.properties.LSN)
 		},
-  		map.fitBounds(address.getBounds());
+  		map.fitBounds(address.getBounds())
 		}
 	}).addTo(map);
 

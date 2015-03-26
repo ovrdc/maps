@@ -115,7 +115,6 @@
 			layer.bindPopup(feature.properties.LSN)
 		}
 	}).addTo(map);
-	map.fitBounds(addresses.getBounds());
 	var searchControl = new L.Control.Search({layer: addresses, propertyName: 'LSN', circleLocation:false});
 	map.addControl( searchControl ); 
 

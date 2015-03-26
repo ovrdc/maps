@@ -262,7 +262,7 @@ window.onload = function() {
      		}
      		];
 
-	var panel1 = new L.Control.PanelLayers(baseLayers, overLayers, {autoZIndex: true, collapsed: false}).addTo(map);
+	var panel1 = new L.Control.PanelLayers(baseLayers, overLayers, {autoZIndex: true, collapsed: true}).addTo(map);
 	
 	L.control.defaultExtent().addTo(map);
 	L.control.locate().addTo(map);

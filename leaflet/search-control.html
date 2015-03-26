@@ -104,15 +104,24 @@
 		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 	}).addTo(map);
 	
+	function popup(feature, layer) {
+	    // does this feature have a property named popupContent?
+	    if (feature.properties && feature.properties.LSN) {
+	        layer.bindPopup(feature.properties.LSN);
+	    }
+	}
+	
+	var style = {
+		radius: 10,
+		color: "#900000",
+		fillOpacity: 0.8
+	};
+	
 	var address = new L.GeoJson.AJAX('../data/fair_address.geojson', {
-		style: function(feature) {
-			return {color: "#900000"};
-		},
 		pointToLayer: function(feature, latlng) {
 			return new L.CircleMarker(latlng, {redius: 10, fillOpactiy: 0.8});
 		},
-		onEachFeature: function(feature, layer) {
-			layer.bindPopup(feature.properties.LSN);
+		onEachFeature: popup;
 		}		
 	}).addTo(map);
 

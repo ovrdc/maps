@@ -116,6 +116,13 @@
 		}
 	}).addTo(map);
 	var searchControl = new L.Control.Search({layer: addresses, propertyName: 'LSN', circleLocation:true});
+	searchControl.on('search_locationfound', function(e) {
+
+	    e.layer.bindPopup(feature.properties.LSN);
+	
+	});
+
+	
 	map.addControl( searchControl ); 
 
 </script>

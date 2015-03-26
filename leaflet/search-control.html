@@ -104,6 +104,22 @@
 		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 	}).addTo(map);
 	
+	     	var valves = new L.GeoJSON.AJAX('../data/points.geojson', {
+     			filter: function(feature, layer) {
+     				return feature.properties.type =="valve";
+     			},
+     			style: function(feature) {
+				return {color: feature.properties.color};
+			},
+			pointToLayer: function(feature, latlng) {
+				return new L.CircleMarker(latlng, {radius: 5, fillOpactiy: 0.9});
+			},
+			onEachFeature: function(feature, layer) {
+			layer.bindPopup(feature.properties.type), {
+			}
+			}
+		}).addTo(map);
+	
 	function popup(feature, layer) {
 	    // does this feature have a property named popupContent?
 	    if (feature.properties && feature.properties.LSN) {

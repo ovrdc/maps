@@ -29,8 +29,7 @@ map.addBaseLayer(geocloud.OSM);
 map.setBaseLayer(geocloud.OSM);
     // Create a GeoJSON store
     var store = new geocloud.geoJsonStore({
-        db: "public",
-        layers: "http://52.0.188.158/api/v1/sql/malcolm?[public.cc_trails]&key=[cdc9ee9175b4333739cb9aade57bc4a4]"
+        sql: "http://52.0.188.158/api/v1/sql/malcolm?q=SELECT * FROM public.cc_trails&jsonp_callback=myfunction&key=cdc9ee9175b4333739cb9aade57bc4a"
     });
     // Add the store as a vector overlay
     map.addGeoJsonStore(store);

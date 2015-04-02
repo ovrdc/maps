@@ -22,11 +22,14 @@
 	<script>
 	(function () {
     // Create a new map object in element with id 'map-div'
-    map = new geocloud.map({
-        el: "map-div"
-    });
-map.addBaseLayer(geocloud.OSM);
-map.setBaseLayer(geocloud.OSM);
+        var map = new L.Map('map', {
+        });
+	var acetate = L.tileLayer('http://a{s}.acetate.geoiq.com/tiles/acetate-hillshading/{z}/{x}/{y}.png', {
+	attribution: '&copy;2012 Esri & Stamen, Data from OSM and Natural Earth',
+	subdomains: '0123',
+		maxZoom: 20,
+		maxNativeZoom: 17
+	}).addTo(map);
     // Create a GeoJSON store
     var store = new geocloud.geoJsonStore({
         sql: "http://52.0.188.158/api/v1/sql/malcolm?q=SELECT * FROM public.cc_trails&jsonp_callback=myfunction&key=cdc9ee9175b4333739cb9aade57bc4a"

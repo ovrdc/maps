@@ -34,10 +34,9 @@
     var store = new geocloud.geoJsonStore({
         sql: "http://52.0.188.158/api/v1/sql/malcolm?q=SELECT * FROM public.cc_trails&jsonp_callback=myfunction&key=cdc9ee9175b4333739cb9aade57bc4a"
     });
-    // Add the store as a vector overlay
-    map.addGeoJsonStore(store);
     // Fire the SQL
     store.load();
+    map.addGeoJsonStore(store);
     // Define a callback for when the SQL returns
     store.onLoad = function () {
         // Zoom to vector layer

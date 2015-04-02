@@ -30,15 +30,13 @@
 		maxZoom: 20,
 		maxNativeZoom: 17
 	}).addTo(map);
-	var mywms = L.tileLayer.wms("http://52.0.188.158/wms/malcolm/public/", {
-	    layers: 'cc_trails',
-	    format: 'image/png'
-	});
-	mywms.addTo(map);
+	var layers = map.addTileLayers({
+        db: "http://52.0.188.158/api/v1/sql/malcolm",
+        layers: ["public.cc_trails"],
+        visibility: true
+    });
 })();
-
 </script>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-
 </html>

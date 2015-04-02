@@ -32,7 +32,7 @@
 	}).addTo(map);
     // Create a GeoJSON store
     var store = new geocloud.geoJsonStore({
-        sql: "http://52.0.188.158/api/v1/sql/malcolm?q=SELECT * FROM public.cc_trails&jsonp_callback=myfunction&key=cdc9ee9175b4333739cb9aade57bc4a"
+        sql: "http://52.0.188.158/api/v1/sql/malcolm?q=SELECT * FROM public.cc_trails&key=cdc9ee9175b4333739cb9aade57bc4a"
     });
     // Fire the SQL
     store.load();

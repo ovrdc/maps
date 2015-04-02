@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Mapcentia Example</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.css' rel='stylesheet' />
+<script src='http://cdn.us1.mapcentia.com/js/leaflet/leaflet.js'></script>
+<script src='http://us1.mapcentia.com/api/v3/js/geocloud.js'></script>
+
+	<style>
+		body {
+			padding: 0;
+			margin: 0;
+		}
+		html, body, #map {
+			height: 100%;
+		}
+	</style>
+</head>
+<body>
+	<div id="map"></div>
+	<script>
+	(function () {
+    // Create a new map object in element with id 'map-div'
+        var map = new L.Map('map', {
+        });
+	var acetate = L.tileLayer('http://a{s}.acetate.geoiq.com/tiles/acetate-hillshading/{z}/{x}/{y}.png', {
+	attribution: '&copy;2012 Esri & Stamen, Data from OSM and Natural Earth',
+	subdomains: '0123',
+		maxZoom: 20,
+		maxNativeZoom: 17
+	}).addTo(map);
+    // Create a GeoJSON store
+    var store = new geocloud.geoJsonStore({
+        sql: "http://52.0.188.158/api/v1/sql/malcolm?q=SELECT * FROM public.cc_trails&key=cdc9ee9175b4333739cb9aade57bc4a"
+    });
+    // Fire the SQL
+    store.load();
+    map.addGeoJsonStore(store);
+    // Define a callback for when the SQL returns
+    store.onLoad = function () {
+        // Zoom to vector layer
+        map.zoomToExtentOfgeoJsonStore(store);
+    }
+})();
+
+</script>
+</body>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+
+</html>

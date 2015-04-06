@@ -90,7 +90,7 @@
 
   </head>
   <body>
-  
+  <script>
   {
     var map = new L.Map('map', {
         center: [39, -83],
@@ -128,5 +128,6 @@
     var lyrs = L.control.layers(baseMaps, overlays, {autoZIndex:true}).addTo(map);
     lyrs.bringToFront();
 }
+</script>
 </body>
 </html>

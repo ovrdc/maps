@@ -138,7 +138,10 @@
         "Basemap": stamen,
         "Open Street Map": osm
     };
-    var overlays = cdb_layers;
+    var overlays = {
+    	cdb_layers1,
+    	cdb_layers2
+    };
     var lyrs = L.control.layers(baseMaps, overlays, {autoZIndex:true}).addTo(map);
     lyrs.bringToFront();
 }

@@ -123,11 +123,12 @@
     var cdb_url2 = 'http://ovrdc.cartodb.com/api/v2/viz/0061b420-dc5c-11e4-94b8-0e853d047bba/viz.json';
     cartodb.createLayer(map, cdb_url2, {legends:false})
         .addTo(map)
+        .done(function(layer) {
+  	layer.setZIndex(-9999);
+	})
         .on('error', function (err) {
         alert("some error occurred: " + err);
     });
-    
-    cdb_layers2.setXIndex(-9999);
     
     function addLayerControl() {
     var baseMaps = {

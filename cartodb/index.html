@@ -109,7 +109,7 @@
 
     var cdb_layers1 = {};
     var cdb_url = 'http://ovrdc.cartodb.com/api/v2/viz/a44591d6-abe4-11e4-9234-0e853d047bba/viz.json';
-    cartodb.createLayer(map, cdb_url)
+    cartodb.createLayer(map, cdb_url, {legend:false})
         .addTo(map)
 
 //        .on('done', function (layer) {
@@ -121,7 +121,7 @@
 
     var cdb_layers2 = {};
     var cdb_url2 = 'http://ovrdc.cartodb.com/api/v2/viz/0061b420-dc5c-11e4-94b8-0e853d047bba/viz.json';
-    cartodb.createLayer(map, cdb_url2)
+    cartodb.createLayer(map, cdb_url2, {legend:false})
         .addTo(map)
         .on('error', function (err) {
         alert("some error occurred: " + err);

@@ -143,8 +143,8 @@
     	"Zoning": cdb_layers2
     };
     var lyrs = L.control.layers(baseMaps, overlays, {autoZIndex:true});
-	lyrs.addTo(map)
 	lyrs.bringToFront();
+	lyrs.addTo(map);
 }
 }
 </script>

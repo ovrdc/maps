@@ -95,7 +95,7 @@
   {
     var map = new L.Map('map', {
         center: [39, -83],
-        zoom: 13
+        zoom: 11
     });
 
 
@@ -107,19 +107,32 @@
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     });
 
-    var cdb_layers = {};
+    var cdb_layers1 = {};
     var cdb_url = 'http://ovrdc.cartodb.com/api/v2/viz/a44591d6-abe4-11e4-9234-0e853d047bba/viz.json';
     cartodb.createLayer(map, cdb_url)
         .addTo(map)
 
         .on('done', function (layer) {
-            cdb_layers['crashes'] = layer;
+            cdb_layers1['crashes'] = layer;
             addLayerControl();
             })
         .on('error', function (err) {
         alert("some error occurred: " + err);
     });
-}
+
+    var cdb_layers2 = {};
+    var cdb_url2 = 'http://ovrdc.cartodb.com/api/v2/viz/0061b420-dc5c-11e4-94b8-0e853d047bba/viz.json';
+    cartodb.createLayer(map, cdb_url2)
+        .addTo(map)
+
+        .on('done', function (layer) {
+            cdb_layers2['zoning'] = layer;
+            addLayerControl();
+            })
+        .on('error', function (err) {
+        alert("some error occurred: " + err);
+    });
+
     function addLayerControl() {
     var baseMaps = {
         "Basemap": stamen,
@@ -128,6 +141,7 @@
     var overlays = cdb_layers;
     var lyrs = L.control.layers(baseMaps, overlays, {autoZIndex:true}).addTo(map);
     lyrs.bringToFront();
+}
 }
 </script>
 </body>

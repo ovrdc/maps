@@ -136,8 +136,9 @@
     	"Crashes": cdb_layers1,
     	"Zoning": cdb_layers2
     };
-    var lyrs = L.control.layers(baseMaps, overlays, {autoZIndex:true}).addTo(map);
+    var lyrs = L.control.layers(baseMaps, overlays, {autoZIndex:true});
     lyrs.bringToFront();
+    lyrs.addTo(map);
 }
 }
 </script>

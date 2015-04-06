@@ -126,7 +126,9 @@
         .on('error', function (err) {
         alert("some error occurred: " + err);
     });
-
+    
+    cdb_layers2.setXIndex(-9999);
+    
     function addLayerControl() {
     var baseMaps = {
         "Basemap": stamen,

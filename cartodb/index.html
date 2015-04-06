@@ -142,7 +142,7 @@
     	"Crashes": cdb_layers1,
     	"Zoning": cdb_layers2
     };
-    var lyrs = L.control.layers(baseMaps, overlays, {autoZIndex:true});
+    var lyrs = L.control.layers(baseMaps, overlays, {autoZIndex:false});
 	lyrs.bringToFront();
 	lyrs.addTo(map);
 }

@@ -111,6 +111,9 @@
     var cdb_url = 'http://ovrdc.cartodb.com/api/v2/viz/a44591d6-abe4-11e4-9234-0e853d047bba/viz.json';
     cartodb.createLayer(map, cdb_url, {legends:false})
         .addTo(map)
+        .done(function(layer) {
+  	layer.setZIndex(1);
+	})
 
 //        .on('done', function (layer) {
   //          addLayerControl();
@@ -124,7 +127,7 @@
     cartodb.createLayer(map, cdb_url2, {legends:false})
         .addTo(map)
         .done(function(layer) {
-  	layer.setZIndex(-9999);
+  	layer.setZIndex(2);
 	})
         .on('error', function (err) {
         alert("some error occurred: " + err);
@@ -140,7 +143,7 @@
     	"Zoning": cdb_layers2
     };
     var lyrs = L.control.layers(baseMaps, overlays, {autoZIndex:true});
-	lyrs.addTo(map);
+	lyrs.addTo(map)
 	lyrs.setZIndex(9999);
 }
 }

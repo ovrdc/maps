@@ -86,8 +86,13 @@
 	//CSV Features
 	var markersLayer = new L.LayerGroup();	//layer contain searched elements
 	map.addLayer(markersLayer);
-	var planes = omnivore.csv('../data/airports.csv').addTo(map);
-	var searchControlcsv = new L.Control.Search({layer: planes, initial: false});
+	var airport = omnivore.csv('../data/airports.csv', {
+		onEachFeature: function(feature, layer) {
+			layer.bindPopup(feature.properties.LSN)
+		}
+	}).addTo(map);
+	
+	var searchControlcsv = new L.Control.Search({layer: airport, initial: false});
       	map.addControl(searchControlcsv);
 
 </script>

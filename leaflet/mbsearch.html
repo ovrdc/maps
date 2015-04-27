@@ -88,7 +88,7 @@
 	map.addLayer(markersLayer);
 	var airport = omnivore.csv('../data/airports.csv', {
 		onEachFeature: function(feature, layer) {
-			layer.bindPopup(feature.properties.LSN)
+			layer.bindPopup(feature.properties.title)
 		}
 	}).addTo(map);
 	

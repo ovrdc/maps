@@ -49,6 +49,9 @@
 		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 	}).addTo(map);
 	
+	//var featureLayer = L.mapbox.featureLayer().addTo(map);
+	
+	$('#search').keyup(search);	
 	//GeoJson Features
      	var addresses = new L.GeoJSON.AJAX('../data/fair_address.geojson', {
      		style: function(feature) {
@@ -61,8 +64,24 @@
 			layer.bindPopup(feature.properties.LSN)
 		}
 	}).addTo(map);
-	var searchControl = new L.Control.Search({layer: addresses, propertyName: 'LSN', circleLocation:true});
-	map.addControl( searchControl ); 
+	
+	function search() {
+	// get the value of the search input field
+	var searchString = $('#search').val().toLowerCase();
+
+    	addresses.setFilter(showLSN);
+
+    	// here we're simply comparing the 'LSN' property of each marker
+    	// to the search string, seeing whether the former contains the latter.
+    	function showLSN(feature) {
+        return feature.properties.LSN
+            .toLowerCase()
+            .indexOf(searchString) !== -1;
+		}
+	}
+	
+	//var searchControl = new L.Control.Search({layer: addresses, propertyName: 'LSN', circleLocation:true});
+	//map.addControl( searchControl ); 
 	
 	//CSV Features
 	var markersLayer = new L.LayerGroup();	//layer contain searched elements

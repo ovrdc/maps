@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Search GeoJson Example | Stripped Down</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<!--Font Awesome CDN and Bootstrap CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+<!--Leaflet -->
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+<script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.9/mapbox.js'></script>
+<!--<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>-->
+
+<!-- Leaflet Omnivore Plugin GeoJson KML Etc -->
+<script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>
+
+<!-- leaflet ajax geojson loader -->
+<script src="../plugins/leaflet.ajax.min.js"></script>
+
+<!--Search Control Features -->
+<link rel="stylesheet" href="../plugins/leaflet-search.css" />
+<script src="../plugins/leaflet-search.js"></script>
+
+<style>
+#map { position:absolute; top:0; bottom:0; width:100%; }
+
+.search-ui {
+  position:absolute;
+  top:10px;
+  right:10px;
+  z-index:1000;
+  }
+</style>
+</head>
+<body>
+<div id="map"></div>
+<input id='search' class='search-ui' placeholder='Enter Address' />
+<script>
+
+	var map = new L.Map('map', {zoom: 13, center: new L.latLng([39.668858, -82.8037639]) });
+	
+	var OpenStreetMap_BlackAndWhite = L.tileLayer('http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png', {
+		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+	}).addTo(map);
+	
+	//var featureLayer = L.mapbox.featureLayer().addTo(map);
+	
+	$('#search').keyup(search);	
+	//GeoJson Features
+     	var addresses = new L.GeoJSON.AJAX('../data/fair_address.geojson', {
+     		style: function(feature) {
+			return {color: "#900000"};
+		},
+		pointToLayer: function(feature, latlng) {
+			return new L.CircleMarker(latlng, {radius: 8, fillOpactiy: 0.8});
+		},
+		onEachFeature: function(feature, layer) {
+			layer.bindPopup(feature.properties.LSN)
+		}
+	}).addTo(map);
+	
+	function search() {
+	// get the value of the search input field
+	var searchString = $('#search').val().toLowerCase();
+
+    	addresses.setFilter(showLSN);
+
+    	// here we're simply comparing the 'LSN' property of each marker
+    	// to the search string, seeing whether the former contains the latter.
+    	function showLSN(feature) {
+        return feature.properties.LSN
+            .toLowerCase()
+            .indexOf(searchString) !== -1;
+		}
+	}
+	
+	//var searchControl = new L.Control.Search({layer: addresses, propertyName: 'LSN', circleLocation:true});
+	//map.addControl( searchControl ); 
+	
+	//CSV Features
+	var markersLayer = new L.LayerGroup();	//layer contain searched elements
+	map.addLayer(markersLayer);
+	var airport = omnivore.csv('../data/airports.csv', {
+		onEachFeature: function(feature, layer) {
+			layer.bindPopup(feature.properties.title)
+		}
+	}).addTo(map);
+	
+	var searchControlcsv = new L.Control.Search({layer: airport, initial: false});
+      	map.addControl(searchControlcsv);
+
+</script>
+</body>
+</html>

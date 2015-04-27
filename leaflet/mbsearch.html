@@ -53,7 +53,7 @@
 	
 	$('#search').keyup(search);	
 	//GeoJson Features
-     	var addresses = new L.GeoJSON.AJAX('../data/fair_address.geojson', {
+     	var addresses = omnivore.geojson('../data/fair_address.geojson', {
      		style: function(feature) {
 			return {color: "#900000"};
 		},

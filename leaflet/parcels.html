@@ -46,14 +46,15 @@
     	
     });
     
-    	function popup(feature, layer) {
+    	function popups(feature, layer) {
 		if (feature.properties && feature.properties.NAME) {
 			layer.bindPopup( 'Parcel ID: '+ feature.properties.PARCEL_ID+'<br>' + '<hr>' +
 			'<b>' +feature.properties.NAME + '</b>' + '<br>' +feature.properties.ADDRESS +
 			'<br>' + feature.properties.CITY + ', ' + feature.properties.STATE + ' ' + feature.properties.ZIP
  			+ '<br>' + 'Acres: ' + feature.properties.ACRES);
+ 			layer.bindLabel(feature.properties.NAME);
 		}
-		else ('No Info');
+		else layer.bindLabel('No Info');
 		};
 	
 	function label(feature, layer) {
@@ -69,8 +70,7 @@
                 color: 'grey',
                 weight: 1,
                 opacity: .9,
-                onEachFeature:popup,
-                onEachFeature:label
+                onEachFeature:popups
 	});
 	parcels.addTo(map);
 

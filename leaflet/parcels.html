@@ -54,7 +54,7 @@
 		else ('No Info');
 		};
    
-    var map = L.map('map', {center: [39.117863, -82.534984], zoom: 11,
+    	var map = L.map('map', {center: [39.117863, -82.534984], zoom: 11,
 			layers: [Esri_WorldTopoMap],
 			defaultExtentControl: true
 		});
@@ -66,13 +66,7 @@
                 onEachFeature:popup
 	});
 	parcels.addTo(map);
-	parcels.on('mouseover', function(e) {
-	    e.layer.openPopup(popup);
-	});
-	parcels.on('mouseout', function(e) {
-	    e.layer.closePopup(popup);
-	});
-	
+
 	var baseMaps = {
 		"Basemap": Esri_WorldTopoMap,
 		"Imagery": Esri_WorldImagery

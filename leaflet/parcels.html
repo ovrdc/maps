@@ -68,7 +68,7 @@
                 onEachFeature:popup
 	});
 	parcels.addTo(map);
-	parcels.onEachFeature(feature, layer) {
+	parcels.onEachFeature function(feature, layer) {
 		parcels.bindLabel(feature.properties.NAME)
 	};
 	var baseMaps = {

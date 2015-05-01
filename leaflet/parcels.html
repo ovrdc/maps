@@ -46,7 +46,7 @@
     	
     });
     
-    function popup(feature, layer) {
+    	function popup(feature, layer) {
 		if (feature.properties && feature.properties.NAME) {
 			layer.bindPopup( 'Parcel ID: '+ feature.properties.PARCEL_ID+'<br>' + '<hr>' +
 			'<b>' +feature.properties.NAME + '</b>' + '<br>' +feature.properties.ADDRESS +
@@ -55,8 +55,9 @@
 		}
 		else ('No Info');
 		};
+	
 	function label(feature, layer) {
-		
+		layer.bindLabel(feature.properties.NAME)
 	};
    
     	var map = L.map('map', {center: [39.117863, -82.534984], zoom: 11,
@@ -68,12 +69,11 @@
                 color: 'grey',
                 weight: 1,
                 opacity: .9,
-                onEachFeature:popup
+                onEachFeature:popup,
+                onEachFeature:label
 	});
 	parcels.addTo(map);
-	parcels.onEachFeature function(feature, layer) {
-		layer.bindLabel(feature.properties.NAME)
-	};
+
 	var baseMaps = {
 		"Basemap": Esri_WorldTopoMap,
 		"Imagery": Esri_WorldImagery

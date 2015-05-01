@@ -64,8 +64,7 @@
                 opacity: .9,
                 onEachFeature:popup
 	});
-	var zoom = parcels.getBounds();
-	map.fitBounds(zoom);
+	map.fitBounds(parcels.getBounds());
 	parcels.addTo(map);
 
 	

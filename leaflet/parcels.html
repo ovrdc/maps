@@ -46,10 +46,11 @@
     
     function popup(feature, layer) {
 		if (feature.properties && feature.properties.NAME) {
-			layer.bindPopup( '<b>' +feature.properties.NAME + '</b>' + '<br>' +feature.properties.ADDRESS_1);
+			layer.bindPopup( 'Parcel ID: '+ feature.properties.PARCEL_ID+'<br>' + '<hr>' +
+			'<b>' +feature.properties.NAME + '</b>' + '<br>' +feature.properties.ADDRESS_1
+			+ '<br>' + 'Acres: ' + feature.properties.ACRES);
 		}
-		else if (feature.properties && feature.properties.ADDRESS_1) {
-			layer.bindPopup(feature.properties.ADDRESS_1);
+		else ('No Info');
 		}
 	};
    

@@ -64,7 +64,10 @@
                 weight: 1,
                 opacity: .9,
                 onEachFeature:popup
-	}).addTo(map);
+	});
+	var zoom = parcels.getBounds();
+	map.fitBounds(zoom);
+	parcels.addTo(map);
 
 	
 	var baseMaps = {

@@ -55,6 +55,9 @@
 		}
 		else ('No Info');
 		};
+	function label(feature, layer) {
+		
+	};
    
     	var map = L.map('map', {center: [39.117863, -82.534984], zoom: 11,
 			layers: [Esri_WorldTopoMap],
@@ -69,7 +72,7 @@
 	});
 	parcels.addTo(map);
 	parcels.onEachFeature function(feature, layer) {
-		parcels.bindLabel(feature.properties.NAME)
+		layer.bindLabel(feature.properties.NAME)
 	};
 	var baseMaps = {
 		"Basemap": Esri_WorldTopoMap,

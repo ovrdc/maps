@@ -25,6 +25,8 @@
 <!--Search Control Features -->
 <link rel="stylesheet" href="../plugins/leaflet-search.css" />
 <script src="../plugins/leaflet-search.js"></script>
+<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-label/v0.2.1/leaflet.label.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-label/v0.2.1/leaflet.label.css' rel='stylesheet' />
 
 <style>
 #map { position:absolute; top:0; bottom:0; width:100%; }
@@ -66,7 +68,7 @@
                 onEachFeature:popup
 	});
 	parcels.addTo(map);
-
+	parcels.bindLabel(feature.properties.NAME);
 	var baseMaps = {
 		"Basemap": Esri_WorldTopoMap,
 		"Imagery": Esri_WorldImagery

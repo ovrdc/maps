@@ -1,1 +1,82 @@
-test
+<html>
+<head>
+  <title>4 MB Parcel GeoJson</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+  <link rel="stylesheet" href="src/leaflet.defaultextent.css" />
+  <link rel="stylesheet" href="src/easyPrint.css" />
+  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+  <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+  <script src="src/leaflet.defaultextent.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="src/leaflet.easyPrint.js"></script>
+  <script src="src/jQuery.print.js"></script>
+  <script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.24.0/L.Control.Locate.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.24.0/L.Control.Locate.css' rel='stylesheet' />
+<!--[if lt IE 9]>
+  <link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.21.0/L.Control.Locate.ie.css' rel='stylesheet' />
+<![endif]-->
+  <link rel="stylesheet" href="src/leaflet-sidebar.css" />
+  <script src="src/leaflet-sidebar.js"></script>
+  <script src="src/leaflet.makimarkers.js"></script>
+  <link rel="stylesheet" href="src/leaflet.awesome-markers.css">
+  <script src="src/leaflet.awesome-markers.js"></script>
+
+  <style>
+  	  #map { position:absolute; top:0; bottom:0; width:100%; }
+  </style>
+</head>
+<body>
+
+  <div id="map"></div>
+  <script>
+  window.onload = function () {
+    var Esri_WorldTopoMap = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
+	    attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
+    });
+    
+    var Esri_WorldImagery = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { 
+    	attribution: 'Tiles © Esri — Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community' 
+    	
+    });
+    
+    function popup(feature, layer) {
+		if (feature.properties && feature.properties.NAME) {
+			layer.bindPopup( '<b>' +feature.properties.NAME + '</b>' + '<br>' +feature.properties.ADDRESS_1);
+		}
+		else if (feature.properties && feature.properties.ADDRESS_1) {
+			layer.bindPopup(feature.properties.ADDRESS_1);
+		}
+	};
+   
+    var map = L.map('map', {center: [38.809365, -83.517054],
+			zoom: 11,
+			layers: [Esri_WorldTopoMap],
+			defaultExtentControl: true
+		});
+
+	var parcels = L.geoJson.ajax(wellparcels.geojson,{
+                color: 'grey',
+                weight: 2,
+                opacity: .7,
+                fill: false
+	}).addTo(map);
+
+	
+	var baseMaps = {
+		"Basemap": Esri_WorldTopoMap,
+		"Imagery": Esri_WorldImagery
+	};
+
+	var overlayMaps = {
+		 "Parcels": parcels
+	};
+	
+	L.control.layers(baseMaps, overlayMaps, {collapsed:false}).addTo(map);
+}
+  </script>
+  </div>
+</body>  
+</html>

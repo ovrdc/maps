@@ -68,7 +68,9 @@
                 onEachFeature:popup
 	});
 	parcels.addTo(map);
-	parcels.bindLabel(layer.feature.properties.NAME);
+	parcels.onEachFeature(feature, layer) {
+		parcels.bindLabel(feature.properties.NAME)
+	};
 	var baseMaps = {
 		"Basemap": Esri_WorldTopoMap,
 		"Imagery": Esri_WorldImagery

@@ -27,6 +27,8 @@
 <script src="../plugins/leaflet-search.js"></script>
 <script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-label/v0.2.1/leaflet.label.js'></script>
 <link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-label/v0.2.1/leaflet.label.css' rel='stylesheet' />
+<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-hash/v0.2.1/leaflet-hash.js'></script>
+
 
 <style>
 #map { position:absolute; top:0; bottom:0; width:100%; }
@@ -46,41 +48,43 @@
     	
     });
     
-    	function popups(feature, layer) {
-		if (feature.properties && feature.properties.NAME) {
-			layer.bindPopup( 'Parcel ID: '+ feature.properties.PARCEL_ID+'<br>' + '<hr>' +
-			'<b>' +feature.properties.NAME + '</b>' + '<br>' +feature.properties.ADDRESS +
-			'<br>' + feature.properties.CITY + ', ' + feature.properties.STATE + ' ' + feature.properties.ZIP
- 			+ '<br>' + 'Acres: ' + feature.properties.ACRES);
- 			layer.bindLabel(feature.properties.NAME);
-		}
-		else layer.bindLabel('No Info');
-		};
-	
-	function label(feature, layer) {
-		layer.bindLabel(feature.properties.NAME)
-	};
-   
-    	var map = L.map('map', {center: [39.117863, -82.534984], zoom: 11,
+    	var map = L.map('map', {center: [[38, -95], zoom: 4,
 			layers: [Esri_WorldTopoMap],
 			defaultExtentControl: true
 		});
-
-	var parcels = L.geoJson.ajax('/maps/data/wells-parcels.geojson',{
-                color: 'grey',
-                weight: 1,
-                opacity: .9,
-                onEachFeature:popups
-	});
-	parcels.addTo(map);
-
+	var hash = L.hash(map);
+	
+	var points = L.geoJson.ajax('/maps/data/poi.geojson')
+	.on('ready', function(layer) {
+        // An example of customizing marker styles based on an attribute.
+        // In this case, the data, a CSV file, has a column called 'state'
+        // with values referring to states. Your data might have different
+        // values, so adjust to fit.
+        this.eachLayer(function(marker) {
+            if (marker.toGeoJSON().properties.CATEGORY === 'Amish') {
+                // The argument to L.mapbox.marker.icon is based on the
+                // simplestyle-spec: see that specification for a full
+                // description of options.
+                marker.setIcon(L.mapbox.marker.icon({
+                    'marker-color': '#ff8888',
+                    'marker-size': 'large'
+                }));
+            } else {
+                marker.setIcon(L.mapbox.marker.icon({}));
+            }
+            // Bind a popup to each icon based on the same properties
+            marker.bindPopup(marker.toGeoJSON().properties.CATEGORY + ', ' +
+                marker.toGeoJSON().properties.CATEGORY);
+        });
+    })
+    .addTo(map);
 	var baseMaps = {
 		"Basemap": Esri_WorldTopoMap,
 		"Imagery": Esri_WorldImagery
 	};
 
 	var overlayMaps = {
-		 "Parcels": parcels
+		 "Points": points
 	};
 	
 	L.control.layers(baseMaps, overlayMaps, {collapsed:false}).addTo(map);

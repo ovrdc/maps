@@ -65,23 +65,12 @@
         // with values referring to states. Your data might have different
         // values, so adjust to fit.
         this.eachLayer(function(marker) {
-            if (feature.properties.CATEGORY === 'Amish') {
-                // The argument to L.mapbox.marker.icon is based on the
-                // simplestyle-spec: see that specification for a full
-                // description of options.
                 marker.setIcon(L.mapbox.marker.icon({
                     'marker-color': '#ff8888',
                     'marker-size': 'large'
                 }));
-            } else {
-                marker.setIcon(L.mapbox.marker.icon({}));
-            }
-            // Bind a popup to each icon based on the same properties
-            marker.bindPopup(feature.properties.CATEGORY + ', ' +
-                feature.properties.CATEGORY);
-        });
-    })
-    .addTo(map);
+        }).addTo(map);
+        
 	var baseMaps = {
 		"Basemap": Esri_WorldTopoMap,
 		"Imagery": Esri_WorldImagery

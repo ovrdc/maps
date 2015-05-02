@@ -56,19 +56,7 @@
 		});
 	var hash = L.hash(map);
 	
-	var points = L.geoJson.ajax('/maps/data/poi.geojson')
-	.on('ready', function(layer) {
-        // An example of customizing marker styles based on an attribute.
-        // In this case, the data, a CSV file, has a column called 'state'
-        // with values referring to states. Your data might have different
-        // values, so adjust to fit.
-        this.eachLayer(function(marker) {
-                marker.setIcon(L.mapbox.marker.icon({
-                    'marker-color': '#ff8888',
-                    'marker-size': 'large'
-                }));
-        });
-        }).addTo(map);
+	var points = L.geoJson.ajax('/maps/data/poi.geojson', null, L.mapbox.featureLayer).addTo(map);
         
 	var baseMaps = {
 		"Basemap": Esri_WorldTopoMap,

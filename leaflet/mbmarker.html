@@ -56,7 +56,8 @@
 		});
 	var hash = L.hash(map);
 	
-	var points = L.geoJson.ajax('/maps/data/poi.geojson', null, L.mapbox.featureLayer()).addTo(map);
+	var points = L.mapbox.featureLayer()
+	.loadURL('/maps/data/poi.geojson').addTo(map);
         
 	var baseMaps = {
 		"Basemap": Esri_WorldTopoMap,

@@ -59,8 +59,18 @@ L.mapbox.accessToken = 'pk.eyJ1Ijoib3ZyZGMiLCJhIjoiRUtXeFFzZyJ9.ufnW36oCZo96m_L9
 	
 	var points = L.mapbox.featureLayer()
 	.loadURL('/maps/data/fair_address.geojson');
-	points.addTo(map);
 	
+	points.on('layeradd', function(e) {
+    		var marker = e.layer,
+        	feature = marker.feature;
+	    		marker.setIcon(L.mapbox.marker.icon({
+		        	'marker-symbol': 'bus',
+          			'marker-color': '#422'
+        		})
+	    	);
+	});
+	
+	points.addTo(map);
 	var baseMaps = {
 		"Basemap": Esri_WorldTopoMap,
 		"Imagery": Esri_WorldImagery

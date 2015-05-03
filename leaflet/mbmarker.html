@@ -48,13 +48,15 @@
     	
     });
     
-    var map = L.map('map', {center: [38, -95], zoom: 4,
+    var map = L.map('map', {
+    		center: [38, -95], 
+    		zoom: 4,
 		layers: [Esri_WorldTopoMap],
 		defaultExtentControl: true
 	});
 	var hash = L.hash(map);
 	
-	var points = omnivore.geojson('/maps/data/poi.geojson');
+	var points = omnivore.geojson('/maps/data/fair_address.geojson');
 	points.addTo(map);
 	
 	var baseMaps = {

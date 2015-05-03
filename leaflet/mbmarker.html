@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 <head>
 <title>4 MB Parcel GeoJson</title>
@@ -50,20 +49,20 @@
     	
     });
     
-    	var map = L.map('map', {center: [38, -95], zoom: 4,
-			layers: [Esri_WorldTopoMap],
-			defaultExtentControl: true
-		});
+    var map = L.map('map', {center: [38, -95], zoom: 4,
+		layers: [Esri_WorldTopoMap],
+		defaultExtentControl: true
+	});
 	var hash = L.hash(map);
 	
 	var points = L.mapbox.featureLayer()
 	.loadURL('/maps/data/poi.geojson').addTo(map);
-        
+	
 	var baseMaps = {
 		"Basemap": Esri_WorldTopoMap,
 		"Imagery": Esri_WorldImagery
 	};
-
+	
 	var overlayMaps = {
 		 "Points": points
 	};

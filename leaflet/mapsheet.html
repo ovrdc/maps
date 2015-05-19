@@ -49,6 +49,15 @@
       function showInfo(data) {
       	test.addData(data).addTo(map);
       };
+      
+      var baseMaps = {
+          "Grayscale": acetate
+      };
+      
+      var overlayMaps = {
+          "Google Spreadsheet": test
+      };
+      L.control.layers(baseMaps, overlayMaps).addTo(map);
 </script>
 </body>
 </html>

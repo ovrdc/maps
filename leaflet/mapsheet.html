@@ -25,7 +25,10 @@
             <p>{{name}}</p>
     </script>
     <script type="text/javascript">
-    $(document).ready( function() { 
+      document.addEventListener('DOMContentLoaded', function() {
+        var URL = "1B5ctchtgswwDYh3C0CMuOgCL6rjg6IR0mcAfq8jNb7Y"
+        Tabletop.init( { key: URL, callback: showInfo, simpleSheet: true } )
+      })
       
       var map = new L.Map('map', {
           center: [39.1203, -82.5353],
@@ -42,21 +45,10 @@
       var public_spreadsheet_url = '1B5ctchtgswwDYh3C0CMuOgCL6rjg6IR0mcAfq8jNb7Y';
       
       var test = L.geoJson();
-      
-      Tabletop.init( { key: public_spreadsheet_url,
-                     callback: showInfo,
-                     simpleSheet: true } )
-          
-      function showInfo(data) {
-      	L.geoJson(data).addTo(map);
-      };
- 
-      });
-    </script>
-<!--https://docs.google.com/spreadsheets/d/1ABXPlDkLQuAY8GvYZA67qyLgsXbUPsVU_bH4N3H8OHQ/pubhtml?gid=1920207472&single=true -->
-<!--https://docs.google.com/spreadsheets/d/1ABXPlDkLQuAY8GvYZA67qyLgsXbUPsVU_bH4N3H8OHQ/pubhtml
-https://docs.google.com/spreadsheets/d/1l6SEoId_2qrNjkfFuwePYiZNFP5EkvC_i683S3WRLlo/edit#gid=90338187
-https://docs.google.com/spreadsheets/d/1l6SEoId_2qrNjkfFuwePYiZNFP5EkvC_i683S3WRLlo/pubhtml-->
 
+      function showInfo(data) {
+      	test.addData(data).addTo(map);
+      };
+</script>
 </body>
 </html>

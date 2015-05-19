@@ -48,9 +48,12 @@
 
       function showInfo(data, tabletop) {
       	alert("processed")
-      	console.log(data)
-      	test.addData(data).addTo(map);
+      	var test1 = L.geoJson(data)
+      	test.addData(test1)
+      	console.log(data);
       };
+      
+      test.addTo(map);
       
       var baseMaps = {
           "Grayscale": acetate

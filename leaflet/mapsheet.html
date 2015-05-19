@@ -46,7 +46,9 @@
       
       var test = L.geoJson();
 
-      function showInfo(data) {
+      function showInfo(data, tabletop) {
+      	alert("processed")
+      	console.log(data)
       	test.addData(data).addTo(map);
       };
       

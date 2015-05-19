@@ -24,7 +24,7 @@
 
     <script type="text/javascript">
       document.addEventListener('DOMContentLoaded', function() {
-        var URL = "1l6SEoId_2qrNjkfFuwePYiZNFP5EkvC_i683S3WRLlo"
+        var URL = "1B5ctchtgswwDYh3C0CMuOgCL6rjg6IR0mcAfq8jNb7Y/pubhtml"
         Tabletop.init( { key: URL, callback: showInfo, simpleSheet: true } )
       })
   
@@ -45,7 +45,7 @@
   
   function showInfo(data) {
         var optionsJSON = ["notes"]
-        var template = "<h4>{{notes}}</h4>"
+        var template = "<h4>{{Status}}</h4>"
         var test1 = Sheetsee.createGeoJSON(data, optionsJSON)
         test.addData(test1)
         //var map = Sheetsee.loadMap("map")

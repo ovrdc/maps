@@ -368,13 +368,13 @@ L.mapbox.accessToken = 'pk.eyJ1Ijoib3ZyZGMiLCJhIjoiRUtXeFFzZyJ9.ufnW36oCZo96m_L9
 		maxNativeZoom: 18
 	});
 	
-	map.addLayer(greymap);
+	//map.addLayer(greymap);
     
     var attribution = '<a href="http://www.doi.gov">U.S. Department of the Interior</a> | <a href="http://www.usgs.gov">U.S. Geological Survey</a> | <a href="http://www.usgs.gov/laws/policies_notices.html">Policies</a>';
     var tnmBasemapViewer = L.tileLayer('http://basemap.nationalmap.gov/ArcGIS/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}', {
             maxZoom: 14,
             attribution: attribution
-            });
+            }).addTo(map);
             
     var geocoder = L.mapbox.geocoderControl('mapbox.places').addTo(map);
     

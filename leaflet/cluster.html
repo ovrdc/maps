@@ -26,13 +26,6 @@
 			attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 		}).addTo(map);
 
-		//var markers = L.markerClusterGroup();
-
-		//markers.addLayer(geoJsonLayer);
-
-		//map.addLayer(markers);
-		//map.fitBounds(markers.getBounds());
-		
 	     	var addresses = new L.GeoJSON.AJAX('../data/fair_address.geojson', {
 	     		style: function(feature) {
 				return {color: "#900000"};
@@ -43,8 +36,13 @@
 			onEachFeature: function(feature, layer) {
 				layer.bindPopup(feature.properties.LSN)
 			}
-		}).addTo(map);
-	//	map.fitBounds(address.getBounds());
+		});
+		var cluster = L.markerClusterGroup();
+
+		cluster.addLayer(address);
+
+		map.addLayer(cluster);
+		//map.fitBounds(cluster.getBounds());
 	</script>
 </body>
 </html>

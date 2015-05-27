@@ -204,11 +204,13 @@ You can find the project at: https://github.com/domoritz/leaflet-locatecontrol
             if (this.options.metric) {
                 distance = radius.toFixed(0);
                 unit = "meters";
-                lt = this._event.latitude;
+                lat = this._event.latitude;
+                long = this._event.longitude;
             } else {
                 distance = (radius * 3.2808399).toFixed(0);
                 unit = "feet";
-                lt = "5";
+                lat = this._event.latitude;
+                long = this._event.longitude;
             }
            
             // small inner marker
@@ -228,7 +230,7 @@ You can find the project at: https://github.com/domoritz/leaflet-locatecontrol
 
             var t = this.options.strings.popup;
             if (this.options.showPopup && t) {
-                this._marker.bindPopup(L.Util.template(t, {distance: distance, unit: unit, lt: lt}))
+                this._marker.bindPopup(L.Util.template(t, {distance: distance, unit: unit, lat: lat, long: long}))
                 ._popup.setLatLng(this._event.latlng);
             }
           

@@ -162,7 +162,6 @@ You can find the project at: https://github.com/domoritz/leaflet-locatecontrol
             }
 
             var radius = this._event.accuracy;
-            var lt = this._event.latitude;
             if (this._locateOnNextLocationFound) {
                 if (this._isOutsideMapBounds()) {
                     this.options.onLocationOutsideMapBounds(this);
@@ -201,13 +200,15 @@ You can find the project at: https://github.com/domoritz/leaflet-locatecontrol
                 }
             }
 
-            var distance, unit;
+            var distance, unit, lt;
             if (this.options.metric) {
                 distance = radius.toFixed(0);
                 unit = "meters";
+                lt = this._event.latitude;
             } else {
                 distance = (radius * 3.2808399).toFixed(0);
                 unit = "feet";
+                lt = this._event.latitude;
             }
            
             // small inner marker

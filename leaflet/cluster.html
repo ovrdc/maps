@@ -31,22 +31,17 @@
 		//map.addLayer(markers);
 		//map.fitBounds(markers.getBounds());
 		
-		var address = L.geoJson();
-	
-		$.getJSON('../data/fair_address.geojson', function(data) {
-			address.addData(data, {
-				style: function(feature) {
-					return {color: "#900000"};
-				},
-				pointToLayer: function(feature, latlng) {
-					return new L.CircleMarker(latlng, {redius: 10, fillOpactiy: 0.8});
-				},
-				onEachFeature: function(feature, layer) {
-					layer.bindPopup(feature.properties.LSN);
-				}
-			})
-		});
-		address.addTo(map);
+	     	var addresses = new L.GeoJSON.AJAX('../data/fair_address.geojson', {
+	     		style: function(feature) {
+				return {color: "#900000"};
+			},
+			pointToLayer: function(feature, latlng) {
+				return new L.CircleMarker(latlng, {radius: 8, fillOpactiy: 0.8});
+			},
+			onEachFeature: function(feature, layer) {
+				layer.bindPopup(feature.properties.LSN)
+			}
+		}).addTo(map);
 	//	map.fitBounds(address.getBounds());
 	</script>
 </body>

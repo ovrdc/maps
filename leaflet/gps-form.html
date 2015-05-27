@@ -117,83 +117,24 @@
     <div id="map" class="sidebar-map"></div>
     <script>
 window.onload = function() {
-        var map = new L.Map('map', {
-          center: [39.1203, -82.5353],
-          zoom: 14,
-          measureControl: true
-        });
-        
+        var map = new L.Map('map', { center: [39.1203, -82.5353], zoom: 14 });
         var hash = L.hash(map);
-
-	var ggle = new L.Google('ROADMAP', {
-		mapOptions: {
-			styles: style
-		},
-		maxZoom: 20,
-		maxNativeZoom: 18
-	});
-	
-//	ggle.addTo(map);
-
 	var acetate = L.tileLayer('http://a{s}.acetate.geoiq.com/tiles/acetate-hillshading/{z}/{x}/{y}.png', {
 	attribution: '&copy;2012 Esri & Stamen, Data from OSM and Natural Earth',
 	subdomains: '0123',
 		maxZoom: 20,
 		maxNativeZoom: 17
 	}).addTo(map);
-	
-        var usgs_topo = L.tileLayer.wms("http://basemap.nationalmap.gov/arcgis/services/USGSTopo/MapServer/WMSServer", {
-            layers: 0,
-            maxZoom: 20,
-	    maxNativeZoom: 18
-        });
 
-	var ortho = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-		attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
-		maxZoom: 20,
-		maxNativeZoom: 18,
-		opacity: 0.7
-	});
-	
-	L.control.defaultExtent().addTo(map);
 	L.control.locate({
 //	  strings: {
 //	    popup: "Click <a href='https://docs.google.com/forms/d/1D9iOrS8zx_dLrGtKvlR6eFOoiGkhBJbp6CvxkMtiyd8/viewform?entry.178114451='" + e.latlng.lat + "&entry.976052137=-81&entry.1664842005&entry.587692797'>here</a> to add a point to the database."
 //	  }
 	}).addTo(map);
-//	L.control.scale().addTo(map); gets in the way of the carto db/google logos
-	L.control.fullscreen().addTo(map);
-//	L.control.social({default_text: "Map from OVRDC via GitHub"}).addTo(map); Wellston doesnt need social sharing
-	var sidebar = L.control.sidebar('sidebar').addTo(map);
 
 // 	conflicts with measure control
 //	map.on('click', function(e) { alert("Lat, Lon : " + e.latlng.lat + ", " + e.latlng.lng) });
 	
-	
-      // create the geocoding control and add it to the map
-      var searchControl = new L.esri.Controls.Geosearch({
-      	position: 'topleft'
-      }).addTo(map);
-
-      // create an empty layer group to store the results and add it to the map
-      var results = new L.LayerGroup().addTo(map);
-
-      // listen for the results event and add every result to the map
-      searchControl.on("results", function(data){
-        results.clearLayers();
-        for (var i = data.results.length - 1; i >= 0; i--) {
-          results.addLayer(L.marker(data.results[i].latlng));
-        };
-      });
-	var markersLayer = new L.LayerGroup();	//layer contain searched elements
-	map.addLayer(markersLayer);
-	
-	var planes = omnivore.csv('../data/airports.csv').addTo(map);
-	
-	var controlSearch = new L.Control.Search({layer: planes, initial: false});
-      	map.addControl(controlSearch);
-      	
-
 }
       </script>
   </body>

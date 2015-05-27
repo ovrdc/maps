@@ -155,13 +155,14 @@ You can find the project at: https://github.com/domoritz/leaflet-locatecontrol
          *
          * Uses the event retrieved from onLocationFound from the map.
          */
-        var latitude = this._event.latitude;
+
         drawMarker: function(map) {
             if (this._event.accuracy === undefined) {
                 this._event.accuracy = 0;
             }
 
             var radius = this._event.accuracy;
+            var lt = this._event.latitude;
             if (this._locateOnNextLocationFound) {
                 if (this._isOutsideMapBounds()) {
                     this.options.onLocationOutsideMapBounds(this);

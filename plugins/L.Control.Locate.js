@@ -204,7 +204,7 @@ You can find the project at: https://github.com/domoritz/leaflet-locatecontrol
             if (this.options.metric) {
                 distance = radius.toFixed(0);
                 unit = "meters";
-                lt = "5";
+                lt = this._event.latitude;
             } else {
                 distance = (radius * 3.2808399).toFixed(0);
                 unit = "feet";

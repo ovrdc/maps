@@ -204,11 +204,11 @@ You can find the project at: https://github.com/domoritz/leaflet-locatecontrol
             if (this.options.metric) {
                 distance = radius.toFixed(0);
                 unit = "meters";
-                lt = this._event.latitude;
+                lt = "5";
             } else {
                 distance = (radius * 3.2808399).toFixed(0);
                 unit = "feet";
-                lt = this._event.latitude;
+                lt = "5";
             }
            
             // small inner marker

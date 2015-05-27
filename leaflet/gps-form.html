@@ -110,7 +110,12 @@ window.onload = function() {
 	  	},
 	  locateOptions: { enableHighAccuracy: true }
 	}).addTo(map);
- 	map.on('click', function(e) { alert("Lat, Lon : " + e.latlng.lat + ", " + e.latlng.lng) });
+ 	map.on('click', function(e) {
+ 		//alert("Lat, Lon : " + e.latlng.lat + ", " + e.latlng.lng) 
+ 		new L.CircleMaker(e.latlng, {
+ 			
+ 		})
+ 	});
 }
       </script>
   </body>

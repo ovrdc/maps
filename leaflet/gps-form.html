@@ -86,35 +86,12 @@
   	
   	<link rel="stylesheet" href="../plugins/leaflet-search.css" />
   	<script src="../plugins/leaflet-search.js"></script>
-
 	<style>
 		#map { position:absolute; top:0; bottom:0; width:100%; }
 	</style>
-
   </head>
   <body>
-
-    <div id="sidebar" class="sidebar collapsed">
-        <!-- Nav tabs -->
-        <ul class="sidebar-tabs" role="tablist">
-            <li><a href="#home" role="tab"><i class="fa fa-bars"></i></a></li>
-        </ul>
-
-        <!-- Tab panes -->
-        <div class="sidebar-content active">
-            	<div class="sidebar-pane" id="home">
-                	<h1>Wellston Test Map</h1>
-			<p>The points and lines here are random.</p>
-	               <p>This map was produced using the <a href="//leafletjs.com">Leaflet Javascript Library</a>.
-	              </p>
-	          	<p><i>This map is for reference only. Any questions in regards to legal zoning boundaries should
-	          		be forwarded to the City of Wellston.
-	          	</i></p>
-		</div>
-        </div>
-    </div>
-    
-    <div id="map" class="sidebar-map"></div>
+	<div id="map"></div>
     <script>
 window.onload = function() {
         var map = new L.Map('map', { center: [39.1203, -82.5353], zoom: 14 });
@@ -134,8 +111,8 @@ window.onload = function() {
 	  locateOptions: { enableHighAccuracy: true }
 	}).addTo(map);
 
-// 	conflicts with measure control
-//	map.on('click', function(e) { alert("Lat, Lon : " + e.latlng.lat + ", " + e.latlng.lng) });
+ 	conflicts with measure control
+	map.on('click', function(e) { alert("Lat, Lon : " + e.latlng.lat + ", " + e.latlng.lng) });
 	
 }
       </script>

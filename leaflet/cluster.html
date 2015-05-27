@@ -47,22 +47,23 @@
 
 		map.addLayer(markers);
 		map.fitBounds(markers.getBounds());
-			var address = L.geoJson();
+		
+		var address = L.geoJson();
 	
-	$.getJSON('../data/fair_address.geojson', function(data) {
-		address.addData(data, {
-			style: function(feature) {
-				return {color: "#900000"};
-			},
-			pointToLayer: function(feature, latlng) {
-				return new L.CircleMarker(latlng, {redius: 10, fillOpactiy: 0.8});
-			},
-			onEachFeature: function(feature, layer) {
-				layer.bindPopup(feature.properties.LSN);
-			}
-		})
-	});
-	address.addTo(map);
+		$.getJSON('../data/fair_address.geojson', function(data) {
+			address.addData(data, {
+				style: function(feature) {
+					return {color: "#900000"};
+				},
+				pointToLayer: function(feature, latlng) {
+					return new L.CircleMarker(latlng, {redius: 10, fillOpactiy: 0.8});
+				},
+				onEachFeature: function(feature, layer) {
+					layer.bindPopup(feature.properties.LSN);
+				}
+			})
+		});
+		address.addTo(map);
 	</script>
 </body>
 </html>

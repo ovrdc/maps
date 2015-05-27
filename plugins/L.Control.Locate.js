@@ -155,6 +155,7 @@ You can find the project at: https://github.com/domoritz/leaflet-locatecontrol
          *
          * Uses the event retrieved from onLocationFound from the map.
          */
+        var latitude = this._event.latitude;
         drawMarker: function(map) {
             if (this._event.accuracy === undefined) {
                 this._event.accuracy = 0;
@@ -178,7 +179,7 @@ You can find the project at: https://github.com/domoritz/leaflet-locatecontrol
                 }
                 this._locateOnNextLocationFound = false;
             }
-            var latitude = this._event.latitude;
+
             // circle with the radius of the location's accuracy
             var style, o;
             if (this.options.drawCircle) {

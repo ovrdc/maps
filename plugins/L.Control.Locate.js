@@ -228,7 +228,7 @@ You can find the project at: https://github.com/domoritz/leaflet-locatecontrol
 
             var t = this.options.strings.popup;
             if (this.options.showPopup && t) {
-                this._marker.bindPopup(L.Util.template(t, {distance: distance, unit: unit}))
+                this._marker.bindPopup(L.Util.template(t, {distance: distance, unit: unit, lt: lt}))
                 ._popup.setLatLng(this._event.latlng);
             }
           

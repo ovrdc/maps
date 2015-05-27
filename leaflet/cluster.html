@@ -25,7 +25,7 @@
 			maxZoom: 18,
 			attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 		}).addTo(map);
-
+		var cluster = L.markerClusterGroup();
 	     	var addresses = new L.GeoJSON.AJAX('../data/fair_address.geojson', {
 	     		style: function(feature) {
 				return {color: "#900000"};
@@ -37,9 +37,9 @@
 				layer.bindPopup(feature.properties.LSN)
 			}
 		});
-		var cluster = L.markerClusterGroup();
-
-		cluster.addLayer(addresses);
+		addresses.on('loaded', function() {
+			cluster.addLayer(addresses);	
+		});
 
 		map.addLayer(cluster);
 		//map.fitBounds(cluster.getBounds());

@@ -207,7 +207,8 @@ You can find the project at: https://github.com/domoritz/leaflet-locatecontrol
                 distance = (radius * 3.2808399).toFixed(0);
                 unit = "feet";
             }
-
+           var latitude = this._event.latlng.lat
+           
             // small inner marker
             var mStyle;
             if (this._following) {
@@ -228,7 +229,7 @@ You can find the project at: https://github.com/domoritz/leaflet-locatecontrol
                 this._marker.bindPopup(L.Util.template(t, {distance: distance, unit: unit}))
                 ._popup.setLatLng(this._event.latlng);
             }
-
+          
             this._toggleContainerStyle();
         },
 

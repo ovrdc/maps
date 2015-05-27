@@ -110,10 +110,7 @@ window.onload = function() {
 	  	},
 	  locateOptions: { enableHighAccuracy: true }
 	}).addTo(map);
-
- 	conflicts with measure control
-	map.on('click', function(e) { alert("Lat, Lon : " + e.latlng.lat + ", " + e.latlng.lng) });
-	
+ 	map.on('click', function(e) { alert("Lat, Lon : " + e.latlng.lat + ", " + e.latlng.lng) });
 }
       </script>
   </body>

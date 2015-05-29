@@ -25,13 +25,15 @@
 			maxZoom: 18,
 			attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 		}).addTo(map);
-    var test = new L.TileLayer.WMS("http://52.7.83.241:8080/geoserver/tiger/wms", {
+    var testwms = new L.TileLayer.WMS("http://52.7.83.241:8080/geoserver/tiger/wms", {
             layers: 'tiger:tiger_roads',
             format: 'image/png',
             transparent: true,
             maxZoom: 20
     });
-    test.addTo(map);
+    testwms.addTo(map);
+    var testgj = L.GeoJSON.AJAX('http://52.7.83.241:8080/geoserver/tiger/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=tiger:tiger_roads&maxFeatures=50&outputFormat=json');
+    testgj.addTo(map);
 	</script>
 </body>
 </html>

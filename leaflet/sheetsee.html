@@ -23,11 +23,10 @@
   <body>
     <div id="map"></div>
     <script type="text/javascript">
-window.onload = function () { 
       document.addEventListener('DOMContentLoaded', function() {
         var URL = "1B5ctchtgswwDYh3C0CMuOgCL6rjg6IR0mcAfq8jNb7Y"
         Tabletop.init( { key: URL, callback: showInfo, simpleSheet: true } )
-      })
+
   
 	  var map = new L.Map('map', {
 	    //center:	[38.843546, -83.471328],
@@ -71,7 +70,7 @@ window.onload = function () {
           "Google Spreadsheet": test
       };
       L.control.layers(baseMaps, overlayMaps).addTo(map);
-};
+});
     </script>
   </body>
 </html>

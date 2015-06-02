@@ -1,15 +1,15 @@
 <!doctype html>
 <html>
 	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-    <script type="text/javascript" src="http://jlord.us/sheetsee.js/js/tabletop1.3.4.js"></script>
-    <script type="text/javascript" src="http://jlord.us/sheetsee.js/js/sheetsee.js"></script>
-    <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/3.12/themes/css/cartodb.css" />
-    <!-- Add a Title -->
-    <title>Map</title>
-  </head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+	<script type="text/javascript" src="http://jlord.us/sheetsee.js/js/tabletop1.3.4.js"></script>
+	<script type="text/javascript" src="http://jlord.us/sheetsee.js/js/sheetsee.js"></script>
+	<link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/3.12/themes/css/cartodb.css" />
+	<!-- Add a Title -->
+	<title>Map</title>
+ 	</head>
   <style>
     html {width: 100%; height: 100%;}
     body {width: 100%; height: 100%; margin: 0;}
@@ -37,12 +37,12 @@
 
    		function showInfo(data) {
       	success: function() {
-		       	alert('Google Spreadsheet Loaded')
-		       	console.log(data)
-		        var optionsJSON = ["notes"]
-		        var template = "<h4>{{Status}}</h4>"
-		        var test1 = Sheetsee.createGeoJSON(data, optionsJSON)
-		        test.addData(test1)
+		       	alert('Google Spreadsheet Loaded');
+		       	console.log(data);
+		        var optionsJSON = ["notes"];
+		        var template = "<h4>{{Status}}</h4>";
+		        var test1 = Sheetsee.createGeoJSON(data, optionsJSON);
+		        test.addData(test1);
 		        //var map = Sheetsee.loadMap("map")
 		        // Try different map tiles? examples.map-20v6611k
 		        // examples.map-y7l23tes

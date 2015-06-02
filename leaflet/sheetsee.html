@@ -23,53 +23,53 @@
   <body>
     <div id="map"></div>
     <script type="text/javascript">
-      document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function() {
         var URL = "1B5ctchtgswwDYh3C0CMuOgCL6rjg6IR0mcAfq8jNb7Y"
         Tabletop.init( { key: URL, callback: showInfo, simpleSheet: true } )
 
+	var test = L.geoJson()
   
-	  var map = new L.Map('map', {
+  	function showInfo(data) {
+	        var optionsJSON = ["notes"]
+	        var template = "<h4>{{Status}}</h4>"
+	        var test1 = Sheetsee.createGeoJSON(data, optionsJSON)
+	        test.addData(test1)
+	        console.log(data)
+	        //var map = Sheetsee.loadMap("map")
+	        // Try different map tiles? examples.map-20v6611k
+	        // examples.map-y7l23tes
+	        // examples.map-h67hf2ic
+	        // examples.map-i86nkdio
+	        // examples.h186knp8
+	        //Sheetsee.addTileLayer(map, 'examples.map-i86nkdio')
+	        //Sheetsee.MarkerLayer(geoJSON, map, template)
+      	}
+      	var map = new L.Map('map', {
 	    //center:	[38.843546, -83.471328],
-	    //center: [38.605698, -84.692183],
-	    zoom: 10
-	  });
+	    //center: [38.605698, -84.692183]
+      	});
+      	
+      	test.on('layeradd', function() {
+		map.fitBounds(test.getBounds());
+	});
+	
+	test.addTo(map);
   
-	  var acetate = L.tileLayer('http://a{s}.acetate.geoiq.com/tiles/acetate-hillshading/{z}/{x}/{y}.png', {
-	  attribution: '&copy;2012 Esri & Stamen, Data from OSM and Natural Earth',
-	  subdomains: '0123',
-	    maxZoom: 20,
-	    maxNativeZoom: 17
-	  }).addTo(map);
+  	var acetate = L.tileLayer('http://a{s}.acetate.geoiq.com/tiles/acetate-hillshading/{z}/{x}/{y}.png', {
+		attribution: '&copy;2012 Esri & Stamen, Data from OSM and Natural Earth',
+		subdomains: '0123',
+	  	maxZoom: 20,
+	 	maxNativeZoom: 17
+	 }).addTo(map);
 	  
-	  var test = L.geoJson()
-  
-  function showInfo(data) {
-        var optionsJSON = ["notes"]
-        var template = "<h4>{{Status}}</h4>"
-        var test1 = Sheetsee.createGeoJSON(data, optionsJSON)
-        test.addData(test1)
-        console.log(data)
-        //var map = Sheetsee.loadMap("map")
-        // Try different map tiles? examples.map-20v6611k
-        // examples.map-y7l23tes
-        // examples.map-h67hf2ic
-        // examples.map-i86nkdio
-        // examples.h186knp8
-        //Sheetsee.addTileLayer(map, 'examples.map-i86nkdio')
-        //Sheetsee.MarkerLayer(geoJSON, map, template)
-      }
-      test.on('layeradd', function() {
-				map.fitBounds(test.getBounds());
-			}).addTo(map);
-
-      var baseMaps = {
+	var baseMaps = {
           "Grayscale": acetate
-      };
+      	};
       
-      var overlayMaps = {
+      	var overlayMaps = {
           "Google Spreadsheet": test
-      };
-      L.control.layers(baseMaps, overlayMaps).addTo(map);
+      	};
+      	L.control.layers(baseMaps, overlayMaps).addTo(map);
 });
     </script>
   </body>

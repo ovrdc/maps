@@ -36,14 +36,13 @@
 			var test = L.geoJson();
 
    		function showInfo(data) {
-                    success: function(){
+      	success: function() {
 		       	alert('Google Spreadsheet Loaded')
 		       	console.log(data)
 		        var optionsJSON = ["notes"]
 		        var template = "<h4>{{Status}}</h4>"
 		        var test1 = Sheetsee.createGeoJSON(data, optionsJSON)
 		        test.addData(test1)
-
 		        //var map = Sheetsee.loadMap("map")
 		        // Try different map tiles? examples.map-20v6611k
 		        // examples.map-y7l23tes
@@ -52,10 +51,10 @@
 		        // examples.h186knp8
 		        //Sheetsee.addTileLayer(map, 'examples.map-i86nkdio')
 		        //Sheetsee.MarkerLayer(geoJSON, map, template)
-                    },
-            	error: function(){
-            		alert('error')
-            	}
+        },
+	    	error: function(){
+	    		alert('error');
+	    	}
     	};
 
   		test.on('layeradd', function() {
@@ -64,7 +63,7 @@
 	
 			test.addTo(map);
   
-  		var acetate = L.tileLayer('http://a{s}.acetate.geoiq.com/tiles/acetate-hillshading/{z}/{x}/{y}.png', {
+  	var acetate = L.tileLayer('http://a{s}.acetate.geoiq.com/tiles/acetate-hillshading/{z}/{x}/{y}.png', {
 				attribution: '&copy;2012 Esri & Stamen, Data from OSM and Natural Earth',
 				subdomains: '0123',
 			  maxZoom: 20,

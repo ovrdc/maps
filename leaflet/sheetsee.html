@@ -59,7 +59,7 @@
         //Sheetsee.addTileLayer(map, 'examples.map-i86nkdio')
         //Sheetsee.MarkerLayer(geoJSON, map, template)
       }
-      test.on('ready', function() {
+      test.on('layeradd', function() {
 				map.fitBounds(test.getBounds());
 			}).addTo(map);
 

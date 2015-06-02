@@ -21,12 +21,12 @@
     a {border: none;}
   </style>
 	<body>
-    <div id="map"></div>
-    <script type="text/javascript">
+		<div id="map"></div>
+		<script type="text/javascript">
       document.addEventListener('DOMContentLoaded', function() {
       	var URL = "1B5ctchtgswwDYh3C0CMuOgCL6rjg6IR0mcAfq8jNb7Y";
         Tabletop.init( { key: URL, callback: showInfo, simpleSheet: true } );
-      });
+      })
       
       var map = new L.Map('map', {
 	    	//center:	[38.843546, -83.471328],
@@ -36,8 +36,8 @@
 			var test = L.geoJson();
 
    		function showInfo(data) {
-				console.log(data);
-      	success: function() {
+				console.log(data),
+      	success: function(){
 		       	alert('Google Spreadsheet Loaded');
 		        var optionsJSON = ["notes"];
 		        var template = "<h4>{{Status}}</h4>";
@@ -70,15 +70,15 @@
 			 	maxNativeZoom: 17
 	 	}).addTo(map);
 	  
-			var baseMaps = {
-          "Grayscale": acetate
-      	};
+		var baseMaps = {
+      "Grayscale": acetate
+    };
       
-      	var overlayMaps = {
-          "Google Spreadsheet": test
-      	};
-      L.control.layers(baseMaps, overlayMaps).addTo(map);
-    </script>
+    var overlayMaps = {
+      "Google Spreadsheet": test
+    };
+    L.control.layers(baseMaps, overlayMaps).addTo(map);
+  </script>
   </body>
 </html>
 <!--https://docs.google.com/spreadsheets/d/1ABXPlDkLQuAY8GvYZA67qyLgsXbUPsVU_bH4N3H8OHQ/pubhtml?gid=1920207472&single=true -->

@@ -1,8 +1,8 @@
 <!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script type="text/javascript" src="http://jlord.us/sheetsee.js/js/tabletop1.3.4.js"></script>
     <script type="text/javascript" src="http://jlord.us/sheetsee.js/js/sheetsee.js"></script>
@@ -20,39 +20,29 @@
     .leaflet-popup-content img {width: 50%;}
     a {border: none;}
   </style>
-  <body>
+	<body>
     <div id="map"></div>
     <script type="text/javascript">
-    	var map = new L.Map('map', {
-	    //center:	[38.843546, -83.471328],
-	    //center: [38.605698, -84.692183]
-      	});
-	  var FunctionOne = function () {
-	  	// create a deferred object
-	  	var r = $.Deferred();
-	
-	  	// do whatever you want (e.g. ajax/animations other asyc tasks)
-	  	var URL = "1B5ctchtgswwDYh3C0CMuOgCL6rjg6IR0mcAfq8jNb7Y";
-        	Tabletop.init( { key: URL, callback: showInfo, simpleSheet: true } );
-	
-	  	setTimeout(function () {
-		 // and call `resolve` on the deferred object, once you're done
-		 r.resolve();
-		 }, 2500);
-	
-	  	// return the deferred object
-		return r;
-	};
-	var test = L.geoJson();
-	// define FunctionTwo as needed
-	var FunctionTwo = function () {
-	  	console.log('FunctionTwo');
-	    	function showInfo(data) {
+      document.addEventListener('DOMContentLoaded', function() {
+      	var URL = "1B5ctchtgswwDYh3C0CMuOgCL6rjg6IR0mcAfq8jNb7Y";
+        Tabletop.init( { key: URL, callback: showInfo, simpleSheet: true } );
+      });
+      
+      var map = new L.Map('map', {
+	    	//center:	[38.843546, -83.471328],
+	    	//center: [38.605698, -84.692183]
+      });
+
+			var test = L.geoJson();
+
+   		function showInfo(data) {
+		       	alert('Google Spreadsheet Loaded')
+		       	console.log(data)
 		        var optionsJSON = ["notes"]
 		        var template = "<h4>{{Status}}</h4>"
 		        var test1 = Sheetsee.createGeoJSON(data, optionsJSON)
 		        test.addData(test1)
-		        console.log(data)
+
 		        //var map = Sheetsee.loadMap("map")
 		        // Try different map tiles? examples.map-20v6611k
 		        // examples.map-y7l23tes
@@ -61,34 +51,29 @@
 		        // examples.h186knp8
 		        //Sheetsee.addTileLayer(map, 'examples.map-i86nkdio')
 		        //Sheetsee.MarkerLayer(geoJSON, map, template)
-      		}
-	};
+    	};
+
+  		test.on('layeradd', function() {
+				map.fitBounds(test.getBounds());
+			});
 	
-	// call FunctionOne and use the `done` method
-	// with `FunctionTwo` as it's parameter
-	FunctionOne().done(FunctionTwo);
+			test.addTo(map);
   
-      	test.on('layeradd', function() {
-		map.fitBounds(test.getBounds());
-	});
-	
-	test.addTo(map);
-  
-  	var acetate = L.tileLayer('http://a{s}.acetate.geoiq.com/tiles/acetate-hillshading/{z}/{x}/{y}.png', {
-		attribution: '&copy;2012 Esri & Stamen, Data from OSM and Natural Earth',
-		subdomains: '0123',
-	  	maxZoom: 20,
-	 	maxNativeZoom: 17
-	 }).addTo(map);
+  		var acetate = L.tileLayer('http://a{s}.acetate.geoiq.com/tiles/acetate-hillshading/{z}/{x}/{y}.png', {
+				attribution: '&copy;2012 Esri & Stamen, Data from OSM and Natural Earth',
+				subdomains: '0123',
+			  maxZoom: 20,
+			 	maxNativeZoom: 17
+	 	}).addTo(map);
 	  
-	var baseMaps = {
+			var baseMaps = {
           "Grayscale": acetate
       	};
       
       	var overlayMaps = {
           "Google Spreadsheet": test
       	};
-      	L.control.layers(baseMaps, overlayMaps).addTo(map);
+      L.control.layers(baseMaps, overlayMaps).addTo(map);
     </script>
   </body>
 </html>

@@ -20,38 +20,37 @@
     .leaflet-popup-content img {width: 50%;}
     a {border: none;}
   </style>
-	<body>
-		<div id="map"></div>
-		<script type="text/javascript">
-      document.addEventListener('DOMContentLoaded', function() {
-      	var URL = "1B5ctchtgswwDYh3C0CMuOgCL6rjg6IR0mcAfq8jNb7Y";
-        Tabletop.init( { key: URL, callback: showInfo, simpleSheet: true } );
-      })
-      
-      var map = new L.Map('map', {
+  <body>
+	<div id="map"></div>
+	<script type="text/javascript">
+      	document.addEventListener('DOMContentLoaded', function() {
+      		var URL = "1B5ctchtgswwDYh3C0CMuOgCL6rjg6IR0mcAfq8jNb7Y"
+		Tabletop.init( { key: URL, callback: showInfo, simpleSheet: true } )
+      	})
+      	var map = new L.Map('map', {
 	    	//center:	[38.843546, -83.471328],
 	    	//center: [38.605698, -84.692183]
-      });
+    	});
 
-			var test = L.geoJson();
+	var test = L.geoJson();
 
-   		function showInfo(data) {
-				console.log(data)
-		    on.('success', function(){
-		    	alert('Google Spreadsheet Loaded');
-	        var optionsJSON = ["notes"];
-	        var template = "<h4>{{Status}}</h4>";
-	        var test1 = Sheetsee.createGeoJSON(data, optionsJSON);
-	        test.addData(test1);
-	        //var map = Sheetsee.loadMap("map")
-	        // Try different map tiles? examples.map-20v6611k
-	        // examples.map-y7l23tes
-	        // examples.map-h67hf2ic
-	        // examples.map-i86nkdio
-	        // examples.h186knp8
-	        //Sheetsee.addTileLayer(map, 'examples.map-i86nkdio')
-	        //Sheetsee.MarkerLayer(geoJSON, map, template)
-        }),
+   	function showInfo(data) {
+		console.log(data)
+		on.('ready', function(){
+		  	alert('Google Spreadsheet Loaded');
+	        	var optionsJSON = ["notes"];
+	        	var template = "<h4>{{Status}}</h4>";
+	        	var test1 = Sheetsee.createGeoJSON(data, optionsJSON);
+	        	test.addData(test1);
+		        //var map = Sheetsee.loadMap("map")
+		        // Try different map tiles? examples.map-20v6611k
+		        // examples.map-y7l23tes
+		        // examples.map-h67hf2ic
+		        // examples.map-i86nkdio
+		        // examples.h186knp8
+		        //Sheetsee.addTileLayer(map, 'examples.map-i86nkdio')
+		        //Sheetsee.MarkerLayer(geoJSON, map, template)
+        	}),
 	    	on.('error', function(){
 	    		alert('error');
 	    	})

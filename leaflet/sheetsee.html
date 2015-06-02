@@ -36,6 +36,7 @@
 			var test = L.geoJson();
 
    		function showInfo(data) {
+                    success: function(){
 		       	alert('Google Spreadsheet Loaded')
 		       	console.log(data)
 		        var optionsJSON = ["notes"]
@@ -51,6 +52,10 @@
 		        // examples.h186knp8
 		        //Sheetsee.addTileLayer(map, 'examples.map-i86nkdio')
 		        //Sheetsee.MarkerLayer(geoJSON, map, template)
+                    },
+            	error: function(){
+            		alert('error')
+            	}
     	};
 
   		test.on('layeradd', function() {

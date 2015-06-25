@@ -1,178 +1,19 @@
+<!DOCTYPE html>
 <html>
 <head>
-	<title>Parcels</title>
-	
+	<title>Parcels TopoJson</title>
 	<meta charset="utf-8" />
-  
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-	
-	<!--Font Awesome CDN and Bootstrap CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-	
-	<!--Leaflet Core via CartoDB -->
-	<link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.css" />
-	<script src="http://libs.cartocdn.com/cartodb.js/v3/cartodb.js"></script>
-	<!--[if lte IE 8]>
-		<link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v2/themes/css/cartodb.ie.css" />
-	<![endif]-->
-	
-	<!--Home Button ie Default Extent -->
-	<link rel="stylesheet" href="../plugins/leaflet.defaultextent.css" />
-	<script src="../plugins/leaflet.defaultextent.js"></script>
-	
-	<!--Easy Print Plugin Does not work well -->
-	<script src="../plugins/leaflet.easyPrint.js"></script>
-	<link rel="stylesheet" href="../plugins/easyPrint.css" />
-	<script src="../plugins/jQuery.print.js"></script>
-	
-	<!--Locate Control Plugin Mapbox CDN Version -->
-	<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.24.0/L.Control.Locate.js'></script>
-	<link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.24.0/L.Control.Locate.css' rel='stylesheet' />
-	<!--[if lt IE 9]>
-	<link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.21.0/L.Control.Locate.ie.css' rel='stylesheet' />
-	<![endif]-->
-
-	<!--Awesome Marker Plugin -->
-	<link rel="stylesheet" href="../plugins/leaflet.awesome-markers.css">
-	<script src="../plugins/leaflet.awesome-markers.js"></script>
-	
-	<!--Leaflet Hash via Mapbox CDN-->
-	<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-hash/v0.2.1/leaflet-hash.js'></script>
-	
-	<!-- Leafle Social -->	
-	<link rel="stylesheet" href="../plugins/leaflet.social.css" />
-	<script src="../plugins/leaflet.social.js"></script>
-	
-	<!--Google Custom Map with locked ovrdc API -->
-	<script type="text/javascript"
-	src="https://maps.googleapis.com/maps/api/js?libraries=placeskey=AIzaSyCpIjH_d3jfNPSwPuyrzy2G9H_Ylb1bEd8">
-	</script>
-	<script src="../plugins/google.js"></script>
-	
-	<!-- Esri Leaflet Core -->
-	<script src="http://cdn-geoweb.s3.amazonaws.com/esri-leaflet/0.0.1-beta.5/esri-leaflet-core.js"></script>
-	
-	<!-- Esri Leaflet Geocoder -->
-	<script src="http://cdn-geoweb.s3.amazonaws.com/esri-leaflet-geocoder/0.0.1-beta.3/esri-leaflet-geocoder.js"></script>
-	<link rel="stylesheet" type="text/css" href="http://cdn-geoweb.s3.amazonaws.com/esri-leaflet-geocoder/0.0.1-beta.3/esri-leaflet-geocoder.css">
-	
-	<!-- Full Screen via Mapbox-->
-	<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v0.0.4/Leaflet.fullscreen.min.js'></script>
-	<link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v0.0.4/leaflet.fullscreen.css' rel='stylesheet' />
-	
-	<!-- Leaflet Omnivore Plugin GeoJson KML Etc -->
-	<script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>
-  
-	<style>
-		#map { position:absolute; top:0; bottom:0; width:100%; }
-		#customlegend {
-			  position:absolute;
-			  padding:0px;
-			  bottom:40px;
-			  right:0px;
-			  z-index:999;
-			  overflow:auto;
-			  opacity:0.8;
-			  }
-	</style>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+	<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+	<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>
+	<script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.3.0"></script>
 </head>
 <body>
-<style>
-.leaflet-popup-content img {
-  max-width:100%;
-  }
-</style>
-<div id="map"></div>
-
+	<div id="map" style="top: 0;left:0;bottom:0;position:absolute;"></div>
 	<script>
-		window.onload = function () {
-  
-		var Esri_WorldTopoMap = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
-		attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
-		});
-	
-		var Esri_WorldImagery = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { 
-		attribution: 'Tiles © Esri — Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community' 
-		
-		});
-	
-		var map = L.map('map', {
-			measureControl: true
-		});
-		
-		var hash = L.hash(map);
-
-		var hillshade = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Terrain_Base/MapServer/tile/{z}/{y}/{x}', {
-		attribution: 'Tiles &copy; Esri &mdash; Source: USGS, Esri, TANA, DeLorme, and NPS',
-			maxZoom: 20,
-			maxNativeZoom: 13,
-			opacity: 0.2,
-		});
-		hillshade.setZIndex(-1000);
-		hillshade.addTo(map);
-		
-		var OpenStreetMap_BlackAndWhite = L.tileLayer('http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png', {
-			attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-		}).addTo(map);
-		
-		var blueStyle = {
-			"color": "#0000FF",
-			"weight": 3,
-			"opactiy": 0.9
-		};
-		
-/*		var p = omnivore.topojson('http://ovrdc.github.io/data/parcels.json')
-		.on('ready', function() {
-			p.addTo(map)
-		});
-*/
-//		var test = L.tileLayer('tiles/{z}/{x}/{y}.png', {
-//			zIndex: 1,
-//		}).addTo(map);
-
-		var baseMaps = {
-			"OpenStreetMap: Gray": OpenStreetMap_BlackAndWhite,
-			"ESRI Topo Map": Esri_WorldTopoMap,
-			"ESRI World Imagery": Esri_WorldImagery
-		};
-
-/*		var overlayMaps = {
-			 "Parcels": p
-		};*/
-
-		L.control.layers(baseMaps, overlayMaps).addTo(map);
-		L.control.defaultExtent().addTo(map);
-		L.control.locate().addTo(map);
-		L.control.social({default_text: "Map from OVRDC via GitHub"}).addTo(map);
-		//L.easyPrint().addTo(map);
-		//L.Control.geocoder().addTo(map);
-		//L.control.search().addTo(map);
-
-		map.on('click', function(e) { alert("Lat, Lon : " + e.latlng.lat + ", " + e.latlng.lng) });
-		
-		
-	      // create the geocoding control and add it to the map
-	      var searchControl = new L.esri.Controls.Geosearch().addTo(map);
-	
-	      // create an empty layer group to store the results and add it to the map
-	      var results = new L.LayerGroup().addTo(map);
-	
-	      // listen for the results event and add every result to the map
-	      searchControl.on("results", function(data){
-	        results.clearLayers();
-	        for (var i = data.results.length - 1; i >= 0; i--) {
-	          results.addLayer(L.marker(data.results[i].latlng));
-	        };
-	      });
-	}
-  </script>
-<div id="customlegend">
-<img src="../images/trails-legend.png" alt="trails" style="width:100px">
-</div>
-  
-</body>  
+		var map = L.map('map').setView([39, -81], 13);
+		var toner = new L.StamenTileLayer("toner").addTo(map);
+	</script>
+</body>
 </html>

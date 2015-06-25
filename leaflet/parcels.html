@@ -125,7 +125,7 @@
 			"opactiy": 0.9
 		};
 		
-		var p = omnivore.topojson('../data/parcels.json')
+		var p = omnivore.topojson('http://ovrdc.github.io/data/parcels.json')
 		.on('ready', function() {
 			p.addTo(map)
 		});

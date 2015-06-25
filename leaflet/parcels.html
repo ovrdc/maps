@@ -125,11 +125,11 @@
 			"opactiy": 0.9
 		};
 		
-		var p = omnivore.topojson('http://ovrdc.github.io/data/parcels.json')
+/*		var p = omnivore.topojson('http://ovrdc.github.io/data/parcels.json')
 		.on('ready', function() {
 			p.addTo(map)
 		});
-
+*/
 //		var test = L.tileLayer('tiles/{z}/{x}/{y}.png', {
 //			zIndex: 1,
 //		}).addTo(map);
@@ -140,9 +140,9 @@
 			"ESRI World Imagery": Esri_WorldImagery
 		};
 
-		var overlayMaps = {
+/*		var overlayMaps = {
 			 "Parcels": p
-		};
+		};*/
 
 		L.control.layers(baseMaps, overlayMaps).addTo(map);
 		L.control.defaultExtent().addTo(map);

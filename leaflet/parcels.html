@@ -14,6 +14,9 @@
 	<script>
 		var map = L.map('map').setView([39, -81], 8);
 		var toner = new L.StamenTileLayer("toner").addTo(map);
+var jparcel = omnivore.topojson('http://ovrdc.github.io/data/parcels.json');
+jparcel.addTo(map);
+
 	</script>
 </body>
 </html>

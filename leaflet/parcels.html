@@ -13,11 +13,15 @@
 	<div id="map" style="top: 0;left:0;bottom:0;position:absolute;width:100%;"></div>
 	<script>
 		var map = L.map('map').setView([39, -81], 8);
-		var toner = new L.StamenTileLayer("toner");
-var jparcel = omnivore.topojson('http://ovrdc.github.io/data/parcels.json');
+		var toner = new L.StamenTileLayer("toner").addTo('map');
+var customlayer = L.geoJson(null, {
+    style: function(feature) {
+        return { strokewidth: 1 };
+    }
+});
+var jparcel = omnivore.topojson('http://ovrdc.github.io/data/parcels.json', null, customlayer);
 jparcel.on('ready', function() {
 alert('loaded'),
-toner.addTo(map),
 jparcel.addTo(map)
 });
 

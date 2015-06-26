@@ -16,7 +16,7 @@
 		var toner = new L.StamenTileLayer("toner").addTo('map');
 var customlayer = L.geoJson(null, {
     style: function(feature) {
-        return { strokewidth: 1 };
+        return { weight: 1 };
     }
 });
 var jparcel = omnivore.topojson('http://ovrdc.github.io/data/parcels.json', null, customlayer);

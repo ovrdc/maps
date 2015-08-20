@@ -66,7 +66,7 @@
 		
 		var hash = L.hash(map);
 		
-		var style = [
+		/*var style = [
 			    {
 			        "featureType": "all",
 			        "elementType": "all",
@@ -416,11 +416,11 @@
 			opacity: 0.2,
 		});
 		hillshade.setZIndex(-1000);
-		hillshade.addTo(map);
+		hillshade.addTo(map);*/
 		
 		var OpenStreetMap_BlackAndWhite = L.tileLayer('http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png', {
 			attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-		});
+		}).addTo(map);
 		
 		var blueStyle = {
 			"color": "#0000FF",
@@ -442,7 +442,7 @@
 //			zIndex: 1,
 //		}).addTo(map);
 
-		var baseMaps = {
+		/*var baseMaps = {
 			"Custom Google Basemap": greymap,
 			"OpenStreetMap: Gray": OpenStreetMap_BlackAndWhite,
 			"ESRI Topo Map": Esri_WorldTopoMap,
@@ -453,7 +453,7 @@
 			 "Buckeye Trail": trail
 		};
 
-		L.control.layers(baseMaps, overlayMaps).addTo(map);
+		L.control.layers(baseMaps, overlayMaps).addTo(map);*/
 		//L.control.defaultExtent().addTo(map);
 		//L.control.locate().addTo(map);
 		//L.control.social({default_text: "Map from OVRDC via GitHub"}).addTo(map);
